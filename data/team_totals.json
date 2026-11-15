@@ -1,0 +1,206 @@
+[
+{
+"key": "record",
+"label": "Overall record",
+"value": "43-16",
+"source": "Official schedule"
+},
+{
+"key": "conf",
+"label": "WHAC record",
+"value": "20-8",
+"source": "Official schedule"
+},
+{
+"key": "home",
+"label": "Home",
+"value": "12-5",
+"source": "Official schedule (published split)"
+},
+{
+"key": "away",
+"label": "Away",
+"value": "22-6",
+"source": "Official schedule (published split)"
+},
+{
+"key": "neutral",
+"label": "Neutral",
+"value": "9-5",
+"source": "Official schedule (published split)"
+},
+{
+"key": "prior",
+"label": "2025 record",
+"value": "28-24",
+"source": "All-time records"
+},
+{
+"key": "seed",
+"label": "WHAC Tournament seed",
+"value": "No. 3",
+"source": "WHAC"
+},
+{
+"key": "poll",
+"label": "WHAC preseason poll",
+"value": "3rd",
+"source": "Indiana Tech, Jan 2026 (Madonna picked behind UNOH and Indiana Tech)"
+},
+{
+"key": "avg",
+"label": "Team batting average",
+"value": ".324",
+"source": "Official stats"
+},
+{
+"key": "obp",
+"label": "Team on-base",
+"value": ".425",
+"source": "Official stats"
+},
+{
+"key": "slg",
+"label": "Team slugging",
+"value": ".528",
+"source": "Official stats"
+},
+{
+"key": "ops",
+"label": "Team OPS",
+"value": ".953",
+"source": "Official stats"
+},
+{
+"key": "hr",
+"label": "Team home runs",
+"value": "77",
+"source": "Official stats"
+},
+{
+"key": "runs",
+"label": "Runs scored",
+"value": "513",
+"source": "Official stats"
+},
+{
+"key": "runs_allowed",
+"label": "Runs allowed",
+"value": "308",
+"source": "Official stats"
+},
+{
+"key": "sb",
+"label": "Stolen bases",
+"value": "162-197",
+"source": "Official stats"
+},
+{
+"key": "hbp",
+"label": "Hit by pitch (batting)",
+"value": "91",
+"source": "Official stats"
+},
+{
+"key": "era",
+"label": "Team ERA",
+"value": "4.93",
+"source": "Official stats"
+},
+{
+"key": "whip",
+"label": "Team WHIP",
+"value": "1.40",
+"source": "Official stats"
+},
+{
+"key": "so",
+"label": "Pitching strikeouts",
+"value": "387",
+"source": "Official stats"
+},
+{
+"key": "bbp",
+"label": "Pitching walks",
+"value": "185",
+"source": "Official stats"
+},
+{
+"key": "hbpp",
+"label": "Batters hit (pitching)",
+"value": "86",
+"source": "Official stats"
+},
+{
+"key": "wp",
+"label": "Wild pitches",
+"value": "51",
+"source": "Official stats"
+},
+{
+"key": "ip",
+"label": "Innings",
+"value": "469.0",
+"source": "Official stats"
+},
+{
+"key": "fld",
+"label": "Fielding percentage",
+"value": ".963",
+"source": "Official stats"
+},
+{
+"key": "err",
+"label": "Errors",
+"value": "75",
+"source": "Official stats"
+},
+{
+"key": "opp_avg",
+"label": "Opponent batting average",
+"value": ".261",
+"source": "Official stats"
+},
+{
+"key": "opp_sb",
+"label": "Opponent steals",
+"value": "40-58",
+"source": "Official stats"
+},
+{
+"key": "conf_avg",
+"label": "WHAC batting average",
+"value": ".354",
+"source": "Official stats, conference only"
+},
+{
+"key": "conf_ops",
+"label": "WHAC OPS",
+"value": "1.011",
+"source": "Official stats, conference only"
+},
+{
+"key": "conf_era",
+"label": "WHAC ERA",
+"value": "4.58",
+"source": "Official stats, conference only"
+},
+{
+"key": "conf_runs",
+"label": "WHAC runs scored-allowed",
+"value": "258-127",
+"source": "Official stats, conference only"
+},
+{
+"key": "vs_cleary",
+"label": "Record vs Cleary",
+"value": "2-1",
+"source": "Official schedule"
+},
+{
+"key": "huard",
+"label": "Huard record at Madonna",
+"value": "71-40",
+"source": "28-24 plus 43-16, added here"
+}
+]

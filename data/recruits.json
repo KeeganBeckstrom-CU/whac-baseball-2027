@@ -1,0 +1,56 @@
+[
+{
+"name": "Colin Steffens",
+"grad": 2027,
+"pos": "RHP",
+"school": "Rochester Adams",
+"state": "MI",
+"source": "Prep Baseball Report",
+"status": "Commit listed; class of 2027"
+},
+{
+"name": "Caden Bowen",
+"grad": 2026,
+"pos": "LHP",
+"school": "Paw Paw",
+"state": "MI",
+"source": "Prep Baseball Report",
+"status": "Commit listed; enrollment not confirmed"
+},
+{
+"name": "Henry Bradford",
+"grad": 2026,
+"pos": "SS",
+"school": "Leslie",
+"state": "MI",
+"source": "Prep Baseball Report, Perfect Game",
+"status": "Commit listed; enrollment not confirmed"
+},
+{
+"name": "Mark Gerardi",
+"grad": 2026,
+"pos": "C",
+"school": "De La Salle",
+"state": "MI",
+"source": "Prep Baseball Report",
+"status": "Commit listed; enrollment not confirmed"
+},
+{
+"name": "Kooper Purdy",
+"grad": 2026,
+"pos": "SS",
+"school": "Homeschool",
+"state": "MI",
+"source": "Prep Baseball Report",
+"status": "Commit listed; enrollment not confirmed"
+},
+{
+"name": "Ray Smith",
+"grad": 2026,
+"pos": "LHP",
+"school": "Okemos",
+"state": "MI",
+"source": "Prep Baseball Report, Perfect Game",
+"status": "Commit listed; enrollment not confirmed"
+}
+]

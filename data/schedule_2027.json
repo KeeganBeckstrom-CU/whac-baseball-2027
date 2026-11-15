@@ -1,0 +1,50 @@
+[
+{
+"id": 1,
+"date": "Apr 3",
+"opponent": "Rochester Christian",
+"site": "Home"
+},
+{
+"id": 2,
+"date": "Apr 3",
+"opponent": "Rochester Christian",
+"site": "Home"
+},
+{
+"id": 3,
+"date": "Apr 4",
+"opponent": "Rochester Christian",
+"site": "Home"
+},
+{
+"id": 4,
+"date": "Apr 4",
+"opponent": "Rochester Christian",
+"site": "Home"
+},
+{
+"id": 5,
+"date": "Apr 24",
+"opponent": "at Defiance",
+"site": "Away"
+},
+{
+"id": 6,
+"date": "Apr 24",
+"opponent": "at Defiance",
+"site": "Away"
+},
+{
+"id": 7,
+"date": "Apr 25",
+"opponent": "at Defiance",
+"site": "Away"
+},
+{
+"id": 8,
+"date": "Apr 25",
+"opponent": "at Defiance",
+"site": "Away"
+}
+]

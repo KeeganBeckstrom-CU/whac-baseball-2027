@@ -1,0 +1,1228 @@
+<meta name="dash-one-writer">
+<style>
+/* Bright, classic ballpark program in Madonna's colors. One deliberate light look, whatever the viewer's theme. */
+@font-face{font-family:"MU Serif";font-weight:400;font-display:swap;src:local("Georgia")}
+@font-face{font-family:"MU Serif";font-weight:700;font-display:swap;src:local("Georgia")}
+#dash-root{--dash-gutter:0}
+.md{color-scheme:light;--royal:#0E4C90;--navy:#002D72;--bright:#0072CE;--sky:#92C1E9;--ice:#FDEFB8;--gold:#FFD200;--antique:#B58500;--butter:#FFE680;--mark:#0E4C90;--mark2:#B58500;--wash:#CFE2F5;--on-gold:#002D72;--ramp:linear-gradient(90deg,#FFEFA3,#FFD200,#FFA62B,#F26B21,#C9271B);--paper:#FFF8DC;--page:#CFE2F5;--soft:#FDEFB8;--softer:#FFE680;--field:#FFFBEA;
+ --color-fg:#0B2A5B;--color-fg-muted:#47608A;--color-bg:#FFF8DC;--color-panel:#FFF8DC;--color-border-line:#E4D7A8;--color-ok:#14713A;--color-warn:#8A5D00;--color-bad:#B3261E;
+ --cds-chart-muted:#B4C2D3;--cds-chart-grid:#DCE7F3;--cds-chart-axis:#7288A8;--cds-chart-reference:#B58500;--cds-surface-popover:#FFFBEA;--cds-border:#C5D8EE;--cds-text-secondary:#47608A;
+ --serif:"MU Serif",Georgia,"Times New Roman",serif;
+ background:var(--page);color:var(--color-fg);font-family:var(--serif);display:flex;flex-direction:column;gap:var(--cds-gap-lg);padding-block:var(--cds-pad-lg);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.md-band{background:var(--royal);color:#fff;border:1px solid var(--navy);outline:3px double var(--gold);outline-offset:-9px;padding:calc(var(--cds-pad-lg) + 10px);display:flex;gap:var(--cds-gap-lg);align-items:center;flex-wrap:wrap}
+.md-logo{width:124px;height:auto;background:#fff;padding:5px;flex:none;border:3px solid var(--gold)}
+.md-bandtext{flex:1 1 20rem;min-width:0;display:flex;flex-direction:column;gap:var(--cds-gap-xs)}
+.md-eyebrow{margin:0;color:var(--gold);font-size:var(--cds-font-size-caption);font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.md-title{margin:0;font-family:var(--serif);font-weight:700;font-size:calc(var(--cds-font-size-title) * 1.25);color:#fff;text-wrap:balance}
+.md-lede{margin:0;color:#fff;font-size:var(--cds-font-size-body);line-height:1.6;max-width:80ch}
+.md-tabs{display:flex;gap:2px;overflow-x:auto;background:var(--navy);padding:4px;border-bottom:3px solid var(--gold)}
+.md-tab{appearance:none;background:none;border:0;color:#fff;cursor:pointer;font-family:var(--serif);font-size:var(--cds-font-size-body);padding:var(--cds-pad-sm) var(--cds-pad-md);white-space:nowrap}
+.md-tab:hover{background:var(--royal)}
+.md-tab.on{background:var(--gold);color:var(--on-gold);font-weight:700}
+.md-tab:focus-visible,.md-sort:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
+.md-page{display:flex;flex-direction:column;gap:var(--cds-gap-lg)}
+.md-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,10rem),1fr));gap:var(--cds-gap-md)}
+.md-tile{--t-bg:var(--royal);--t-fg:#fff;--t-sub:#fff;background:var(--t-bg);color:var(--t-fg);outline:1px solid var(--gold);outline-offset:-5px;padding:calc(var(--cds-pad-md) + 4px);display:flex;flex-direction:column;gap:3px;text-align:center}
+.md-tile:nth-child(3n+2){--t-bg:var(--gold);--t-fg:var(--on-gold);--t-sub:var(--on-gold);outline-color:var(--navy)}
+.md-tile:nth-child(3n+3){--t-bg:var(--navy);--t-sub:#fff}
+.md-tile .md-cap{color:var(--t-sub)}
+.md-num{font-family:var(--serif);font-weight:700;font-size:calc(var(--cds-font-size-title) * 1.2);font-variant-numeric:lining-nums tabular-nums}
+.md-cap{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);margin:0;line-height:1.5}
+.md-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,24rem),1fr));gap:var(--cds-gap-md)}
+.md-card{background:var(--paper);border:1px solid var(--sky);border-top:6px solid var(--royal);padding:var(--cds-pad-lg);min-width:0;display:flex;flex-direction:column;gap:var(--cds-gap-sm)}
+.md-grid>.md-card:nth-child(even),.md-page>.md-card:nth-child(even){border-top-color:var(--gold)}
+.md-h{margin:0;font-family:var(--serif);font-size:calc(var(--cds-font-size-heading) * 1.08);font-weight:700;color:var(--navy);padding-bottom:6px;border-bottom:3px double var(--antique)}
+.md-sub{margin:0;font-size:var(--cds-font-size-body);color:var(--color-fg);line-height:1.6}
+.md-chart{position:relative;min-height:220px;width:100%}
+.md-map{position:relative;width:100%;border:1px solid var(--sky);outline:3px double var(--royal);outline-offset:3px;margin:6px 0 8px;line-height:0}
+.md-map svg{display:block;width:100%;height:auto}
+.md-tip{position:absolute;pointer-events:none;background:var(--cds-surface-popover);border:1px solid var(--royal);box-shadow:0 2px 8px rgba(0,45,114,.25);padding:var(--cds-pad-xs) var(--cds-pad-sm);font-size:var(--cds-font-size-caption);line-height:1.4;max-width:18rem;z-index:2}
+.md-tip-head{color:var(--royal);font-weight:700}
+.md-bars{display:flex;flex-direction:column;gap:6px}
+.md-bar{display:grid;grid-template-columns:minmax(6rem,10rem) 1fr 3.25rem;align-items:center;gap:var(--cds-gap-sm);font-size:var(--cds-font-size-caption)}
+.md-track{height:14px;background:var(--wash);overflow:hidden}
+.md-fill{height:100%;background:linear-gradient(90deg,var(--royal),var(--bright));border-right:3px solid var(--gold)}
+.md-fill.out{background:var(--cds-chart-muted);border-right-color:var(--cds-chart-muted)}
+.md-val{text-align:right;font-variant-numeric:lining-nums tabular-nums;font-weight:700}
+.md-legend{display:flex;gap:var(--cds-gap-md);flex-wrap:wrap;align-items:center;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+.md-key{display:inline-flex;align-items:center;gap:6px}
+.md-sw{width:12px;height:12px;background:var(--royal);display:inline-block}
+.md-sw.out{background:var(--cds-chart-muted)}
+.md-sw.dot{border-radius:50%;background:var(--navy);border:1.5px solid #fff;box-shadow:0 0 0 1px var(--navy)}
+.md-ramp{display:inline-flex;height:12px;width:120px;background:var(--ramp)}
+.md-scroll{overflow:auto;max-height:34rem}
+.md-table{border-collapse:collapse;width:100%;font-family:var(--font-anthropic-sans);font-size:var(--cds-font-size-caption);font-variant-numeric:lining-nums tabular-nums}
+.md-table th{position:sticky;top:0;background:var(--royal);color:#fff;text-align:left;padding:0;white-space:nowrap;z-index:1;font-weight:700}
+.md-table th:not(:has(button)){padding:6px 8px}
+.md-table td{padding:5px 8px;border-bottom:1px solid var(--color-border-line);white-space:nowrap}
+.md-table td.wrap{white-space:normal;min-width:15rem}
+.md-table tbody tr:nth-child(even){background:var(--ice)}
+.md-table tbody tr:hover{background:var(--butter)}
+.md-sort{appearance:none;background:none;border:0;color:#fff;cursor:pointer;font:inherit;font-weight:700;padding:6px 8px;width:100%;text-align:left}
+.md-sort:hover{color:var(--gold)}
+.md-table tr.out td{color:var(--color-fg-muted)}
+.md-table td.tag{font-weight:700;color:var(--navy)}
+.md-table td.call-Set{color:var(--color-ok);font-weight:700}
+.md-table td.call-Likely{color:var(--color-warn);font-weight:700}
+.md-table td.call-Open{color:var(--color-bad);font-weight:700}
+.md-table td.call-Bench{color:var(--color-fg-muted)}
+.md-table td.call-Canreturn{color:var(--color-ok);font-weight:700}
+.md-table td.call-AtAkron,.md-table td.call-Listedsenior,.md-table td.call-Graduated{color:var(--color-bad);font-weight:700}
+.md-table td.call-Projected{color:var(--royal);font-weight:700}
+.md-tag{display:inline-block;margin-left:8px;padding:1px 8px;font-family:var(--serif);font-size:var(--cds-font-size-caption);font-weight:700;vertical-align:middle;white-space:nowrap}
+.md-tag.c{background:var(--royal);color:#fff}
+.md-tag.p{background:var(--gold);color:var(--on-gold)}
+.md-spray-ctl{display:flex;flex-wrap:wrap;align-items:flex-end;gap:var(--cds-gap-md);margin:var(--cds-gap-sm) 0}
+.md-spray-ctl .md-subtabs{border-bottom:0;margin:0}
+.md-spray-ctl .md-subtab{border-bottom:1px solid var(--antique)}
+.md-cred{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--cds-gap-sm);margin:var(--cds-gap-sm) 0}
+.md-cred>div{background:var(--soft);border-left:4px solid var(--gold);padding:8px 10px;min-width:0}
+.md-cred b{display:block;font-family:var(--serif);font-size:1.6rem;line-height:1.15;color:var(--navy)}
+.md-cred span{display:block;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+.md-cred .k{color:var(--color-fg);font-weight:700}
+.md-spray-chart{width:100%;max-width:680px;margin:0 auto}
+.md-spray-chart svg{display:block;width:100%;height:auto}
+.md-spray-chart text{font-family:var(--font-anthropic-sans);pointer-events:none}
+@media (max-width:700px){.md-cred{grid-template-columns:minmax(0,1fr)}}
+.md-panel{display:flex;flex-direction:column;gap:var(--cds-gap-lg,16px);margin-top:12px}
+.md-panel[hidden]{display:none}
+.md-card.md-part{border-left:6px solid var(--gold)}
+.md-tall{max-height:420px;overflow-y:auto}
+.md-pc1 th:nth-last-child(-n+1),.md-pc1 td:nth-last-child(-n+1),.md-pc2 th:nth-last-child(-n+2),.md-pc2 td:nth-last-child(-n+2){background:var(--soft)}
+.md-subtabs{display:flex;flex-wrap:wrap;gap:4px;border-bottom:3px solid var(--royal);margin-top:4px}
+.md-subtab{appearance:none;cursor:pointer;font-family:var(--serif);font-size:var(--cds-font-size-caption);padding:7px 12px;background:var(--soft);border:1px solid var(--antique);border-bottom:0;color:var(--navy)}
+.md-subtab:hover{background:var(--softer)}
+.md-subtab.on{background:var(--royal);border-color:var(--royal);color:#fff;font-weight:700}
+.md-subtab:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
+.md-tip-line{white-space:nowrap}
+.md-filter{position:sticky;top:env(safe-area-inset-top,0px);z-index:3;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;background:var(--soft);border:1px solid var(--antique);padding:8px 12px}
+.md-flabel{font-size:var(--cds-font-size-caption);font-weight:700;color:var(--navy)}
+.md-fsum{font-size:var(--cds-font-size-caption);color:var(--navy);flex:1 1 14rem;min-width:0}
+.md-minibtn{appearance:none;cursor:pointer;font-family:var(--serif);font-size:var(--cds-font-size-caption);padding:3px 10px;background:var(--royal);color:#fff;border:1px solid var(--navy)}
+.md-minibtn:hover{background:var(--bright)}
+.md-splitbox{min-width:0;display:flex;flex-direction:column;gap:6px}
+.md-h3{margin:8px 0 0;font-family:var(--serif);font-size:var(--cds-font-size-body);font-weight:700;color:var(--royal)}
+.md-pgrid{display:grid;grid-template-columns:minmax(0,15rem) minmax(0,1fr);gap:var(--cds-gap-md);align-items:start}
+@media (max-width:700px){.md-pgrid{grid-template-columns:minmax(0,1fr)}}
+.md-plist{display:flex;flex-direction:column;max-height:44rem;overflow:auto}
+.md-pbtn{appearance:none;background:none;border:0;border-bottom:1px solid var(--color-border-line);cursor:pointer;font-family:var(--serif);font-size:var(--cds-font-size-caption);text-align:left;padding:5px 6px;color:var(--navy)}
+.md-pbtn:hover{background:var(--softer)}
+.md-pbtn.on{background:var(--royal);color:#fff;font-weight:700}
+.md-table td.plink{color:var(--royal);font-weight:700;cursor:pointer;text-decoration:underline;text-decoration-color:var(--antique);text-underline-offset:2px}
+.md-table td.plink:hover{color:var(--bright)}
+.md-table td.st-good{color:var(--color-ok);font-weight:700}
+.md-table td.st-warn{color:var(--color-warn);font-weight:700}
+.md-table td.st-bad{color:var(--color-bad);font-weight:700}
+.md-table td.rank1{background:var(--gold);color:var(--on-gold);font-weight:700;text-align:center}
+.md-table td.rank2{background:var(--soft);text-align:center}
+.md-table td.rankn{text-align:center}
+.pc-head{display:flex;flex-wrap:wrap;gap:var(--cds-gap-sm) var(--cds-gap-md);align-items:baseline;border-bottom:3px double var(--antique);padding-bottom:6px}
+.pc-name{font-family:var(--serif);font-weight:700;font-size:calc(var(--cds-font-size-title) * 1.05);color:var(--navy)}
+.pc-num{font-family:var(--serif);font-weight:700;color:var(--antique);font-size:calc(var(--cds-font-size-title) * 1.05)}
+.pc-sub{font-size:var(--cds-font-size-body);color:var(--color-fg)}
+.pc-bio{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr));gap:6px var(--cds-gap-md);margin:8px 0}
+.pc-k{display:block;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+.pc-v{display:block;font-size:var(--cds-font-size-body)}
+.pc-sec{margin:12px 0 4px;font-family:var(--serif);font-weight:700;color:var(--royal);font-size:var(--cds-font-size-body)}
+.md-role{display:flex;align-items:center;gap:8px;margin:6px 0 2px;font-weight:700;font-size:var(--cds-font-size-body)}
+.md-role-b{display:inline-block;background:var(--royal);color:#fff;padding:2px 10px}
+.md-role-b.pen{background:var(--gold);color:var(--on-gold)}
+.md-controls{display:flex;gap:var(--cds-gap-sm);flex-wrap:wrap;align-items:center}
+.md-input{font:inherit;font-size:var(--cds-font-size-caption);padding:5px 8px;border:1px solid var(--royal);background:var(--field);color:var(--color-fg);max-width:100%}
+.md-list{display:flex;flex-direction:column}
+.md-li{display:flex;flex-direction:column;gap:3px;padding:var(--cds-pad-sm) 0;border-bottom:1px solid var(--color-border-line)}
+.md-li:last-child{border-bottom:0}
+.md-lihead{display:flex;gap:var(--cds-gap-sm);align-items:center;flex-wrap:wrap}
+.md-lilabel{font-size:var(--cds-font-size-body);font-weight:700;color:var(--royal)}
+.md-litext{font-size:var(--cds-font-size-body);line-height:1.55;color:var(--color-fg);max-width:80ch}
+.md-liuse{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+.md-chip{font-size:var(--cds-font-size-caption);border:1px solid currentColor;padding:0 8px;line-height:1.5;background:var(--field)}
+.md-chip.good{color:var(--color-ok)}
+.md-chip.warn{color:var(--color-warn)}
+.md-chip.bad{color:var(--color-bad)}
+.md-link{font-size:var(--cds-font-size-caption);color:var(--bright);width:fit-content}
+.md-foot{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);margin:0}
+.md-sources{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr));gap:4px var(--cds-gap-md)}
+.md.t-c{--royal:#002B5C;--navy:#152553;--bright:#1B5485;--sky:#A7A9AC;--ice:#E6E8EC;--gold:#B30838;--antique:#8B0027;--butter:#F2D5DC;--mark:#002B5C;--mark2:#B30838;--wash:#DDE1E6;--on-gold:#fff;--ramp:linear-gradient(90deg,#F6DCE2,#E9A3B3,#D2607C,#B30838,#7A0526);--paper:#F7F7F5;--page:#D1D2D4;--soft:#E9EAEC;--softer:#F2D5DC;--field:#FFFFFF;
+ --color-fg:#152553;--color-fg-muted:#4F5D73;--color-bg:#F7F7F5;--color-panel:#F7F7F5;--color-border-line:#D1D2D4;--color-warn:#8B5A00;--cds-chart-muted:#A7A9AC;--cds-chart-grid:#E3E5E8;--cds-chart-axis:#6C7686;--cds-chart-reference:#B30838;--cds-surface-popover:#FFFFFF;--cds-border:#D1D2D4;--cds-text-secondary:#4F5D73}
+.md.t-c .md-eyebrow,.md.t-c .md-sort:hover{color:#fff}
+.md.t-c .md-tab.on{color:#fff}
+.md-table td.call-Returning{color:var(--color-ok);font-weight:700}
+.md-table td.call-VerylikelyatAkron,.md-table td.call-Gone,.md-table td.call-Outfor,.md-table td.call-Onstaff,.md-table td.call-Gradstudent{color:var(--color-bad);font-weight:700}
+.md-teams{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.md-team{appearance:none;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:var(--serif);font-weight:700;font-size:var(--cds-font-size-body);padding:7px 18px;background:var(--paper);color:var(--navy);border:1px solid var(--navy);border-bottom-width:3px}
+
+.md-teamlab{font-size:var(--cds-font-size-body)}
+.md-teamsel{font-family:var(--serif);font-weight:700;font-size:var(--cds-font-size-body);padding:7px 12px;min-width:14rem;color:var(--navy);border:1px solid var(--navy);border-bottom:3px solid var(--navy);background:var(--paper)}
+.md-team img{height:28px;width:auto;background:#fff;display:block}
+.md-team:hover{background:var(--soft)}
+.md-team.on{background:var(--navy);color:#fff;border-bottom-color:var(--gold)}
+.md-team:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.md.t-a{--royal:#7C2128;--navy:#4F1419;--bright:#A1353E;--sky:#C8C9C7;--ice:#ECECEA;--gold:#C8C9C7;--antique:#7C2128;--butter:#E9D5D7;--mark:#7C2128;--mark2:#FF0014;--wash:#E4E4E2;--on-gold:#4F1419;--ramp:linear-gradient(90deg,#F3DDDF,#DFA3A8,#C2606A,#7C2128,#4F1419);--paper:#F8F8F6;--page:#DEDFDD;--soft:#ECECEA;--softer:#E9D5D7;--field:#FFFFFF;
+ --color-fg:#3A1216;--color-fg-muted:#6A5557;--color-bg:#F8F8F6;--color-panel:#F8F8F6;--color-border-line:#D6D6D4;--color-warn:#8B5A00;--cds-chart-muted:#B5B6B4;--cds-chart-grid:#E5E5E3;--cds-chart-axis:#7A6E70;--cds-chart-reference:#7C2128;--cds-surface-popover:#FFFFFF;--cds-border:#D6D6D4;--cds-text-secondary:#6A5557}
+.md.t-cu{--royal:#13294B;--navy:#0C1B32;--bright:#0086CC;--sky:#E8AA15;--ice:#EAF3FB;--gold:#E8AA15;--antique:#9B702C;--butter:#FBEFCF;--mark:#13294B;--mark2:#E8AA15;--wash:#DCECF9;--on-gold:#0C1B32;--ramp:linear-gradient(90deg,#DCECF9,#8FC4E8,#2F7FBF,#13294B,#0C1B32);--paper:#F5FAFE;--page:#DCECF9;--soft:#EAF3FB;--softer:#FBEFCF;--field:#FFFFFF;
+ --color-fg:#13294B;--color-fg-muted:#47608A;--color-bg:#F5FAFE;--color-panel:#F5FAFE;--color-border-line:#C5D8EE;--color-warn:#8B5A00;--cds-chart-muted:#A9BCD0;--cds-chart-grid:#DCE7F3;--cds-chart-axis:#6C7F99;--cds-chart-reference:#13294B;--cds-surface-popover:#FFFFFF;--cds-border:#C5D8EE;--cds-text-secondary:#47608A}
+.md.t-it{--royal:#1E384C;--navy:#132531;--bright:#0D4B77;--sky:#BBBCBC;--ice:#F4F4F4;--gold:#F26722;--antique:#A8430F;--butter:#FCE3D6;--mark:#1E384C;--mark2:#F26722;--wash:#DFE1DF;--on-gold:#132531;--ramp:linear-gradient(90deg,#FDE5D8,#F9B48E,#F26722,#A8430F,#1E384C);--paper:#F4F4F4;--page:#DFE1DF;--soft:#ECECEA;--softer:#FCE3D6;--field:#FFFFFF;
+ --color-fg:#132531;--color-fg-muted:#4F5B66;--color-bg:#F4F4F4;--color-panel:#F4F4F4;--color-border-line:#CFD2CF;--color-warn:#8B5A00;--cds-chart-muted:#BBBCBC;--cds-chart-grid:#E3E5E3;--cds-chart-axis:#6E7A84;--cds-chart-reference:#A8430F;--cds-surface-popover:#FFFFFF;--cds-border:#CFD2CF;--cds-text-secondary:#4F5B66}
+.md-filter[hidden],.md-page[hidden]{display:none}
+.md-maptools{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:2px 0 6px}
+.md-minibtn.on{background:var(--gold);color:var(--on-gold);border-color:var(--navy);font-weight:700}
+.md-map{cursor:grab;touch-action:pan-x pan-y}
+.md-map:active{cursor:grabbing}
+.md-map .m-hit,.md-map .m-co{cursor:pointer}
+.md-pick{display:flex;flex-direction:column;gap:4px;max-height:18rem;overflow:auto}
+.md-picks{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,13rem),1fr));gap:0 12px}
+.md-bars.clicky .md-bar{cursor:pointer}
+.md-bars.clicky .md-bar:hover{background:var(--softer)}
+.md-table td.wrap2{white-space:normal;min-width:11rem}
+.md-table td.call-NotonrosterorRoster,.md-table td.call-Noton2027roster,.md-table td.call-Notonroster{color:var(--color-bad);font-weight:700}
+.md.t-un{--royal:#1F1F1F;--navy:#0D0D0D;--bright:#4A4A4A;--sky:#BDBDBD;--ice:#F2F2F2;--gold:#C8102E;--antique:#8E0C21;--butter:#F6D6DC;--mark:#1F1F1F;--mark2:#C8102E;--wash:#E3E3E3;--on-gold:#fff;--ramp:linear-gradient(90deg,#F6D6DC,#E8909F,#D24A61,#C8102E,#6E0818);--paper:#F7F7F7;--page:#DADADA;--soft:#ECECEC;--softer:#F6D6DC;--field:#FFFFFF;
+ --color-fg:#141414;--color-fg-muted:#555555;--color-bg:#F7F7F7;--color-panel:#F7F7F7;--color-border-line:#D0D0D0;--color-warn:#8B5A00;--cds-chart-muted:#B3B3B3;--cds-chart-grid:#E3E3E3;--cds-chart-axis:#707070;--cds-chart-reference:#C8102E;--cds-surface-popover:#FFFFFF;--cds-border:#D0D0D0;--cds-text-secondary:#555555}
+.md.t-un .md-eyebrow,.md.t-un .md-sort:hover{color:#fff}
+.md.t-un .md-tab.on{color:#fff}
+.md.t-md{--royal:#00274C;--navy:#001A33;--bright:#2F65A7;--sky:#A9C2DE;--ice:#EAF0F7;--gold:#FFCB05;--antique:#B38E00;--butter:#FFF1B3;--mark:#00274C;--mark2:#FFCB05;--wash:#DDE6F0;--on-gold:#00274C;--ramp:linear-gradient(90deg,#FFF1B3,#FFE066,#FFCB05,#2F65A7,#00274C);--paper:#F7F8FA;--page:#D9DFE7;--soft:#ECF0F5;--softer:#FFF6CC;--field:#FFFFFF;
+ --color-fg:#0F1B2A;--color-fg-muted:#4E5B6B;--color-bg:#F7F8FA;--color-panel:#F7F8FA;--color-border-line:#CBD3DD;--color-warn:#8B5A00;--cds-chart-muted:#AAB4C0;--cds-chart-grid:#DDE3EA;--cds-chart-axis:#6B7684;--cds-chart-reference:#00274C;--cds-surface-popover:#FFFFFF;--cds-border:#CBD3DD;--cds-text-secondary:#4E5B6B}
+.md.t-md .md-eyebrow,.md.t-md .md-sort:hover{color:#FFCB05}
+.md.t-md .md-tab.on{color:#00274C}
+.md.t-lt{--royal:#005CB9;--navy:#003A75;--bright:#0088CE;--sky:#A9CCEB;--ice:#EAF3FB;--gold:#0088CE;--antique:#00609A;--butter:#D6E8F7;--mark:#005CB9;--mark2:#0088CE;--wash:#DCE8F4;--on-gold:#FFFFFF;--ramp:linear-gradient(90deg,#D6E8F7,#8FC3EA,#0088CE,#005CB9,#003A75);--paper:#F6F8FB;--page:#D8E0EA;--soft:#ECF1F7;--softer:#E3EFFA;--field:#FFFFFF;
+ --color-fg:#0E1E33;--color-fg-muted:#4E5B6B;--color-bg:#F6F8FB;--color-panel:#F6F8FB;--color-border-line:#C9D3DF;--color-warn:#8B5A00;--cds-chart-muted:#AAB4C0;--cds-chart-grid:#DDE3EA;--cds-chart-axis:#6B7684;--cds-chart-reference:#005CB9;--cds-surface-popover:#FFFFFF;--cds-border:#C9D3DF;--cds-text-secondary:#4E5B6B}
+.md.t-lt .md-eyebrow,.md.t-lt .md-sort:hover{color:#FFFFFF}
+.md.t-lt .md-tab.on{color:#FFFFFF}
+.md.t-df{--royal:#4F2E8B;--navy:#2E1A55;--bright:#6E52A8;--sky:#C4B6E0;--ice:#F1EDF8;--gold:#E0D37C;--antique:#A89A3E;--butter:#F3EDC4;--mark:#4F2E8B;--mark2:#E0D37C;--wash:#E4DEEF;--on-gold:#2E1A55;--ramp:linear-gradient(90deg,#F3EDC4,#E0D37C,#9C86C6,#4F2E8B,#2E1A55);--paper:#F8F7FA;--page:#DDD9E5;--soft:#EEEBF3;--softer:#F8F4DA;--field:#FFFFFF;
+ --color-fg:#1E1430;--color-fg-muted:#56506A;--color-bg:#F8F7FA;--color-panel:#F8F7FA;--color-border-line:#D2CCDD;--color-warn:#8B5A00;--cds-chart-muted:#B3ADBF;--cds-chart-grid:#E2DEEA;--cds-chart-axis:#6E6880;--cds-chart-reference:#4F2E8B;--cds-surface-popover:#FFFFFF;--cds-border:#D2CCDD;--cds-text-secondary:#56506A}
+.md.t-df .md-eyebrow,.md.t-df .md-sort:hover{color:#E0D37C}
+.md.t-df .md-tab.on{color:#2E1A55}
+.md.t-rc{--royal:#CB1F2C;--navy:#2C2A26;--bright:#D9414C;--sky:#E9B4B9;--ice:#FBEDEE;--gold:#2C2A26;--antique:#56524C;--butter:#F6D3D6;--mark:#CB1F2C;--mark2:#2C2A26;--wash:#EFE2E3;--on-gold:#FFFFFF;--ramp:linear-gradient(90deg,#F6D3D6,#E58A92,#CB1F2C,#8E1520,#2C2A26);--paper:#F8F7F6;--page:#DEDAD8;--soft:#EFECEA;--softer:#FBEDEE;--field:#FFFFFF;
+ --color-fg:#1F1D1A;--color-fg-muted:#56524C;--color-bg:#F8F7F6;--color-panel:#F8F7F6;--color-border-line:#D6D1CE;--color-warn:#8B5A00;--cds-chart-muted:#B5AFAB;--cds-chart-grid:#E4E0DD;--cds-chart-axis:#706A65;--cds-chart-reference:#CB1F2C;--cds-surface-popover:#FFFFFF;--cds-border:#D6D1CE;--cds-text-secondary:#56524C}
+.md.t-rc .md-eyebrow,.md.t-rc .md-sort:hover{color:#FFFFFF}
+.md.t-rc .md-tab.on{color:#FFFFFF}
+
+.md.md.whac-on{--royal:#223C81;--navy:#16285A;--bright:#E7131A;--sky:#B8C3E0;--ice:#EEF1F8;--gold:#E7131A;--antique:#6B7488;--butter:#FBD3D4;--mark:#223C81;--mark2:#E7131A;--wash:#E3E8F3;--on-gold:#FFFFFF;--ramp:linear-gradient(90deg,#E3E8F3,#8FA0CC,#223C81,#16285A,#E7131A);--paper:#FFFFFF;--page:#E9EDF5;--soft:#EEF1F8;--softer:#F5F7FB;--field:#FFFFFF;
+ --color-fg:#1A2340;--color-fg-muted:#55607A;--color-bg:#FFFFFF;--color-panel:#FFFFFF;--color-border-line:#D3D9E8;--cds-chart-muted:#A9B2C7;--cds-chart-grid:#E3E7F0;--cds-chart-axis:#6B7488;--cds-chart-reference:#E7131A;--cds-surface-popover:#FFFFFF;--cds-border:#D3D9E8;--cds-text-secondary:#55607A}
+.md.whac-on .md-teams,.md.whac-on .md-tabs,.md.whac-on #filter-bar{display:none!important}
+.md.whac-on .md-tile{--t-bg:#223C81;outline-color:#E7131A}
+.md.whac-on .md-tile:nth-child(even){--t-bg:#E7131A;outline-color:#FFFFFF}
+.md.whac-on .md-card{border-top-color:#E7131A}
+.md.whac-on .md-table thead th{background:#223C81;color:#fff}
+.md-homebtn{appearance:none;cursor:pointer;font-family:var(--serif);font-weight:700;font-size:var(--cds-font-size-body);padding:7px 14px;background:#223C81;color:#fff;border:1px solid #16285A;border-bottom:3px solid #E7131A}
+.md-homebtn:hover{background:#16285A}
+.md-wband{background:#223C81!important;border-bottom:6px solid #E7131A;flex-direction:row!important;align-items:center;flex-wrap:wrap;gap:var(--cds-gap-lg)!important}
+.md-wlogo{width:170px;height:auto;background:#fff;padding:8px;border:3px solid #E7131A;flex:none}
+.md-wbandtext{display:flex;flex-direction:column;gap:8px;flex:1;min-width:16rem}
+.md-wnav{display:flex;flex-wrap:wrap;gap:6px;position:sticky;top:0;z-index:3;background:#16285A;padding:8px;border-bottom:3px solid #E7131A}
+.md-wnav button{appearance:none;cursor:pointer;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.35);padding:4px 10px;font-family:var(--serif);font-size:var(--cds-font-size-caption);font-weight:700}
+.md-wnav button:hover{background:#E7131A;border-color:#E7131A}
+.md-wteams{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,10.5rem),1fr));gap:8px}
+.md-wteam{appearance:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 8px;background:#fff;border:1px solid #D3D9E8;border-bottom:4px solid #223C81;font-family:var(--serif);font-weight:700;color:#16285A;font-size:var(--cds-font-size-body);text-align:center}
+.md-wteam:hover{border-bottom-color:#E7131A;background:#F5F7FB}
+.md-wteam img{height:46px;width:auto;max-width:100%;object-fit:contain}
+.md-wteam span{font-family:var(--sans,inherit);font-weight:400;font-size:var(--cds-font-size-caption);color:#55607A}
+.md-wchips{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.md-wchip{appearance:none;cursor:pointer;padding:4px 12px;border:1px solid #223C81;background:#fff;color:#223C81;font-family:var(--serif);font-weight:700;font-size:var(--cds-font-size-caption)}
+.md-wchip.on{background:#223C81;color:#fff}
+.md-wleads{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,17rem),1fr));gap:10px}
+.md-wlead{border:1px solid #D3D9E8;border-top:4px solid #223C81;background:#fff;padding:8px 10px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.md-wlead h3{margin:0 0 4px;font-family:var(--serif);font-size:var(--cds-font-size-body);color:#16285A;display:flex;justify-content:space-between;gap:6px}
+.md-wlead h3 small{font-weight:400;color:#55607A;font-size:var(--cds-font-size-caption)}
+.md-wlr{display:grid;grid-template-columns:1.6rem 1fr auto;gap:6px;align-items:baseline;font-size:var(--cds-font-size-body);padding:2px 0;border-bottom:1px dotted #E3E7F0}
+.md-wlr:first-of-type{font-weight:700}
+.md-wlr .rk{color:#55607A;font-size:var(--cds-font-size-caption)}
+.md-wlr .nm{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.md-wlr .nm i{font-style:normal;color:#55607A;font-size:var(--cds-font-size-caption);margin-left:5px}
+.md-wlr .nm b.bk{display:inline-block;width:7px;height:7px;border-radius:50%;background:#E7131A;margin-left:5px;vertical-align:middle}
+.md-wlr .vl{font-variant-numeric:tabular-nums;font-weight:700;color:#223C81}
+.md.whac-on #top{display:none}
+.md-tab.md-tab-whac{font-weight:700}
+.md-wband{background:var(--navy);color:#fff;padding:calc(var(--cds-pad-lg) + 6px);display:flex;flex-direction:column;gap:8px}
+.md-wband .md-title{color:#fff}.md-wband .md-lede{color:#fff}
+.md-wband .md-eyebrow{color:#fff;opacity:.85;margin:0;font-size:var(--cds-font-size-caption);letter-spacing:.08em;text-transform:uppercase}
+.md-table td.wlink,.md-wlink{color:var(--royal);font-weight:700;cursor:pointer;text-decoration:underline;text-decoration-color:var(--antique);text-underline-offset:2px}
+.md-wlink{appearance:none;background:none;border:0;padding:0;font:inherit;font-family:var(--serif);font-size:calc(var(--cds-font-size-heading) * 1.02);text-align:left}
+.md-table td.wlink:hover,.md-wlink:hover{color:var(--bright)}
+.md-table td .wr{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);margin-left:4px}
+.md-table td.rank1 .wr{color:var(--on-gold)}
+.md-table.wgrid td,.md-table.wgrid th{text-align:center;white-space:nowrap}
+.md-table.wgrid td:first-child{text-align:left}
+.md-table.wgrid td.wself{background:var(--soft);color:var(--color-fg-muted)}
+.md-table.wgrid td.wup{font-weight:700}
+.md-wcaps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr));gap:var(--cds-gap-md)}
+.md-wcap{background:var(--paper);border:1px solid var(--sky);border-left:6px solid var(--royal);padding:var(--cds-pad-md);display:flex;flex-direction:column;gap:6px;min-width:0}
+.md-wcap dl{margin:0;display:grid;grid-template-columns:minmax(7rem,auto) 1fr;gap:4px 10px}
+.md-wcap dt{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);font-weight:700}
+.md-wcap dd{margin:0;font-size:var(--cds-font-size-body);line-height:1.45}
+.md-wcap .md-cap b{color:var(--navy)}
+.md-wrow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+</style>
+
+<div class="md t-c">
+<div class="md-teams"><button class="md-homebtn" data-tab="whac" type="button" title="Back to the WHAC main page">&#8592; WHAC home</button><label class="md-flabel md-teamlab" for="teamSel">Team</label><select class="md-input md-teamsel" id="teamSel" aria-label="Choose a team" data-draw="team_sel"></select></div>
+<header class="md-band" id="top">
+  <img class="md-logo" data-draw="logo" data-src="ui" alt="">
+  <div class="md-bandtext">
+    <p class="md-eyebrow"><span data-draw="v" data-src="ui" data-where="id=eyebrow" data-field="detail">—</span></p>
+    <h1 class="md-title"><span data-draw="v" data-src="ui" data-where="id=title" data-field="detail">—</span></h1>
+    <p class="md-lede" data-draw="v" data-src="program_notes" data-where="id=takeaway" data-field="detail">—</p>
+  </div>
+</header>
+<div class="md-tabs" role="tablist" aria-label="Sections">
+  <button class="md-tab on" data-tab="overview" role="tab">Overview</button>
+  <button class="md-tab" data-tab="outlook" role="tab">2027 outlook</button>
+  <button class="md-tab" data-tab="players" role="tab">Player cards</button>
+  <button class="md-tab" data-tab="hitters" role="tab">Hitters</button>
+  <button class="md-tab" data-tab="pitchers" role="tab">Pitchers</button>
+  <button class="md-tab" data-tab="tendencies" role="tab">Tendencies</button>
+  <button class="md-tab" data-team-not="cleary" data-tab="cleary-tab" role="tab">Vs Cleary</button>
+  <button class="md-tab" data-team-only="cleary" data-tab="matchups" role="tab" hidden>Player matchups</button>
+  <button class="md-tab" data-tab="season" role="tab">2026 season</button>
+  <button class="md-tab" data-tab="recruiting" role="tab">Recruiting</button>
+  <button class="md-tab" data-tab="staff" role="tab">Staff and honors</button>
+  <button class="md-tab" data-tab="gaps" role="tab">Gaps and sources</button>
+</div>
+
+<div class="md-filter" id="filter-bar" hidden>
+  <label class="md-flabel" for="fPreset">Situation</label>
+  <select class="md-input" id="fPreset" aria-label="Situation"><option value="all">All games</option><option value="whac">WHAC games</option><option value="nonconf">Non-conference, regular season</option><option value="ranked">Ranked opponents</option><option value="postseason">Postseason</option><option value="whactourn">WHAC Tournament</option><option value="naia">NAIA Opening Round</option><option value="last20">Last 20 games</option><option value="last10">Last 10 games</option><option value="wins">Wins</option><option value="losses">Losses</option></select>
+  <label class="md-flabel" for="fFrom">From</label><input class="md-input" id="fFrom" type="date" min="2026-02-01" max="2026-05-31">
+  <label class="md-flabel" for="fTo">To</label><input class="md-input" id="fTo" type="date" min="2026-02-01" max="2026-05-31">
+  <button class="md-minibtn" id="fReset">Reset</button>
+  <span class="md-fsum" data-draw="fsum" data-src="schedule">—</span>
+</div>
+
+<section class="md-page" id="whac" hidden>
+  <header class="md-wband">
+    <img class="md-wlogo" src="assets/whac-logo.png" alt="Wolverine-Hoosier Athletic Conference logo">
+    <div class="md-wbandtext">
+      <p class="md-eyebrow">Wolverine-Hoosier Athletic Conference · NAIA baseball</p>
+      <h1 class="md-title">WHAC baseball: the 2026 season and the 2027 field</h1>
+      <p class="md-lede" data-draw="wn" data-src="w_notes" data-id="lede">—</p>
+    </div>
+  </header>
+  <nav class="md-wnav" aria-label="WHAC page sections">
+    <button type="button" data-wgo="w-teams">Team pages</button><button type="button" data-wgo="w-stand">Standings</button><button type="button" data-wgo="w-leaders">Leaders</button><button type="button" data-wgo="w-post">Postseason</button><button type="button" data-wgo="w-h2h">Head to head</button><button type="button" data-wgo="w-cmp">Team stats</button><button type="button" data-wgo="w-hon">Honors</button><button type="button" data-wgo="w-caps">2027 teams</button><button type="button" data-wgo="w-ret">Returners</button><button type="button" data-wgo="w-ser">2027 series</button><button type="button" data-wgo="w-meth">Notes</button>
+  </nav>
+  <div class="md-tiles" data-draw="w_tiles" data-src="w_notes"></div>
+
+  <div class="md-card" id="w-teams">
+    <h2 class="md-h">Team dashboards</h2>
+    <p class="md-cap">Each 2027 WHAC team has its own page: roster and 2027 outlook, player cards, hitters, pitchers, tendencies, the 2026 season, recruiting, and staff. Pick a team to open it.</p>
+    <div class="md-wteams" data-draw="w_nav" data-src="w_teams c_ui a_ui cu_ui it_ui un_ui md_ui lt_ui df_ui rc_ui"></div>
+  </div>
+
+  <div class="md-card" id="w-stand">
+    <h2 class="md-h">2026 final standings</h2>
+    <p class="md-cap" data-draw="wn" data-src="w_notes" data-id="standings_cap">—</p>
+    <div class="md-scroll"><table class="md-table">
+      <thead><tr><th>#</th><th>Team</th><th>WHAC</th><th>GB</th><th>Overall</th><th>WHAC RS-RA</th><th>WHAC site lists</th><th>Postseason</th><th>2027</th></tr></thead>
+      <tbody data-draw="w_stand" data-src="w_standings"></tbody></table></div>
+  </div>
+
+  <div class="md-card" id="w-leaders">
+    <h2 class="md-h">2026 individual leaders</h2>
+    <p class="md-cap" data-draw="wn" data-src="w_notes" data-id="leaders_cap">—</p>
+    <div class="md-wchips" role="tablist" aria-label="Leader group"><button class="md-wchip on" data-wlg="Hitting" type="button">Hitting</button><button class="md-wchip" data-wlg="Pitching" type="button">Pitching</button><span class="md-cap" style="margin-left:8px">Show</span><button class="md-wchip on" data-wln="5" type="button">Top 5</button><button class="md-wchip" data-wln="10" type="button">Top 10</button></div>
+    <div class="md-wleads" data-draw="w_leads" data-src="w_leaders"></div>
+  </div>
+
+  <div class="md-card" id="w-post">
+    <h2 class="md-h">2026 postseason</h2>
+    <p class="md-cap" data-draw="wn" data-src="w_notes" data-id="post_cap">—</p>
+    <div class="md-grid">
+      <div><h3 class="md-h3">WHAC Tournament</h3>
+        <div class="md-scroll"><table class="md-table"><thead><tr><th>Game</th><th>Date</th><th>Winner</th><th>Loser</th><th>Score</th></tr></thead>
+        <tbody data-draw="w_tour" data-src="w_tourney"></tbody></table></div></div>
+      <div><h3 class="md-h3">NAIA Opening Round</h3>
+        <div class="md-scroll"><table class="md-table"><thead><tr><th>Team</th><th>Date</th><th>Opponent</th><th>Result</th><th>Site</th></tr></thead>
+        <tbody data-draw="w_naia" data-src="w_naia"></tbody></table></div></div>
+    </div>
+  </div>
+
+  <div class="md-card" id="w-h2h">
+    <h2 class="md-h">Head to head, 2026 WHAC regular season</h2>
+    <p class="md-cap" data-draw="wn" data-src="w_notes" data-id="h2h_cap">—</p>
+    <div class="md-scroll"><table class="md-table wgrid" data-draw="w_h2h" data-src="w_h2h w_h2h_cols"></table></div>
+  </div>
+
+  <div class="md-card" id="w-cmp">
+    <h2 class="md-h">Team stats, all 2026 games</h2>
+    <p class="md-cap" data-draw="wn" data-src="w_notes" data-id="compare_cap">—</p>
+    <div class="md-scroll"><table class="md-table wgrid" data-draw="w_cmp" data-src="w_compare w_compare_cols"></table></div>
+  </div>
+
+  <div class="md-card" id="w-hon">
+    <h2 class="md-h">2026 All-WHAC and awards</h2>
+    <p class="md-cap" data-draw="wn" data-src="w_notes" data-id="honors_cap">—</p>
+    <div class="md-scroll"><table class="md-table"><thead><tr><th>Honor</th><th>Name</th><th>Team</th><th>Pos</th><th>2027 status</th></tr></thead>
+      <tbody data-draw="w_hon" data-src="w_honors"></tbody></table></div>
+  </div>
+
+  <div class="md-card" id="w-caps">
+    <h2 class="md-h">The 10 teams for 2027</h2>
+    <p class="md-cap" data-draw="wn" data-src="w_notes" data-id="teams_cap">—</p>
+    <div class="md-wcaps" data-draw="w_caps" data-src="w_teams"></div>
+  </div>
+
+  <div class="md-card" id="w-ret">
+    <h2 class="md-h">Players who can return</h2>
+    <p class="md-cap" data-draw="wn" data-src="w_notes" data-id="ret_cap">—</p>
+    <div class="md-wrow"><label class="md-flabel" for="wTeam">Team</label><select class="md-input" id="wTeam" aria-label="Filter returning players by team" data-draw="w_rsel" data-src="w_teams"></select></div>
+    <div class="md-grid">
+      <div><h3 class="md-h3">Hitters, 75+ AB</h3>
+        <div class="md-scroll"><table class="md-table"><thead><tr><th>Player</th><th>Team</th><th>Cl.</th><th>AB</th><th>AVG</th><th>OBP</th><th>OPS</th><th>HR</th><th>RBI</th><th>SB</th><th>Status</th></tr></thead>
+        <tbody data-draw="w_rhit" data-src="w_ret_hit"></tbody></table></div></div>
+      <div><h3 class="md-h3">Pitchers, 20+ IP</h3>
+        <div class="md-scroll"><table class="md-table"><thead><tr><th>Player</th><th>Team</th><th>Cl.</th><th>IP</th><th>ERA</th><th>WHIP</th><th>SO</th><th>BB</th><th>W-L</th><th>SV</th><th>Status</th></tr></thead>
+        <tbody data-draw="w_rpit" data-src="w_ret_pit"></tbody></table></div></div>
+    </div>
+  </div>
+
+  <div class="md-card" id="w-ser">
+    <h2 class="md-h">2027 WHAC series posted so far</h2>
+    <p class="md-cap" data-draw="wn" data-src="w_notes" data-id="series_cap">—</p>
+    <div class="md-scroll"><table class="md-table"><thead><tr><th>Dates</th><th>Visitor</th><th>Home</th><th>Games</th><th>Listed by</th></tr></thead>
+      <tbody data-draw="w_ser" data-src="w_series27"></tbody></table></div>
+  </div>
+
+  <div class="md-card" id="w-meth">
+    <h2 class="md-h">Notes and sources</h2>
+    <div class="md-list" data-draw="w_meth" data-src="w_notes">—</div>
+  </div>
+</section>
+
+<section class="md-page" id="overview">
+  <div class="md-tiles">
+    <div class="md-tile"><span class="md-cap">2026 record</span><span class="md-num" data-draw="v" data-src="team_totals" data-where="key=record" data-field="value">—</span><span class="md-cap">2025: <span data-draw="v" data-src="team_totals" data-where="key=prior" data-field="value">—</span></span></div>
+    <div class="md-tile"><span class="md-cap">WHAC record</span><span class="md-num" data-draw="v" data-src="team_totals" data-where="key=conf" data-field="value">—</span><span class="md-cap"><span data-draw="v" data-src="ui" data-where="id=conf_note" data-field="detail">—</span></span></div>
+    <div class="md-tile"><span class="md-cap">Run differential</span><span class="md-num" data-draw="v" data-src="splits" data-where="split=All games" data-field="diff">—</span><span class="md-cap">All games</span></div>
+    <div class="md-tile"><span class="md-cap">Team OPS</span><span class="md-num" data-draw="v" data-src="team_totals" data-where="key=ops" data-field="value">—</span><span class="md-cap">Batting <span data-draw="v" data-src="team_totals" data-where="key=avg" data-field="value">—</span></span></div>
+    <div class="md-tile"><span class="md-cap">Team ERA</span><span class="md-num" data-draw="v" data-src="team_totals" data-where="key=era" data-field="value">—</span><span class="md-cap">WHAC only <span data-draw="v" data-src="team_totals" data-where="key=conf_era" data-field="value">—</span></span></div>
+    <div class="md-tile"><span class="md-cap">Plate appearances that can return</span><span class="md-num" data-draw="ret_pa" data-src="hit_adv pit_adv">—</span><span class="md-cap"><span data-draw="v" data-src="ui" data-where="id=ret_cap" data-field="detail">—</span></span></div>
+  </div>
+
+  <div class="md-card" id="league-card">
+    <h2 class="md-h"><span data-draw="v" data-src="ui" data-where="id=league_h" data-field="detail">—</span></h2>
+    <p class="md-sub" data-draw="v" data-src="program_notes" data-where="id=league_note" data-field="detail">—</p>
+    <div class="md-scroll"><table class="md-table">
+      <thead><tr><th data-field="metric">2026 stat</th><th data-team-not="cleary"><span data-draw="v" data-src="ui" data-where="id=team" data-field="detail">—</span></th><th data-field="cleary">Cleary</th><th data-field="whac">WHAC avg</th><th data-field="naia">NAIA avg</th><th data-team-not="cleary"><span data-draw="v" data-src="ui" data-where="id=rank_t_whac" data-field="detail">—</span></th><th data-field="c_whac"><span data-draw="v" data-src="ui" data-where="id=rank_whac" data-field="detail">—</span></th><th data-team-not="cleary"><span data-draw="v" data-src="ui" data-where="id=rank_t_naia" data-field="detail">—</span></th><th data-field="c_naia"><span data-draw="v" data-src="ui" data-where="id=rank_naia" data-field="detail">—</span></th></tr></thead>
+      <tbody data-src="league" data-draw="league"></tbody></table></div>
+    <p class="md-cap" data-draw="v" data-src="program_notes" data-where="id=league_method" data-field="detail">—</p>
+  </div>
+  <div class="md-grid">
+    <div class="md-card" id="reads">
+      <h2 class="md-h"><span data-draw="v" data-src="ui" data-where="id=notes_h" data-field="detail">—</span></h2>
+      <p class="md-cap">What the 2026 numbers show.</p>
+      <div class="md-list" data-draw="list" data-section="read" data-src="program_notes">—</div>
+    </div>
+    <div class="md-card" id="program-arc">
+      <h2 class="md-h"><span data-draw="v" data-src="ui" data-where="id=arc_h" data-field="detail">—</span></h2>
+      <p class="md-sub" data-draw="v" data-src="program_notes" data-where="id=season_line" data-field="detail">—</p>
+      <div class="md-chart" data-draw="history" data-src="history">—</div>
+      <p class="md-cap"><span data-draw="v" data-src="ui" data-where="id=hist_cap" data-field="detail">—</span></p>
+      <p class="md-sub" data-draw="v" data-src="program_notes" data-where="id=op_round" data-field="detail">—</p>
+    </div>
+  </div>
+</section>
+
+<section class="md-page" id="outlook" hidden>
+  <div class="md-card" id="tracker">
+    <h2 class="md-h">2027 tracker</h2>
+    <p class="md-cap"><span data-draw="v" data-src="ui" data-where="id=tracker_cap" data-field="detail">—</span></p>
+    <div class="md-scroll"><table class="md-table">
+      <thead><tr><th data-field="item">Item</th><th data-field="status">Status</th><th data-field="detail">What I found</th><th data-field="checked">Last checked</th></tr></thead>
+      <tbody data-src="watch" data-draw="watch"></tbody></table></div>
+    <h3 class="md-h3">2027 games posted so far</h3>
+    <div class="md-scroll"><table class="md-table">
+      <thead><tr><th data-field="date">Date</th><th data-field="opponent">Opponent</th><th data-field="site">Site</th></tr></thead>
+      <tbody data-src="schedule_2027" data-draw="sched27"></tbody></table></div>
+  </div>
+  <div class="md-grid">
+    <div class="md-card" id="returning-share">
+      <h2 class="md-h">What can come back</h2>
+      <p class="md-cap" data-draw="v" data-src="program_notes" data-where="id=share_note" data-field="detail">—</p>
+      <div class="md-bars" data-draw="ret" data-group="Hitting" data-src="hit_adv pit_adv">—</div>
+      <div class="md-bars" data-draw="ret" data-group="Pitching" data-src="hit_adv pit_adv">—</div>
+    </div>
+    <div class="md-card" id="moves">
+      <h2 class="md-h">Known moves</h2>
+      <div class="md-list" data-draw="list" data-section="move" data-src="program_notes">—</div>
+    </div>
+  </div>
+  <div class="md-card" id="positions">
+    <h2 class="md-h">Position by position</h2>
+    <p class="md-cap"><span data-draw="v" data-src="ui" data-where="id=pos_cap" data-field="detail">—</span></p>
+    <div class="md-list" data-draw="list" data-section="outlook" data-src="program_notes">—</div>
+  </div>
+  <div class="md-grid">
+    <div class="md-card" id="top-hitters">
+      <h2 class="md-h">Top returning hitters</h2>
+      <p class="md-cap"><span data-draw="v" data-src="ui" data-where="id=top_hit_cap" data-field="detail">—</span></p>
+      <div class="md-scroll"><table class="md-table">
+        <thead><tr><th><button class="md-sort" data-target="top_hit" data-sort="player">Player</button></th><th><button class="md-sort" data-target="top_hit" data-sort="cls">Class</button></th><th><button class="md-sort" data-target="top_hit" data-sort="ab">AB</button></th><th><button class="md-sort" data-target="top_hit" data-sort="avg">AVG</button></th><th><button class="md-sort" data-target="top_hit" data-sort="ops">OPS</button></th><th><button class="md-sort" data-target="top_hit" data-sort="hr">HR</button></th><th><button class="md-sort" data-target="top_hit" data-sort="rbi">RBI</button></th><th><button class="md-sort" data-target="top_hit" data-sort="sb">SB</button></th></tr></thead>
+        <tbody data-src="hit_adv game_bat schedule" data-draw="top_hit"></tbody></table></div>
+    </div>
+    <div class="md-card" id="top-pitchers">
+      <h2 class="md-h">Top returning pitchers</h2>
+      <p class="md-cap"><span data-draw="v" data-src="ui" data-where="id=top_pit_cap" data-field="detail">—</span></p>
+      <div class="md-scroll"><table class="md-table">
+        <thead><tr><th><button class="md-sort" data-target="top_pit" data-sort="player">Player</button></th><th><button class="md-sort" data-target="top_pit" data-sort="cls">Class</button></th><th><button class="md-sort" data-target="top_pit" data-sort="ip">IP</button></th><th><button class="md-sort" data-target="top_pit" data-sort="era">ERA</button></th><th><button class="md-sort" data-target="top_pit" data-sort="so">K</button></th><th><button class="md-sort" data-target="top_pit" data-sort="bb">BB</button></th><th><button class="md-sort" data-target="top_pit" data-sort="w">W</button></th><th><button class="md-sort" data-target="top_pit" data-sort="sv">SV</button></th></tr></thead>
+        <tbody data-src="pit_adv game_pit schedule" data-draw="top_pit"></tbody></table></div>
+    </div>
+  </div>
+  <div class="md-grid">
+    <div class="md-card" id="out-hitters">
+      <h2 class="md-h">Hitters likely gone</h2>
+      <p class="md-cap"><span data-draw="v" data-src="ui" data-where="id=out_hit_cap" data-field="detail">—</span></p>
+      <div class="md-scroll"><table class="md-table">
+        <thead><tr><th><button class="md-sort" data-target="out_hit" data-sort="player">Player</button></th><th><button class="md-sort" data-target="out_hit" data-sort="status">Status</button></th><th><button class="md-sort" data-target="out_hit" data-sort="ab">AB</button></th><th><button class="md-sort" data-target="out_hit" data-sort="ops">OPS</button></th><th><button class="md-sort" data-target="out_hit" data-sort="hr">HR</button></th><th><button class="md-sort" data-target="out_hit" data-sort="rbi">RBI</button></th><th><button class="md-sort" data-target="out_hit" data-sort="sb">SB</button></th></tr></thead>
+        <tbody data-src="hit_adv game_bat schedule" data-draw="out_hit"></tbody></table></div>
+    </div>
+    <div class="md-card" id="out-pitchers">
+      <h2 class="md-h">Pitchers likely gone</h2>
+      <p class="md-cap"><span data-draw="v" data-src="ui" data-where="id=out_pit_cap" data-field="detail">—</span></p>
+      <div class="md-scroll"><table class="md-table">
+        <thead><tr><th><button class="md-sort" data-target="out_pit" data-sort="player">Player</button></th><th><button class="md-sort" data-target="out_pit" data-sort="status">Status</button></th><th><button class="md-sort" data-target="out_pit" data-sort="ip">IP</button></th><th><button class="md-sort" data-target="out_pit" data-sort="era">ERA</button></th><th><button class="md-sort" data-target="out_pit" data-sort="gs">GS</button></th><th><button class="md-sort" data-target="out_pit" data-sort="so">K</button></th></tr></thead>
+        <tbody data-src="pit_adv game_pit schedule" data-draw="out_pit"></tbody></table></div>
+    </div>
+  </div>
+</section>
+
+<section class="md-page" id="hitters" hidden>
+  <p class="md-cap" data-draw="v" data-src="program_notes" data-where="id=filter_note" data-field="detail">—</p>
+  <div class="md-card" id="lineup">
+    <h2 class="md-h">Lineups</h2>
+    <div class="md-subtabs" role="tablist" aria-label="Choose a lineup">
+      <button class="md-subtab on" data-lu="proj" role="tab" aria-selected="true">Projected 2027</button>
+      <button class="md-subtab" data-lu="most" role="tab" aria-selected="false">Most used in 2026</button>
+      <button class="md-subtab" data-lu="second" role="tab" aria-selected="false"><span data-draw="v" data-src="ui" data-where="id=lu2" data-field="detail">—</span></button>
+      <button class="md-subtab" data-lu="third" role="tab" aria-selected="false"><span data-draw="v" data-src="ui" data-where="id=lu3" data-field="detail">—</span></button>
+    </div>
+    <p class="md-sub" data-draw="lu_cap" data-src="program_notes">—</p>
+    <div class="md-scroll"><table class="md-table">
+      <thead><tr><th>Order</th><th>Player</th><th>Pos</th><th>2027 outlook</th><th>2026 class</th><th>AVG</th><th>OBP</th><th>OPS</th><th>HR</th><th>RBI</th><th>2026 usage</th></tr></thead>
+      <tbody data-src="lineups hit_adv game_bat schedule box_usage" data-draw="lineup"></tbody></table></div>
+    <p class="md-cap" data-draw="v" data-src="program_notes" data-where="id=lu_all" data-field="detail">—</p>
+  </div>
+  <div class="md-grid">
+    <div class="md-card" id="ops-chart">
+      <h2 class="md-h">Regular starters by OPS</h2>
+      <div class="md-legend"><span class="md-key"><span class="md-sw"></span><span data-draw="v" data-src="ui" data-where="id=back_key" data-field="detail">—</span></span><span class="md-key"><span class="md-sw out"></span>Likely gone</span></div>
+      <div class="md-bars" data-draw="ops_bars" data-src="hit_adv game_bat schedule">—</div>
+    </div>
+    <div class="md-card" id="usage">
+      <h2 class="md-h">Who started where in 2026</h2>
+      <p class="md-cap">Counted from all 2026 box scores. Last 20 means starts in the final 20 games.</p>
+      <div class="md-scroll"><table class="md-table">
+        <thead><tr><th data-field="player">Player</th><th data-field="starts">GS</th><th data-field="last20">Last 20</th><th data-field="positions">Positions</th><th data-field="order">Batting order</th></tr></thead>
+        <tbody data-src="box_usage" data-draw="usage"></tbody></table></div>
+    </div>
+  </div>
+  <div class="md-card" id="hit-table">
+    <h2 class="md-h">All hitters, 2026</h2>
+    <div class="md-controls"><select class="md-input" id="hf" aria-label="Show hitters" data-filter="hit" data-target="hit"><option value="all">All hitters</option><option value="back" data-roster="class">Can return by class</option><option value="back" data-roster="posted" hidden>On the 2027 roster</option><option value="out">Likely gone</option></select><span class="md-cap">Select a column to sort. Gray rows are likely gone.</span></div>
+    <div class="md-scroll"><table class="md-table">
+      <thead><tr>
+      <th><button class="md-sort" data-target="hit" data-sort="player">Player</button></th><th><button class="md-sort" data-target="hit" data-sort="cls">Class</button></th><th><button class="md-sort" data-target="hit" data-sort="pos">Pos</button></th><th><button class="md-sort" data-target="hit" data-sort="status">2027 status</button></th><th><button class="md-sort" data-target="hit" data-sort="gs">GS</button></th><th><button class="md-sort" data-target="hit" data-sort="ab">AB</button></th><th><button class="md-sort" data-target="hit" data-sort="avg">AVG</button></th><th><button class="md-sort" data-target="hit" data-sort="obp">OBP</button></th><th><button class="md-sort" data-target="hit" data-sort="slg">SLG</button></th><th><button class="md-sort" data-target="hit" data-sort="ops">OPS</button></th><th><button class="md-sort" data-target="hit" data-sort="iso">ISO</button></th><th><button class="md-sort" data-target="hit" data-sort="woba">wOBA</button></th><th><button class="md-sort" data-target="hit" data-sort="hr">HR</button></th><th><button class="md-sort" data-target="hit" data-sort="rbi">RBI</button></th><th><button class="md-sort" data-target="hit" data-sort="sb">SB</button></th><th><button class="md-sort" data-target="hit" data-sort="bb">BB</button></th><th><button class="md-sort" data-target="hit" data-sort="so">K</button></th><th><button class="md-sort" data-target="hit" data-sort="hbp">HBP</button></th><th><button class="md-sort" data-target="hit" data-sort="bb_pct">BB%</button></th><th><button class="md-sort" data-target="hit" data-sort="k_pct">K%</button></th><th><button class="md-sort" data-target="hit" data-sort="conf_avg">WHAC AVG</button></th><th><button class="md-sort" data-target="hit" data-sort="conf_ops">WHAC OPS</button></th><th><button class="md-sort" data-target="hit" data-sort="ops25">2025 OPS</button></th>
+      </tr></thead><tbody data-src="hit_adv game_bat schedule" data-draw="hit"></tbody></table></div>
+  </div>
+</section>
+
+<section class="md-page" id="pitchers" hidden>
+  <div class="md-card" id="staff-2027">
+    <h2 class="md-h">Pitching staff</h2>
+    <div class="md-subtabs" role="tablist" aria-label="Choose a staff">
+      <button class="md-subtab on" data-rot="y26" role="tab" aria-selected="true">2026 staff</button>
+      <button class="md-subtab" data-rot="proj" role="tab" aria-selected="false">Projected 2027</button>
+    </div>
+    <p class="md-sub" data-draw="rot_cap" data-src="program_notes">—</p>
+    <div class="md-role"><span class="md-role-b">Main starters</span></div>
+    <div class="md-scroll"><table class="md-table">
+      <thead><tr><th>Spot</th><th>Pitcher</th><th>Pos</th><th>2027 outlook</th><th>2026 class</th><th>GS</th><th>Relief</th><th>IP</th><th>ERA</th><th>K</th><th>BB</th><th>BAA</th><th>How he was used</th></tr></thead>
+      <tbody data-src="rotations pit_adv game_pit schedule" data-draw="staff" data-role="Starter"></tbody></table></div>
+    <div class="md-role"><span class="md-role-b pen">Relievers</span></div>
+    <div class="md-scroll"><table class="md-table">
+      <thead><tr><th>Spot</th><th>Pitcher</th><th>Pos</th><th>2027 outlook</th><th>2026 class</th><th>GS</th><th>Relief</th><th>IP</th><th>ERA</th><th>K</th><th>BB</th><th>BAA</th><th>How he was used</th></tr></thead>
+      <tbody data-src="rotations pit_adv game_pit schedule" data-draw="staff" data-role="Bullpen"></tbody></table></div>
+  </div>
+  <div class="md-card" id="outing-log">
+    <h2 class="md-h">Outing log</h2>
+    <p class="md-cap" data-draw="v" data-src="program_notes" data-where="id=log_note" data-field="detail">—</p>
+    <div class="md-controls"><select class="md-input" id="logSel" aria-label="Choose a pitcher" data-draw="sel_log" data-src="tendency_pit"></select></div>
+    <p class="md-cap" data-draw="log_cap" data-src="game_pit">—</p>
+    <div class="md-scroll"><table class="md-table md-pc1"><thead><tr><th>Date</th><th>Opponent</th><th>Game</th><th>Role</th><th>IP</th><th>H</th><th>R</th><th>ER</th><th>BB</th><th>K</th><th>Days of rest</th><th>Decision</th><th>Pitches</th></tr></thead><tbody data-src="game_pit" data-draw="log"></tbody></table></div>
+  </div>
+  <div class="md-card" id="workload-card">
+    <h2 class="md-h">Workload <span class="md-tag c">Complete</span></h2>
+    <p class="md-cap">Appearances and rest from every box score. Entered in counts relief outings by the inning of the first batter faced, from play-by-play.</p>
+    <div class="md-scroll"><table class="md-table"><thead><tr><th><button class="md-sort" data-target="workload" data-sort="player">Pitcher</button></th><th><button class="md-sort" data-target="workload" data-sort="app">APP</button></th><th><button class="md-sort" data-target="workload" data-sort="starts">GS</button></th><th><button class="md-sort" data-target="workload" data-sort="relief">Relief</button></th><th>Entered in, games</th><th><button class="md-sort" data-target="workload" data-sort="avg_rest">Avg rest</button></th><th><button class="md-sort" data-target="workload" data-sort="zero">0 days rest</button></th><th><button class="md-sort" data-target="workload" data-sort="one">1 day rest</button></th></tr></thead><tbody data-src="game_pit pa_log" data-draw="workload"></tbody></table></div>
+  </div>
+  <div class="md-card md-part" id="pitch-counts">
+    <h2 class="md-h">Pitch counts <span class="md-tag p">Partial</span></h2>
+    <p class="md-cap">Only outings with a pitch count in the box score. Totals and averages leave the rest out. Per at-bat is pitches divided by batters faced in those outings.</p>
+    <div class="md-scroll"><table class="md-table"><thead><tr><th><button class="md-sort" data-target="pitchct" data-sort="player">Pitcher</button></th><th><button class="md-sort" data-target="pitchct" data-sort="app">APP</button></th><th><button class="md-sort" data-target="pitchct" data-sort="listed">With a count</button></th><th><button class="md-sort" data-target="pitchct" data-sort="pitches">Pitches</button></th><th><button class="md-sort" data-target="pitchct" data-sort="p_bf">Per at-bat</button></th><th><button class="md-sort" data-target="pitchct" data-sort="np_start">Per start</button></th><th><button class="md-sort" data-target="pitchct" data-sort="max_s">Most, start</button></th><th><button class="md-sort" data-target="pitchct" data-sort="np_relief">Per relief</button></th><th><button class="md-sort" data-target="pitchct" data-sort="max_r">Most, relief</button></th></tr></thead><tbody data-src="game_pit pa_log" data-draw="pitchct"></tbody></table></div>
+  </div>
+  <div class="md-card" id="free-chart">
+    <h2 class="md-h">Free passes per nine innings</h2>
+    <p class="md-cap">Walks plus hit batters, for pitchers with double-digit innings. Lower is better.</p>
+    <div class="md-legend"><span class="md-key"><span class="md-sw"></span><span data-draw="v" data-src="ui" data-where="id=back_key" data-field="detail">—</span></span><span class="md-key"><span class="md-sw out"></span>Likely gone</span></div>
+    <div class="md-bars" data-draw="free_bars" data-src="pit_adv game_pit schedule">—</div>
+  </div>
+  <div class="md-card" id="pit-table">
+    <h2 class="md-h">All pitchers, 2026</h2>
+    <div class="md-controls"><select class="md-input" id="pf" aria-label="Show pitchers" data-filter="pit" data-target="pit"><option value="all">All pitchers</option><option value="back" data-roster="class">Can return by class</option><option value="back" data-roster="posted" hidden>On the 2027 roster</option><option value="out">Likely gone</option></select><span class="md-cap">Select a column to sort. Gray rows are likely gone.</span></div>
+    <div class="md-scroll"><table class="md-table">
+      <thead><tr>
+      <th><button class="md-sort" data-target="pit" data-sort="player">Player</button></th><th><button class="md-sort" data-target="pit" data-sort="cls">Class</button></th><th><button class="md-sort" data-target="pit" data-sort="throws">Pos</button></th><th><button class="md-sort" data-target="pit" data-sort="role">2026 role</button></th><th><button class="md-sort" data-target="pit" data-sort="status">2027 status</button></th><th><button class="md-sort" data-target="pit" data-sort="ip">IP</button></th><th><button class="md-sort" data-target="pit" data-sort="era">ERA</button></th><th><button class="md-sort" data-target="pit" data-sort="fip">FIP</button></th><th><button class="md-sort" data-target="pit" data-sort="whip">WHIP</button></th><th><button class="md-sort" data-target="pit" data-sort="w">W</button></th><th><button class="md-sort" data-target="pit" data-sort="l">L</button></th><th><button class="md-sort" data-target="pit" data-sort="sv">SV</button></th><th><button class="md-sort" data-target="pit" data-sort="app">APP</button></th><th><button class="md-sort" data-target="pit" data-sort="gs">GS</button></th><th><button class="md-sort" data-target="pit" data-sort="so">K</button></th><th><button class="md-sort" data-target="pit" data-sort="bb">BB</button></th><th><button class="md-sort" data-target="pit" data-sort="hbp">HBP</button></th><th><button class="md-sort" data-target="pit" data-sort="hr">HR</button></th><th><button class="md-sort" data-target="pit" data-sort="baa">BAA</button></th><th><button class="md-sort" data-target="pit" data-sort="k9">K/9</button></th><th><button class="md-sort" data-target="pit" data-sort="free9">BB+HBP/9</button></th><th><button class="md-sort" data-target="pit" data-sort="conf_era">WHAC ERA</button></th><th><button class="md-sort" data-target="pit" data-sort="era25">2025 ERA</button></th>
+      </tr></thead><tbody data-src="pit_adv game_pit schedule" data-draw="pit"></tbody></table></div>
+  </div>
+</section>
+
+<section class="md-page" id="players" hidden>
+  <div class="md-pgrid">
+    <div class="md-card" id="player-list">
+      <h2 class="md-h">Players</h2>
+      <input class="md-input" id="ps" type="search" placeholder="Search a name" aria-label="Search players" data-psearch="1">
+      <div class="md-plist" data-draw="plist" data-src="roster"></div>
+    </div>
+    <div class="md-card" id="player-card">
+      <div data-draw="pcard" data-src="roster hit_adv pit_adv tendency_hit tendency_pit box_usage h2h_bat h2h_pit player_extra game_pit pa_log"></div>
+      <p class="md-cap">Select any player's name in any table on this dashboard to open his card.</p>
+    </div>
+  </div>
+</section>
+
+<section class="md-page" id="tendencies" hidden>
+  <div class="md-subtabs" role="tablist" aria-label="Complete or partial numbers">
+    <button class="md-subtab on" data-tv="complete" role="tab" aria-selected="true">Complete numbers</button>
+    <button class="md-subtab" data-tv="partial" role="tab" aria-selected="false">Partial numbers</button>
+  </div>
+  <div class="md-panel" data-tpanel="complete">
+  <div class="md-card" id="tend-reads">
+    <h2 class="md-h">What the complete numbers show <span class="md-tag c">Complete</span></h2>
+    <p class="md-cap" data-draw="v" data-src="program_notes" data-where="id=tend_method" data-field="detail">—</p>
+    <div class="md-list" data-draw="list" data-section="tend" data-src="program_notes">—</div>
+  </div>
+  <div class="md-grid">
+    <div class="md-card" id="runs-inning">
+      <h2 class="md-h">Runs by inning <span class="md-tag c">Complete</span></h2>
+      <div class="md-legend"><span class="md-key"><span class="md-sw"></span><span data-draw="v" data-src="ui" data-where="id=runs_key" data-field="detail">—</span></span><span class="md-key"><span class="md-sw" style="background:var(--gold)"></span>Opponents scored</span></div>
+      <div class="md-chart" data-draw="runs_chart" data-src="line_log schedule"></div>
+    </div>
+    <div class="md-card" id="steals-inning">
+      <h2 class="md-h">Steals by inning <span class="md-tag c">Complete</span></h2>
+      <div class="md-bars" data-draw="steal_bars" data-src="steal_log schedule">—</div>
+    </div>
+  </div>
+  <div class="md-card" id="splits-cards">
+    <h2 class="md-h">Results by inning and time through the order <span class="md-tag c">Complete</span></h2>
+    <p class="md-cap" data-draw="v" data-src="program_notes" data-where="id=split_c_note" data-field="detail">—</p>
+    <div class="md-grid">
+      <div class="md-splitbox"><h3 class="md-h3">Hitters</h3><select class="md-input" id="shSel" aria-label="Choose a player" data-draw="sel_h" data-src="tendency_hit"></select><div class="md-scroll"><table class="md-table"><thead><tr><th>Split</th><th>PA</th><th>AB</th><th>H</th><th>XBH</th><th>HR</th><th>BB</th><th>K</th><th>AVG</th><th>OBP</th><th>SLG</th></tr></thead><tbody data-src="pa_log" data-draw="splits_h"></tbody></table></div></div>
+      <div class="md-splitbox"><h3 class="md-h3">Pitchers, results against</h3><select class="md-input" id="spSel" aria-label="Choose a player" data-draw="sel_p" data-src="tendency_pit"></select><div class="md-scroll"><table class="md-table"><thead><tr><th>Split</th><th>PA</th><th>AB</th><th>H</th><th>XBH</th><th>HR</th><th>BB</th><th>K</th><th>AVG</th><th>OBP</th><th>SLG</th></tr></thead><tbody data-src="pa_log" data-draw="splits_p"></tbody></table></div></div>
+    </div>
+  </div>
+  <div class="md-card" id="tend-hitters">
+    <h2 class="md-h">Hitter ground and air outs <span class="md-tag c">Complete</span></h2>
+    <p class="md-cap">Hitters with at least 16 plate appearances.</p>
+    <div class="md-scroll"><table class="md-table"><thead><tr><th><button class="md-sort" data-target="th" data-sort="player">Hitter</button></th><th><button class="md-sort" data-target="th" data-sort="status">2027 status</button></th><th><button class="md-sort" data-target="th" data-sort="bats">Bats</button></th><th><button class="md-sort" data-target="th" data-sort="pa">PA</button></th><th><button class="md-sort" data-target="th" data-sort="go">GO</button></th><th><button class="md-sort" data-target="th" data-sort="ao">Air outs</button></th><th><button class="md-sort" data-target="th" data-sort="go_ao">GO/AO</button></th></tr></thead><tbody data-src="tendency_hit pa_log schedule" data-draw="th"></tbody></table></div>
+  </div>
+  <div class="md-card" id="tend-pitchers">
+    <h2 class="md-h">Pitcher usage and ground and air outs <span class="md-tag c">Complete</span></h2>
+    <p class="md-cap">Pitchers with at least 16 batters faced.</p>
+    <div class="md-scroll"><table class="md-table"><thead><tr><th><button class="md-sort" data-target="tp" data-sort="player">Pitcher</button></th><th><button class="md-sort" data-target="tp" data-sort="status">2027 status</button></th><th><button class="md-sort" data-target="tp" data-sort="bf">BF</button></th><th><button class="md-sort" data-target="tp" data-sort="go">GO</button></th><th><button class="md-sort" data-target="tp" data-sort="fo">Air outs</button></th><th><button class="md-sort" data-target="tp" data-sort="go_fo">GO/AO</button></th><th><button class="md-sort" data-target="tp" data-sort="starts">GS</button></th><th><button class="md-sort" data-target="tp" data-sort="ip_start">IP/start</button></th><th><button class="md-sort" data-target="tp" data-sort="relief">Relief</button></th><th><button class="md-sort" data-target="tp" data-sort="ip_relief">IP/relief</button></th></tr></thead><tbody data-src="tendency_pit pa_log game_pit schedule" data-draw="tp"></tbody></table></div>
+  </div>
+  </div>
+  <div class="md-panel" data-tpanel="partial" hidden>
+  <div class="md-card md-part" id="coverage">
+    <h2 class="md-h">How much of the season each stat covers <span class="md-tag p">Partial</span></h2>
+    <p class="md-cap" data-draw="v" data-src="program_notes" data-where="id=part_method" data-field="detail">—</p>
+    <div class="md-scroll"><table class="md-table"><thead><tr><th>Stat</th><th>Covered</th><th>Share</th><th>What's missing</th></tr></thead><tbody data-src="pa_log game_pit pitchers" data-draw="cov_stats"></tbody></table></div>
+    <h3 class="md-h3">Games with something missing</h3>
+    <div class="md-scroll md-tall"><table class="md-table"><thead><tr><th>Date</th><th>Opponent</th><th>Site</th><th>Count and pitch data</th><th>Pitch counts</th><th>K looking or swinging</th><th>Decisions</th></tr></thead><tbody data-src="pa_log game_pit schedule" data-draw="cov_games"></tbody></table></div>
+  </div>
+  <div class="md-card md-part" id="tend-reads-p">
+    <h2 class="md-h">What the partial numbers show <span class="md-tag p">Partial</span></h2>
+    <div class="md-list" data-draw="list" data-section="tendp" data-src="program_notes">—</div>
+  </div>
+  <div class="md-card md-part" id="spray">
+    <h2 class="md-h">Spray chart <span class="md-tag p">Partial</span></h2>
+    <p class="md-cap">One hitter at a time. Zones show where the scorer placed the ball, not exact spots. The first fielder to touch it counts on ground balls, errors and double plays. In the infield, Left, Mid and Right mean through the left side, up the middle and through the right side. Sacrifices aren't at-bats, so they stay out. The filter above applies here.</p>
+    <div class="md-spray-ctl">
+      <select class="md-input" id="spraySel" aria-label="Choose a hitter" data-draw="spray_sel" data-src="spray pa_log"></select>
+      <div class="md-subtabs" role="tablist" aria-label="Choose which batted balls to show">
+        <button class="md-subtab on" data-sk="all" role="tab" aria-selected="true">All batted balls</button>
+        <button class="md-subtab" data-sk="hits" role="tab" aria-selected="false">Hits</button>
+        <button class="md-subtab" data-sk="outs" role="tab" aria-selected="false">Outs</button>
+      </div>
+    </div>
+    <div class="md-cred" data-draw="spray_cred" data-src="spray pa_log"></div>
+    <div class="md-spray-chart" data-draw="spray_chart" data-src="spray pa_log"></div>
+    <p class="md-cap" data-draw="spray_foot" data-src="spray pa_log roster"></p>
+  </div>
+  <div class="md-card md-part" id="splits-count">
+    <h2 class="md-h">Results by count <span class="md-tag p">Partial</span></h2>
+    <p class="md-cap" data-draw="v" data-src="program_notes" data-where="id=split_p_note" data-field="detail">—</p>
+    <div class="md-grid">
+      <div class="md-splitbox"><h3 class="md-h3">Hitters</h3><select class="md-input" id="shSel2" aria-label="Choose a player" data-draw="sel_h" data-src="tendency_hit"></select><div class="md-scroll"><table class="md-table"><thead><tr><th>Split</th><th>PA</th><th>AB</th><th>H</th><th>XBH</th><th>HR</th><th>BB</th><th>K</th><th>AVG</th><th>OBP</th><th>SLG</th></tr></thead><tbody data-src="pa_log" data-draw="splits_hp"></tbody></table></div></div>
+      <div class="md-splitbox"><h3 class="md-h3">Pitchers, results against</h3><select class="md-input" id="spSel2" aria-label="Choose a player" data-draw="sel_p" data-src="tendency_pit"></select><div class="md-scroll"><table class="md-table"><thead><tr><th>Split</th><th>PA</th><th>AB</th><th>H</th><th>XBH</th><th>HR</th><th>BB</th><th>K</th><th>AVG</th><th>OBP</th><th>SLG</th></tr></thead><tbody data-src="pa_log" data-draw="splits_pp"></tbody></table></div></div>
+    </div>
+  </div>
+  <div class="md-card md-part" id="tend-hitters-p">
+    <h2 class="md-h">Hitter pitch data and direction <span class="md-tag p">Partial</span></h2>
+    <p class="md-cap">FP means first pitch. Whiff is misses per swing. K looking is the share of marked strikeouts taken. Direction counts batted balls with a named direction. Errors count by the fielder who made them, and fielder's choices often have none. Hitters with at least 16 plate appearances.</p>
+    <div class="md-scroll"><table class="md-table"><thead><tr><th><button class="md-sort" data-target="thp" data-sort="player">Hitter</button></th><th><button class="md-sort" data-target="thp" data-sort="status">2027 status</button></th><th><button class="md-sort" data-target="thp" data-sort="pa">PA</button></th><th><button class="md-sort" data-target="thp" data-sort="tracked">With pitch data</button></th><th><button class="md-sort" data-target="thp" data-sort="cov_pct">Coverage</button></th><th><button class="md-sort" data-target="thp" data-sort="p_pa">P/PA</button></th><th><button class="md-sort" data-target="thp" data-sort="fp_swing">FP swing</button></th><th><button class="md-sort" data-target="thp" data-sort="whiff">Whiff</button></th><th><button class="md-sort" data-target="thp" data-sort="k_look">K looking</button></th><th><button class="md-sort" data-target="thp" data-sort="dir_n">With direction</button></th><th><button class="md-sort" data-target="thp" data-sort="pull">Pull</button></th><th><button class="md-sort" data-target="thp" data-sort="center">Center</button></th><th><button class="md-sort" data-target="thp" data-sort="oppo">Oppo</button></th><th><button class="md-sort" data-target="thp" data-sort="bunts">Bunts</button></th></tr></thead><tbody data-src="tendency_hit pa_log schedule" data-draw="thp"></tbody></table></div>
+  </div>
+  <div class="md-card md-part" id="tend-pitchers-p">
+    <h2 class="md-h">Pitcher pitch data <span class="md-tag p">Partial</span></h2>
+    <p class="md-cap">Strike is strikes per pitch. Pitch counts are on the Pitchers tab. Pitchers with at least 16 batters faced.</p>
+    <div class="md-scroll"><table class="md-table"><thead><tr><th><button class="md-sort" data-target="tpp" data-sort="player">Pitcher</button></th><th><button class="md-sort" data-target="tpp" data-sort="status">2027 status</button></th><th><button class="md-sort" data-target="tpp" data-sort="bf">BF</button></th><th><button class="md-sort" data-target="tpp" data-sort="tracked">With pitch data</button></th><th><button class="md-sort" data-target="tpp" data-sort="cov_pct">Coverage</button></th><th><button class="md-sort" data-target="tpp" data-sort="strike">Strike</button></th><th><button class="md-sort" data-target="tpp" data-sort="fp_strike">FP strike</button></th><th><button class="md-sort" data-target="tpp" data-sort="whiff">Whiff</button></th><th><button class="md-sort" data-target="tpp" data-sort="k_look">K looking</button></th></tr></thead><tbody data-src="tendency_pit pa_log schedule" data-draw="tpp"></tbody></table></div>
+  </div>
+  </div>
+</section>
+
+<section class="md-page" id="cleary-tab" hidden>
+  <div class="md-tiles">
+    <div class="md-tile"><span class="md-cap">Series since 2019</span><span class="md-num" data-draw="series_all" data-src="cleary_series">—</span><span class="md-cap"><span data-draw="v" data-src="ui" data-where="id=vs_first" data-field="detail">—</span></span></div>
+    <div class="md-tile"><span class="md-cap">2026 games</span><span class="md-num" data-draw="v" data-src="team_totals" data-where="key=vs_cleary" data-field="value">—</span><span class="md-cap"><span data-draw="v" data-src="ui" data-where="id=vs_first" data-field="detail">—</span></span></div>
+    <div class="md-tile"><span class="md-cap">Last 10 meetings</span><span class="md-num" data-draw="series_10" data-src="cleary_series">—</span><span class="md-cap"><span data-draw="v" data-src="ui" data-where="id=vs_first" data-field="detail">—</span></span></div>
+  </div>
+  <div class="md-card" id="tape">
+    <h2 class="md-h">Side by side</h2>
+    <div class="md-list" data-draw="list" data-section="vsc" data-src="program_notes">—</div>
+    <div class="md-scroll"><table class="md-table">
+      <thead><tr><th data-field="metric">2026 stat</th><th><span data-draw="v" data-src="ui" data-where="id=team" data-field="detail">—</span></th><th data-field="cleary">Cleary</th><th data-field="edge">Edge</th><th><span data-draw="v" data-src="ui" data-where="id=vs_rank" data-field="detail">—</span></th><th data-field="c_whac">Cleary rank, WHAC</th></tr></thead>
+      <tbody data-src="tape" data-draw="tape_t"></tbody></table></div>
+  </div>
+  <div class="md-card" id="h2h">
+    <h2 class="md-h">Head to head in 2026</h2>
+    <p class="md-cap">All three games combined.</p>
+    <div class="md-subtabs" role="tablist" aria-label="Choose a view">
+      <button class="md-subtab on" data-h2="T" role="tab" aria-selected="true"><span data-draw="v" data-src="ui" data-where="id=vs_players" data-field="detail">—</span></button>
+      <button class="md-subtab" data-h2="Cleary" role="tab" aria-selected="false">Cleary players</button>
+    </div>
+    <div class="md-role"><span class="md-role-b">Hitters</span></div>
+    <div class="md-scroll"><table class="md-table"><thead><tr><th data-field="who">Hitter</th><th data-field="g">G</th><th data-field="ab">AB</th><th data-field="r">R</th><th data-field="h">H</th><th data-field="avg">AVG</th><th data-field="rbi">RBI</th><th data-field="bb">BB</th><th data-field="so">K</th></tr></thead><tbody data-src="h2h_bat" data-draw="h2b"></tbody></table></div>
+    <div class="md-role"><span class="md-role-b pen">Pitchers</span></div>
+    <div class="md-scroll"><table class="md-table"><thead><tr><th data-field="who">Pitcher</th><th data-field="g">G</th><th data-field="ip">IP</th><th data-field="h">H</th><th data-field="r">R</th><th data-field="er">ER</th><th data-field="era">ERA</th><th data-field="bb">BB</th><th data-field="so">K</th><th data-field="np">Pitches</th></tr></thead><tbody data-src="h2h_pit" data-draw="h2p"></tbody></table></div>
+  </div>
+  <div class="md-grid">
+    <div class="md-card" id="cleary">
+      <h2 class="md-h">The 2026 games</h2>
+      <div class="md-list" data-draw="list" data-section="cleary" data-src="program_notes">—</div>
+    </div>
+    <div class="md-card" id="series-log">
+      <h2 class="md-h">Every meeting since 2019</h2>
+      <p class="md-cap"><span data-draw="v" data-src="ui" data-where="id=vs_side" data-field="detail">—</span></p>
+      <div class="md-scroll"><table class="md-table"><thead><tr><th data-field="date">Date</th><th data-field="site">Site</th><th data-field="result">W/L</th><th data-field="score">Score</th></tr></thead><tbody data-src="cleary_series" data-draw="series_t"></tbody></table></div>
+    </div>
+  </div>
+</section>
+
+<section class="md-page" id="matchups" hidden>
+  <p class="md-cap">Every 2026 plate appearance with a named pitcher and hitter, from Cleary's 52 box scores. H-AB reads like "2-4." Select a Cleary player's name to open his card.</p>
+  <div class="md-card" id="mu-hitters">
+    <h2 class="md-h">Cleary hitters against pitchers</h2>
+    <p class="md-cap">How each Cleary hitter did against each pitcher he faced.</p>
+    <div class="md-controls">
+      <label class="md-flabel">Team</label><select class="md-input" aria-label="Team for Cleary hitters against pitchers" data-draw="mu_team" data-side="H" data-src="c_matchups"></select>
+      <label class="md-flabel">Cleary hitter</label><select class="md-input" aria-label="Cleary hitter" data-draw="mu_me" data-side="H" data-src="c_matchups"></select>
+      <label class="md-flabel">Pitcher</label><select class="md-input" aria-label="Pitcher" data-draw="mu_you" data-side="H" data-src="c_matchups"></select>
+      <button class="md-minibtn" data-mu-reset="H">Clear</button>
+    </div>
+    <p class="md-sub" data-draw="mu_sum" data-side="H" data-src="c_matchups">—</p>
+    <div class="md-scroll"><table class="md-table"><thead><tr><th><button class="md-sort" data-target="mu_h" data-sort="player">Cleary hitter</button></th><th><button class="md-sort" data-target="mu_h" data-sort="vs">Pitcher</button></th><th><button class="md-sort" data-target="mu_h" data-sort="team">Team</button></th><th><button class="md-sort" data-target="mu_h" data-sort="h">H-AB</button></th><th><button class="md-sort" data-target="mu_h" data-sort="avgn">AVG</button></th><th><button class="md-sort" data-target="mu_h" data-sort="pa">PA</button></th><th><button class="md-sort" data-target="mu_h" data-sort="d2">2B</button></th><th><button class="md-sort" data-target="mu_h" data-sort="d3">3B</button></th><th><button class="md-sort" data-target="mu_h" data-sort="hr">HR</button></th><th><button class="md-sort" data-target="mu_h" data-sort="bb">BB</button></th><th><button class="md-sort" data-target="mu_h" data-sort="k">K</button></th><th><button class="md-sort" data-target="mu_h" data-sort="hbp">HBP</button></th><th>Game by game</th></tr></thead><tbody data-src="c_matchups" data-draw="mu_h"></tbody></table></div>
+  </div>
+  <div class="md-card" id="mu-pitchers">
+    <h2 class="md-h">Cleary pitchers against hitters</h2>
+    <p class="md-cap">How each opposing hitter did against each Cleary pitcher. H-AB is the hitter's line.</p>
+    <div class="md-controls">
+      <label class="md-flabel">Team</label><select class="md-input" aria-label="Team for Cleary pitchers against hitters" data-draw="mu_team" data-side="P" data-src="c_matchups"></select>
+      <label class="md-flabel">Cleary pitcher</label><select class="md-input" aria-label="Cleary pitcher" data-draw="mu_me" data-side="P" data-src="c_matchups"></select>
+      <label class="md-flabel">Hitter</label><select class="md-input" aria-label="Hitter" data-draw="mu_you" data-side="P" data-src="c_matchups"></select>
+      <button class="md-minibtn" data-mu-reset="P">Clear</button>
+    </div>
+    <p class="md-sub" data-draw="mu_sum" data-side="P" data-src="c_matchups">—</p>
+    <div class="md-scroll"><table class="md-table"><thead><tr><th><button class="md-sort" data-target="mu_p" data-sort="player">Cleary pitcher</button></th><th><button class="md-sort" data-target="mu_p" data-sort="vs">Hitter</button></th><th><button class="md-sort" data-target="mu_p" data-sort="team">Team</button></th><th><button class="md-sort" data-target="mu_p" data-sort="h">H-AB</button></th><th><button class="md-sort" data-target="mu_p" data-sort="avgn">AVG</button></th><th><button class="md-sort" data-target="mu_p" data-sort="pa">PA</button></th><th><button class="md-sort" data-target="mu_p" data-sort="d2">2B</button></th><th><button class="md-sort" data-target="mu_p" data-sort="d3">3B</button></th><th><button class="md-sort" data-target="mu_p" data-sort="hr">HR</button></th><th><button class="md-sort" data-target="mu_p" data-sort="bb">BB</button></th><th><button class="md-sort" data-target="mu_p" data-sort="k">K</button></th><th><button class="md-sort" data-target="mu_p" data-sort="hbp">HBP</button></th><th>Game by game</th></tr></thead><tbody data-src="c_matchups" data-draw="mu_p"></tbody></table></div>
+  </div>
+  <p class="md-cap">A batter is credited to whoever was pitching when the plate appearance ended. Gaps are listed on the Gaps and sources tab.</p>
+</section>
+
+<section class="md-page" id="season" hidden>
+  <div class="md-card" id="margin-chart">
+    <h2 class="md-h">Every game, by run margin</h2>
+    <div class="md-legend"><span class="md-key"><span class="md-sw"></span>Win</span><span class="md-key"><span class="md-sw" style="background:var(--gold)"></span>Loss</span><span><span data-draw="v" data-src="ui" data-where="id=margin_cap" data-field="detail">—</span></span></div>
+    <div class="md-chart" data-draw="margin" data-src="schedule">—</div>
+  </div>
+  <div class="md-grid">
+    <div class="md-card" id="splits">
+      <h2 class="md-h">Splits</h2>
+      <p class="md-cap">Worked out from the game log. <span data-draw="v" data-src="ui" data-where="id=splits_cap" data-field="detail">—</span>: <span data-draw="v" data-src="team_totals" data-where="key=home" data-field="value">—</span>, <span data-draw="v" data-src="team_totals" data-where="key=away" data-field="value">—</span> and <span data-draw="v" data-src="team_totals" data-where="key=neutral" data-field="value">—</span>.</p>
+      <div class="md-scroll"><table class="md-table">
+        <thead><tr><th data-field="split">Split</th><th data-field="record">W-L</th><th data-field="rpg">R/G</th><th data-field="rapg">RA/G</th><th data-field="diff">Diff</th></tr></thead>
+        <tbody data-src="splits" data-draw="splits_t"></tbody></table></div>
+    </div>
+  </div>
+  <div class="md-card" id="game-log">
+    <h2 class="md-h">Game log</h2>
+    <div class="md-controls"><select class="md-input" id="gf" aria-label="Show games" data-filter="game" data-target="game"><option value="all">All games</option><option value="Regular season">Regular season</option><option value="WHAC">WHAC games</option><option value="WHAC Tournament">WHAC Tournament</option><option value="NAIA Opening Round">NAIA Opening Round</option><option value="W">Wins</option><option value="L">Losses</option></select></div>
+    <div class="md-scroll"><table class="md-table">
+      <thead><tr><th data-field="game">#</th><th data-field="label">Date</th><th data-field="opponent">Opponent</th><th data-field="site">Site</th><th data-field="result">W/L</th><th data-field="score">Score</th><th data-field="record">Record</th><th data-field="hits">H</th><th data-field="hr">HR</th><th data-field="bb">BB</th><th data-field="so">K</th><th data-field="err">E</th></tr></thead>
+      <tbody data-src="schedule" data-draw="game"></tbody></table></div>
+    <p class="md-foot" data-ranked-note>Opponent ranks are as printed on the team's schedule page.</p>
+  </div>
+</section>
+
+<section class="md-page" id="recruiting" hidden>
+  <div class="md-grid">
+    <div class="md-card" id="mi-map">
+      <h2 class="md-h">Michigan hot zones</h2>
+      <p class="md-cap" data-draw="v" data-src="program_notes" data-where="id=map_note" data-field="detail">—</p>
+      <div class="md-maptools" role="group" aria-label="Focus the Michigan map">
+        <button class="md-minibtn on" data-region="all">All of Michigan</button><button class="md-minibtn" data-region="west">West Michigan</button><button class="md-minibtn" data-region="mid">Mid-Michigan</button><button class="md-minibtn" data-region="se">Southeast</button><button class="md-minibtn" data-region="north">Northern Lower</button><button class="md-minibtn" data-region="up">Upper Peninsula</button>
+        <button class="md-minibtn" data-mapzoom="mi" data-by="1.6" aria-label="Zoom in">+</button><button class="md-minibtn" data-mapzoom="mi" data-by="0.625" aria-label="Zoom out">−</button>
+      </div>
+      <div class="md-legend"><span class="md-key">Fewer players<span class="md-ramp"></span>More players</span><span class="md-key"><span class="md-sw dot"></span>Hometown</span></div>
+      <div class="md-map" data-draw="map" data-map="mi" data-w="640" data-h="760" data-src="map_shapes map_points mi_geo"></div>
+      <p class="md-cap">Drag to move. Pinch, double-click, Ctrl-scroll or the + and − buttons zoom. More town names appear as you zoom. Select a town or county to list its players.</p>
+      <div class="md-pick" data-draw="map_pick" data-src="map_points mi_geo">—</div>
+    </div>
+    <div class="md-card" id="mi-counties">
+      <h2 class="md-h">Michigan players by county</h2>
+      <p class="md-cap">Select a county to focus the map on it.</p>
+      <div class="md-bars clicky" data-draw="counties" data-src="counties">—</div>
+      <h2 class="md-h">Most players from one town</h2>
+      <div class="md-bars" data-draw="top_towns" data-src="top_towns">—</div>
+    </div>
+  </div>
+  <div class="md-card" id="us-map">
+    <h2 class="md-h">Players from outside Michigan</h2>
+    <p class="md-cap"><span data-draw="v" data-src="ui" data-where="id=us_cap" data-field="detail">—</span></p>
+    <div class="md-maptools"><button class="md-minibtn" data-mapzoom="us" data-by="1.6" aria-label="Zoom in">+</button><button class="md-minibtn" data-mapzoom="us" data-by="0.625" aria-label="Zoom out">−</button><button class="md-minibtn" data-mapzoom="us" data-by="0" >Whole map</button><span class="md-cap">Drag to move. Select a town to list its players.</span></div>
+    <div class="md-map" data-draw="map" data-map="us" data-w="980" data-h="660" data-src="map_shapes map_points"></div>
+    <div class="md-pick" data-draw="map_pick_us" data-src="map_points">—</div>
+    <div class="md-scroll"><table class="md-table">
+      <thead><tr><th>Player</th><th>Hometown</th><th>Pos</th><th>2026 class</th><th>High school</th><th>Prior college</th><th>2027 status</th></tr></thead>
+      <tbody data-src="roster" data-draw="away"></tbody></table></div>
+  </div>
+  <div class="md-grid">
+    <div class="md-card" id="pipeline">
+      <h2 class="md-h"><span data-draw="v" data-src="ui" data-where="id=roster_h" data-field="detail">—</span></h2>
+      <div class="md-bars" data-draw="routes" data-src="routes">—</div>
+      <div class="md-list" data-draw="list" data-section="pipe" data-src="program_notes">—</div>
+    </div>
+    <div class="md-card" id="feeders">
+      <h2 class="md-h">JUCOs feeding the 2026 roster</h2>
+      <div class="md-bars" data-draw="feeders" data-src="feeders">—</div>
+      <h2 class="md-h" data-recruit="commits">Commits on record</h2>
+      <p class="md-cap" data-recruit="commits">Listed by recruiting services. None is confirmed as enrolled.</p>
+      <h2 class="md-h" data-recruit="roster" hidden>New names on the 2027 roster</h2>
+      <p class="md-cap" data-recruit="roster" hidden>On the team's 2027 roster page but not its 2026 roster. Class is as listed there.</p>
+      <div class="md-scroll" data-recruit="any"><table class="md-table">
+        <thead><tr><th data-field="name">Player</th><th data-field="grad">Grad or class</th><th data-field="pos">Pos</th><th data-field="school">School</th><th data-field="source">Listed by</th></tr></thead>
+        <tbody data-src="recruits" data-draw="recruits"></tbody></table></div>
+    </div>
+  </div>
+  <div class="md-card" id="roster-table">
+    <h2 class="md-h">Full 2026 roster</h2>
+    <div class="md-controls"><input class="md-input" id="rs" type="search" placeholder="Search name, school or hometown" aria-label="Search roster" data-search="roster" data-target="roster"><select class="md-input" id="rf" aria-label="Filter by route" data-filter="roster" data-target="roster"><option value="all">All routes</option><option value="JUCO transfer">JUCO transfer</option><option value="4-year transfer">4-year transfer</option><option value="Direct from high school">Direct from high school</option></select></div>
+    <div class="md-scroll"><table class="md-table">
+      <thead><tr><th><button class="md-sort" data-target="roster" data-sort="name">Player</button></th><th><button class="md-sort" data-target="roster" data-sort="num">No.</button></th><th><button class="md-sort" data-target="roster" data-sort="pos">Pos</button></th><th><button class="md-sort" data-target="roster" data-sort="bt">B/T</button></th><th><button class="md-sort" data-target="roster" data-sort="ht">Ht</button></th><th><button class="md-sort" data-target="roster" data-sort="cls">Class</button></th><th><button class="md-sort" data-target="roster" data-sort="hometown">Hometown</button></th><th><button class="md-sort" data-target="roster" data-sort="hs">High school</button></th><th><button class="md-sort" data-target="roster" data-sort="prior">Prior college</button></th><th><button class="md-sort" data-target="roster" data-sort="status">2027 status</button></th></tr></thead>
+      <tbody data-src="roster" data-draw="roster"></tbody></table></div>
+  </div>
+</section>
+
+<section class="md-page" id="staff" hidden>
+  <div class="md-grid">
+    <div class="md-card" id="coaches">
+      <h2 class="md-h">Coaching staff</h2>
+      <p class="md-cap"><span data-draw="v" data-src="ui" data-where="id=coach_lead" data-field="detail">—</span> <span data-draw="v" data-src="team_totals" data-where="key=huard" data-coach="1" data-field="value">—</span> <span data-draw="v" data-src="ui" data-where="id=coach_span" data-field="detail">—</span></p>
+      <div class="md-list" data-draw="list" data-section="staff" data-src="program_notes">—</div>
+    </div>
+    <div class="md-card" id="honors">
+      <h2 class="md-h">2026 honors</h2>
+      <div class="md-list" data-draw="list" data-section="honor" data-src="program_notes">—</div>
+    </div>
+  </div>
+</section>
+
+<section class="md-page" id="gaps" hidden>
+  <div class="md-card" id="flags">
+    <h2 class="md-h">What is unconfirmed or inconsistent</h2>
+    <div class="md-list" data-draw="list" data-section="flag" data-src="program_notes">—</div>
+  </div>
+  <div class="md-card" id="outlets">
+    <h2 class="md-h">How other outlets prepare, and what I took from them</h2>
+    <div class="md-list" data-draw="list" data-section="outlet" data-src="program_notes">—</div>
+  </div>
+  <div class="md-card" id="source-list">
+    <h2 class="md-h">Main sources</h2>
+    <div class="md-sources" data-draw="srcs" data-src="program_notes">—</div>
+  </div>
+  <p class="md-foot"><span data-draw="v" data-src="ui" data-where="id=foot" data-field="detail">—</span></p>
+</section>
+</div>
+
+<script>
+const HEATS={madonna:['#FFEFA3','#FFD200','#FFA62B','#F26B21','#C9271B'],cleary:['#F6DCE2','#E9A3B3','#D2607C','#B30838','#7A0526']};
+const MC={madonna:{water:'#B5D4F1',land:'#E8E0C4',landL:'#A9B7C9',state:'#FFF8DC',stateL:'#9DB2CC',has:'#FFE36E',hasL:'#B58500',home:'#0E4C90',grid:'#7FA6CC',county:'#7C93B2',ink:'#002D72',place:'#47608A',usDot:'#C9271B'},cleary:{water:'#C9D6E3',land:'#E3E4E6',landL:'#A7A9AC',state:'#F7F7F5',stateL:'#A7A9AC',has:'#EFC2CD',hasL:'#B30838',home:'#002B5C',grid:'#8FA3B8',county:'#7E8A9C',ink:'#152553',place:'#4F5D73',usDot:'#B30838'}};
+const TEAMS=[
+ {id:'madonna',name:'Madonna',col:'madonna',lp:'m',p:'',hash:'m-',cls:'',recruits:'commits',rosterPosted:false,coach:'huard',player:'Spicer, Luke',logP:'Jurczyk Jr., Jason',lu:{second:'gabel',third:'simon'},heat:HEATS.madonna,mc:MC.madonna},
+ {id:'cleary',name:'Cleary',p:'c_',hash:'c-',cls:'t-c',recruits:'commits',rosterPosted:false,coach:'maki',player:'Seman, Brendan',logP:'Seman, Brendan',lu:{},heat:HEATS.cleary,mc:MC.cleary},
+ {id:'aquinas',name:'Aquinas',col:'aquinas',lp:'a',p:'a_',hash:'a-',cls:'t-a',recruits:'roster',rosterPosted:true,coach:'lamange',player:'Hysell, Joey',logP:'Pollack, Sam',lu:{},heat:['#F3DDDF','#DFA3A8','#C2606A','#7C2128','#4F1419'],mc:{water:'#CFD8DF',land:'#E8E8E6',landL:'#B5B6B4',state:'#F8F8F6',stateL:'#B5B6B4',has:'#E9D5D7',hasL:'#7C2128',home:'#7C2128',grid:'#A9A9A7',county:'#8A8485',ink:'#4F1419',place:'#6A5557',usDot:'#7C2128'}},
+ {id:'cornerstone',name:'Cornerstone',col:'cornerstone',lp:'cornerstone',p:'cu_',hash:'cu-',cls:'t-cu',recruits:'commits',rosterPosted:false,coach:'lowitzki',player:'Westerkamp, Corbin',logP:'Hoeksema, Steve',lu:{},heat:['#DCECF9','#8FC4E8','#2F7FBF','#13294B','#0C1B32'],mc:{water:'#CFE3F2',land:'#E8E8E2',landL:'#A9BCD0',state:'#F5FAFE',stateL:'#A9BCD0',has:'#FBE3A6',hasL:'#9B702C',home:'#13294B',grid:'#9DB6CC',county:'#7C93B2',ink:'#13294B',place:'#47608A',usDot:'#13294B'}},
+ {id:'indianatech',name:'Indiana Tech',col:'indiana_tech',lp:'indiana_tech',p:'it_',hash:'it-',cls:'t-it',recruits:'roster',rosterPosted:true,coach:'mcwilliams',player:'Ferguson, Jack',logP:'Baughman, Kail',lu:{},heat:['#FDE5D8','#F9B48E','#F26722','#A8430F','#1E384C'],mc:{water:'#D4DEE5',land:'#ECECEA',landL:'#BBBCBC',state:'#F7F7F5',stateL:'#BBBCBC',has:'#FCE3D6',hasL:'#C8561B',home:'#1E384C',grid:'#A7B4BE',county:'#7F8C96',ink:'#132531',place:'#4F5B66',usDot:'#C8561B'}},
+ {id:'unoh',name:'Northwestern Ohio',col:'northwestern_ohio',lp:'northwestern_ohio',p:'un_',hash:'un-',cls:'t-un',recruits:'',rosterPosted:false,coach:'hartman',player:'Grau, Cesar',logP:'Healy, Daniel',lu:{},heat:['#F6D6DC','#E8909F','#D24A61','#C8102E','#6E0818'],mc:{water:'#D3D9DF',land:'#ECECEA',landL:'#B3B3B3',state:'#F7F7F7',stateL:'#B3B3B3',has:'#F6D6DC',hasL:'#C8102E',home:'#1F1F1F',grid:'#A9A9A9',county:'#808080',ink:'#141414',place:'#555555',usDot:'#C8102E'}},
+ {id:'umd',name:'Michigan-Dearborn',col:'michigan_dearborn',lp:'michigan_dearborn',p:'md_',hash:'md-',cls:'t-md',recruits:'',rosterPosted:false,coach:'finn',player:'Granatstein, Max',logP:'Gallardo, Luis',lu:{},heat:['#FFF1B3','#FFE066','#FFCB05','#2F65A7','#00274C'],mc:{water:'#D3DCE6',land:'#ECECEA',landL:'#B3B3B3',state:'#F7F8FA',stateL:'#B3B3B3',has:'#FFF1B3',hasL:'#B38E00',home:'#00274C',grid:'#A9A9A9',county:'#808080',ink:'#0F1B2A',place:'#4E5B6B',usDot:'#00274C'}},
+ {id:'ltu',name:'Lawrence Tech',col:'lawrence_tech',lp:'lawrence_tech',p:'lt_',hash:'lt-',cls:'t-lt',recruits:'roster',rosterPosted:true,coach:'eldridge',player:'Schornak, Ty',logP:'Wright, Kenny',lu:{},heat:['#D6E8F7','#8FC3EA','#0088CE','#005CB9','#003A75'],mc:{water:'#D3DCE6',land:'#ECECEA',landL:'#B3B3B3',state:'#F6F8FB',stateL:'#B3B3B3',has:'#D6E8F7',hasL:'#0088CE',home:'#005CB9',grid:'#A9A9A9',county:'#808080',ink:'#0E1E33',place:'#4E5B6B',usDot:'#005CB9'}},
+{id:'defiance',name:'Defiance',col:'defiance',lp:'defiance',p:'df_',hash:'df-',cls:'t-df',recruits:'',rosterPosted:false,coach:'gardner',player:'Kanagy, Hayden',logP:'Zipfel, Brez',lu:{},heat:['#F3EDC4','#E0D37C','#9C86C6','#4F2E8B','#2E1A55'],mc:{water:'#D3DCE6',land:'#ECECEA',landL:'#B3B3B3',state:'#F8F7FA',stateL:'#B3B3B3',has:'#F3EDC4',hasL:'#A89A3E',home:'#4F2E8B',grid:'#A9A9A9',county:'#808080',ink:'#1E1430',place:'#56506A',usDot:'#4F2E8B'}},
+{id:'rcu',name:'Rochester Christian',col:'rochester_christian',lp:'rochester_christian',p:'rc_',hash:'rc-',cls:'t-rc',recruits:'',rosterPosted:false,coach:'kunert',player:'Alspaugh, Aiden',logP:'Redmond, Matthew',lu:{},heat:['#F6D3D6','#E58A92','#CB1F2C','#8E1520','#2C2A26'],mc:{water:'#D3DCE6',land:'#ECECEA',landL:'#B3B3B3',state:'#F8F7F6',stateL:'#B3B3B3',has:'#F6D3D6',hasL:'#CB1F2C',home:'#CB1F2C',grid:'#A9A9A9',county:'#808080',ink:'#1F1D1A',place:'#56524C',usDot:'#CB1F2C'}},
+];
+const TEAM_OF=(t)=>TEAMS.find((x)=>x.id===t);
+TEAMS.forEach((T)=>{
+dash.calc(T.p+'hit_adv',{inputs:[T.p+'hitters'],title:'Hitter rate stats',description:'Adds plate appearances, ISO (SLG minus AVG), walk and strikeout rates to the published lines.',fn:(hitters)=>hitters.map((x)=>{
+  const pa=x.ab+x.bb+x.hbp+x.sf+x.sh;
+  const rate=(n)=>pa?(100*n/pa).toFixed(1)+'%':'—';
+  const iso=(Number(x.slg)-Number(x.avg)).toFixed(3).replace(/^0/,'');
+  const den=x.ab+x.bb+x.hbp+x.sf;const woba=den?((.69*x.bb+.72*x.hbp+.89*(x.h-x.d2-x.d3-x.hr)+1.27*x.d2+1.62*x.d3+2.1*x.hr)/den).toFixed(3).replace(/^0/,''):'—';return {...x,pa,iso,woba,bb_pct:rate(x.bb),k_pct:rate(x.so)};
+})});
+dash.calc(T.p+'pit_adv',{inputs:[T.p+'pitchers','league'],title:'Pitcher rate stats',description:'Adds strikeouts and free passes per nine, role and FIP to the published lines.',fn:(pitchers,league)=>pitchers.map((x)=>{const fc=Number((league.find((r)=>r.key==='fip_const')||{}).madonna);
+  const [a,b]=x.ip.split('.');
+  const ipn=Number(a)+Number(b)/3;
+  const per9=(n)=>ipn?(9*n/ipn).toFixed(1):'—';
+  const fip=ipn?((13*x.hr+3*(x.bb+x.hbp)-2*x.so)/ipn+fc).toFixed(2):'—';return {...x,ipn,fip,role:x.gs>x.app-x.gs?'Starter':'Bullpen',k9:per9(x.so),free9:per9(x.bb+x.hbp)};
+})});
+dash.calc(T.p+'splits',{inputs:[T.p+'schedule'],title:'Season splits',description:'Records and run rates worked out from the game log.',fn:(schedule)=>{
+  const row=(split,f)=>{const g=schedule.filter(f);const w=g.filter((x)=>x.result==='W').length;const rs=g.reduce((s,x)=>s+x.rs,0);const ra=g.reduce((s,x)=>s+x.ra,0);const d=rs-ra;return {split,record:w+'-'+(g.length-w),rpg:(rs/g.length).toFixed(1),rapg:(ra/g.length).toFixed(1),diff:(d>0?'+':'')+d};};
+  return [
+    row('All games',()=>true),row('Regular season',(x)=>x.phase==='Regular season'),row('WHAC games',(x)=>x.conference==='WHAC'),row('Non-conference, regular season',(x)=>x.phase==='Regular season'&&x.conference!=='WHAC'),row('WHAC Tournament',(x)=>x.phase==='WHAC Tournament'),row('NAIA Opening Round',(x)=>x.phase==='NAIA Opening Round'),row('Ranked opponents on schedule',(x)=>x.opponent.startsWith('No.')),row('One-run games',(x)=>Math.abs(x.margin)===1),row('February',(x)=>x.month==='Feb'),row('March',(x)=>x.month==='Mar'),row('April',(x)=>x.month==='Apr'),row('May',(x)=>x.month==='May'),
+  ].filter((r)=>r.record!=='0-0');
+}});
+dash.calc(T.p+'routes',{inputs:[T.p+'roster'],title:'Roster by route',description:'Counts 2026 roster players by how they arrived.',fn:(roster)=>['Direct from high school','JUCO transfer','4-year transfer'].map((route)=>({route,n:roster.filter((x)=>x.route===route).length}))});
+dash.calc(T.p+'feeders',{inputs:[T.p+'roster'],title:'JUCO feeders',description:'Counts 2026 roster players by community college.',fn:(roster)=>{
+  const m={};roster.filter((x)=>x.route==='JUCO transfer').forEach((x)=>{m[x.prior]=(m[x.prior]||0)+1;});
+  return Object.entries(m).map(([school,n])=>({school,n})).sort((a,b)=>b.n-a.n||a.school.localeCompare(b.school));
+}});
+
+dash.calc(T.p+'counties',{inputs:[T.p+'map_points'],title:'Michigan players by county',description:'Adds hometown counts by county.',fn:(map_points)=>{const m={};map_points.filter((p)=>p.map==='mi'&&p.kind==='town').forEach((p)=>{m[p.county]=(m[p.county]||0)+p.n;});return Object.entries(m).map(([county,n])=>({county,n})).sort((a,b)=>b.n-a.n||a.county.localeCompare(b.county));}});
+dash.calc(T.p+'top_towns',{inputs:[T.p+'map_points'],title:'Top hometowns',description:'Michigan towns with more than one player.',fn:(map_points)=>map_points.filter((p)=>p.map==='mi'&&p.kind==='town'&&p.n>1).map((p)=>({town:p.town,n:p.n})).sort((a,b)=>b.n-a.n||a.town.localeCompare(b.town))});
+});
+const state={sort:{hit:['ab',-1],pit:['ipn',-1],th:['pa',-1],tp:['bf',-1],thp:['pa',-1],tpp:['bf',-1],workload:['app',-1],pitchct:['pitches',-1],mu_h:['pa',-1],mu_p:['pa',-1],top_hit:['ab',-1],top_pit:['ipn',-1],out_hit:['ab',-1],out_pit:['ipn',-1],roster:['name',1]},filter:{hit:'all',pit:'all',game:'all',roster:'all'},search:{roster:''}};
+const isBack=(x)=>x.status==='Eligible by class'||x.status==='Returning';
+const isOut=(x)=>!isBack(x)&&x.status!=='Unknown';
+const num=(v)=>{if(typeof v==='number')return v;const n=parseFloat(v);return Number.isFinite(n)&&/^[-+.\d]/.test(String(v))?n:null;};
+const sorted=(rows,name)=>{const [k0,d]=state.sort[name];const k=k0==='ip'?'ipn':k0;return [...rows].sort((a,b)=>{const x=num(a[k]),y=num(b[k]);if(x!==null&&y!==null)return (x-y)*d;if(x!==null)return -1;if(y!==null)return 1;return String(a[k]).localeCompare(String(b[k]))*d;});};
+const fill=(tb,rows,cols,key,outFn)=>{tb.replaceChildren(...rows.map((r)=>{const tr=document.createElement('tr');tr.dataset.key=String(r[key]);if(outFn&&outFn(r))tr.className='out';cols.forEach((c)=>{const td=document.createElement('td');td.textContent=r[c]===undefined||r[c]===''?'—':String(r[c]);if(c==='usage'||c==='detail')td.className='wrap';if(c==='games')td.className='wrap2';if(c==='player'||c==='name'||(c==='who'&&r.team===TNAME()))td.className='plink';if(c==='status'&&r.item)td.className={'Not posted':'st-warn','Partly posted':'st-warn','Not out':'st-warn','None found':'st-warn','Very likely gone':'st-bad','Changed':'st-good'}[r.status]||'';if(/_whac$/.test(c))td.className=r[c]===1?'rank1':r[c]<=3?'rank2':'rankn';if(/_naia$/.test(c))td.className='rankn';if(c==='slot'||c==='spot')td.className='tag';if(c==='call'||c==='outlook')td.className='call-'+String(r[c]).replace(/[^A-Za-z]/g,'');tr.append(td);});return tr;}));};
+let TEAM='cleary';
+const TM=()=>TEAM_OF(TEAM);
+const PER_TEAM=new Set(["spray", "hitters", "pitchers", "team_totals", "schedule", "roster", "history", "program_notes", "map_shapes", "map_points", "box_usage", "lineups", "rotations", "tendency_hit", "tendency_pit", "schedule_2027", "watch", "player_extra", "game_bat", "game_pit", "pa_log", "steal_log", "line_log", "hit_adv", "pit_adv", "splits", "routes", "feeders", "counties", "top_towns", "ui", "h2h_bat", "h2h_pit", "cleary_series", "recruits"]);
+const NOT_CLEARY=new Set(['h2h_bat','h2h_pit','cleary_series','tape']);
+const ds=(id)=>PER_TEAM.has(id)?TM().p+id:id;
+const TNAME=()=>TM().name;
+const rowsOf=(id)=>{const d=dash.data(ds(id));return d.status==='ok'?d.data:null;};
+const markSelf=(e)=>{if(!e.dataset.src)return;e.dataset.source=e.dataset.src.split(' ').filter((id)=>TEAM!=='cleary'||!NOT_CLEARY.has(id)).map(ds).join(' ');if(e.dataset.coach)e.dataset.where='key='+TM().coach;};
+const draw=(n,f)=>f?dash.draw(n,(el)=>{markSelf(el);return f(el);}):dash.draw(n);
+draw('logo',(el)=>{const rows=rowsOf('ui');if(!rows)return;const f=(k)=>(rows.find((r)=>r.id===k)||{}).detail;el.src=f('logo');el.alt=f('logo_alt');});
+
+
+/* ---------- Situation filter ---------- */
+const F={preset:'all',from:'',to:''};
+const f3=(v)=>Number.isFinite(v)?v.toFixed(3).replace(/^0/,''):'—';
+const fx=(v,d)=>Number.isFinite(v)?v.toFixed(d):'—';
+const pctS=(a,b)=>b?Math.round(100*a/b)+'%':'—';
+const ipText=(o)=>Math.floor(o/3)+'.'+(o%3);
+let gsCache=null,gsKey='';
+const gameSet=()=>{const rows=rowsOf('schedule');if(!rows)return null;const key=TEAM+'|'+F.preset+'|'+F.from+'|'+F.to;if(gsCache&&gsKey===key)return gsCache;let g=rows;const p=F.preset;
+ if(p==='whac')g=g.filter((x)=>x.conference==='WHAC');else if(p==='nonconf')g=g.filter((x)=>x.conference!=='WHAC'&&x.phase==='Regular season');else if(p==='ranked')g=g.filter((x)=>x.opponent.startsWith('No.'));else if(p==='whactourn')g=g.filter((x)=>x.phase==='WHAC Tournament');else if(p==='naia')g=g.filter((x)=>x.phase==='NAIA Opening Round');else if(p==='postseason')g=g.filter((x)=>x.phase!=='Regular season');else if(p==='last20')g=g.slice(-20);else if(p==='last10')g=g.slice(-10);else if(p==='wins')g=g.filter((x)=>x.result==='W');else if(p==='losses')g=g.filter((x)=>x.result==='L');
+ if(F.from)g=g.filter((x)=>x.date>=F.from);if(F.to)g=g.filter((x)=>x.date<=F.to);
+ gsCache={set:new Set(g.map((x)=>x.game-1)),rows:g,all:g.length===rows.length,total:rows.length};gsKey=key;return gsCache;};
+const seen=(g)=>{const s=gameSet();return s&&s.set.has(g);};
+const filterOn=()=>{const s=gameSet();return !!s&&!s.all;};
+const scheduleGates=()=>{const rows=rowsOf('schedule');if(!rows)return;const ranked=rows.some((x)=>x.opponent.startsWith('No.')),naia=rows.some((x)=>x.phase==='NAIA Opening Round');document.querySelectorAll('option[value="ranked"]').forEach((o)=>{o.hidden=!ranked;});document.querySelectorAll('option[value="naia"],option[value="NAIA Opening Round"]').forEach((o)=>{o.hidden=!naia;});document.querySelectorAll('[data-ranked-note]').forEach((e)=>{e.hidden=!ranked;});};
+draw('fsum',(el)=>{scheduleGates();const s=gameSet();if(!s){el.textContent='—';return;}const w=s.rows.filter((x)=>x.result==='W').length;el.textContent=s.all?'Showing all '+s.total+' games ('+w+'-'+(s.rows.length-w)+'). These are '+TNAME()+'\'s published totals.':s.rows.length?'Showing '+s.rows.length+' of '+s.total+' games ('+w+'-'+(s.rows.length-w)+').':'No games match this filter.';});
+
+const redraw=(l)=>l.forEach((n)=>draw(n));
+
+/* ---------- Live rows ---------- */
+const hitFull=()=>rowsOf('hit_adv');
+const pitFull=()=>rowsOf('pit_adv');
+const hitLive=()=>{const base=hitFull();if(!base)return null;if(!filterOn())return base;const gb=rowsOf('game_bat');if(!gb)return null;const by={};gb.forEach((g)=>{if(!seen(g.g))return;const a=by[g.player]=by[g.player]||{gp:0,gs:0,ab:0,r:0,h:0,rbi:0,bb:0,so:0,d2:0,d3:0,hr:0,hbp:0,sf:0,sh:0,sb:0,cs:0};a.gp++;a.gs+=g.start;['ab','r','h','rbi','bb','so','d2','d3','hr','hbp','sf','sh','sb','cs'].forEach((k)=>{a[k]+=g[k];});});return base.filter((x)=>by[x.player]).map((x)=>{const a=by[x.player];const den=a.ab+a.bb+a.hbp+a.sf;const tb=a.h+a.d2+2*a.d3+3*a.hr;const obp=den?(a.h+a.bb+a.hbp)/den:NaN,slg=a.ab?tb/a.ab:NaN,avg=a.ab?a.h/a.ab:NaN;const pa=den+a.sh;const w=den?(.69*a.bb+.72*a.hbp+.89*(a.h-a.d2-a.d3-a.hr)+1.27*a.d2+1.62*a.d3+2.1*a.hr)/den:NaN;return {...x,...a,tb,pa,avg:f3(avg),obp:f3(obp),slg:f3(slg),ops:f3(obp+slg),iso:f3(slg-avg),woba:f3(w),bb_pct:pa?(100*a.bb/pa).toFixed(1)+'%':'—',k_pct:pa?(100*a.so/pa).toFixed(1)+'%':'—'};});};
+const pitLive=()=>{const base=pitFull();if(!base)return null;if(!filterOn())return base;const gp=rowsOf('game_pit'),lg=rowsOf('league');if(!gp||!lg)return null;const fc=Number((lg.find((r)=>r.key==='fip_const')||{}).madonna);const by={};gp.forEach((g)=>{if(!seen(g.g))return;const a=by[g.player]=by[g.player]||{app:0,gs:0,outs:0,h:0,r:0,er:0,bb:0,so:0,hr:0,hbp:0,wp:0,ab:0,w:0,l:0,sv:0};a.app++;a.gs+=g.start;['outs','h','r','er','bb','so','hr','hbp','wp','ab'].forEach((k)=>{a[k]+=g[k];});if(g.dec==='W')a.w++;if(g.dec==='L')a.l++;if(g.dec==='S')a.sv++;});return base.filter((x)=>by[x.player]).map((x)=>{const a=by[x.player];const n=a.outs/3;return {...x,...a,...(decPartial()?{w:'—',l:'—'}:{}),ip:ipText(a.outs),ipn:n,era:n?(9*a.er/n).toFixed(2):'—',whip:n?((a.h+a.bb)/n).toFixed(2):'—',baa:a.ab?f3(a.h/a.ab):'—',k9:n?(9*a.so/n).toFixed(1):'—',free9:n?(9*(a.bb+a.hbp)/n).toFixed(1):'—',fip:n?((13*a.hr+3*(a.bb+a.hbp)-2*a.so)/n+fc).toFixed(2):'—',role:a.gs>a.app-a.gs?'Starter':'Bullpen'};});};
+const decPartial=()=>{const gp=rowsOf('game_pit'),pt=rowsOf('pitchers');if(!gp||!pt)return true;return gp.filter((r)=>r.dec).length<pt.reduce((s,x)=>s+x.w+x.l+x.sv,0);};
+const isKt=(r)=>r.kt!==undefined?r.kt:r.res==='K';
+const seqStats=(rs,o)=>{rs.forEach((r)=>{if(!r.t)return;o.cov++;const ch=[...String(r.seq).replace(/[^KSFBH]/g,'')];const inplay=!['BB','K','HBP'].includes(r.res);o.pc+=ch.length+(inplay?1:0);const fs=inplay&&!ch.length?'X':ch[0];if(['X','S','F'].includes(fs))o.fpsw++;if(['X','S','F','K'].includes(fs))o.fps++;ch.forEach((c)=>{if(c==='S'){o.wh++;o.sw++;o.st++;}else if(c==='F'){o.sw++;o.st++;}else if(c==='K')o.st++;});if(inplay){o.sw++;o.st++;}});return o;};
+const thLive=()=>{const base=rowsOf('tendency_hit');if(!base)return null;if(!filterOn())return base;const pa=rowsOf('pa_log');if(!pa)return null;const by={};pa.forEach((r)=>{if(r.side==='H'&&seen(r.g))(by[r.player]=by[r.player]||[]).push(r);});return base.filter((x)=>by[x.player]).map((x)=>{const rs=by[x.player];const o=seqStats(rs,{cov:0,pc:0,fpsw:0,fps:0,wh:0,sw:0,st:0});const kt=rs.filter(isKt).length,kl=rs.filter((r)=>r.kl).length;const go=rs.filter((r)=>['GO','SAC','FC'].includes(r.res)).length,ao=rs.filter((r)=>['AO','SF'].includes(r.res)).length;const zL=rs.filter((r)=>r.z==='L').length,zC=rs.filter((r)=>r.z==='C').length,zR=rs.filter((r)=>r.z==='R').length;const t=zL+zC+zR;const pull=x.bats==='R'?zL:zR,oppo=x.bats==='R'?zR:zL;return {...x,pa:rs.length,tracked:o.cov,p_pa:o.cov?(o.pc/o.cov).toFixed(1):'—',fp_swing:pctS(o.fpsw,o.cov),whiff:pctS(o.wh,o.sw),k_look:pctS(kl,kt),go,ao,go_ao:ao?(go/ao).toFixed(2):'—',pull:x.bats?pctS(pull,t):'—',center:pctS(zC,t),oppo:x.bats?pctS(oppo,t):'—',dir_n:t,bunts:rs.filter((r)=>r.bunt).length};});};
+const tpLive=()=>{const base=rowsOf('tendency_pit');if(!base)return null;if(!filterOn())return base;const pa=rowsOf('pa_log'),gp=rowsOf('game_pit');if(!pa||!gp)return null;const by={},gg={};pa.forEach((r)=>{if(r.side==='P'&&seen(r.g))(by[r.player]=by[r.player]||[]).push(r);});gp.forEach((g)=>{if(seen(g.g))(gg[g.player]=gg[g.player]||[]).push(g);});return base.filter((x)=>gg[x.player]).map((x)=>{const rs=by[x.player]||[];const o=seqStats(rs,{cov:0,pc:0,fpsw:0,fps:0,wh:0,sw:0,st:0});const kt=rs.filter(isKt).length,kl=rs.filter((r)=>r.kl).length;const g=gg[x.player];const sum=(l,f)=>l.reduce((s,v)=>s+f(v),0);const S=g.filter((v)=>v.start),R=g.filter((v)=>!v.start);const nps=(l)=>l.map((v)=>v.np).filter((v)=>v!==null&&v!==undefined);const ns=nps(S),nr=nps(R);const go=rs.filter((r)=>['GO','SAC','FC'].includes(r.res)).length,fo=rs.filter((r)=>['AO','SF'].includes(r.res)).length;return {...x,bf:rs.length,tracked:o.cov,strike:pctS(o.st,o.pc),fp_strike:pctS(o.fps,o.cov),whiff:pctS(o.wh,o.sw),k_look:pctS(kl,kt),go,fo,go_fo:fo?(go/fo).toFixed(2):'—',starts:S.length,ip_start:S.length?(sum(S,(v)=>v.outs)/3/S.length).toFixed(1):'—',np_start:ns.length?Math.round(sum(ns,(v)=>v)/ns.length):'—',np_max_start:ns.length?Math.max(...ns):'—',relief:R.length,ip_relief:R.length?(sum(R,(v)=>v.outs)/3/R.length).toFixed(1):'—',np_relief:nr.length?Math.round(sum(nr,(v)=>v)/nr.length):'—',np_max_relief:nr.length?Math.max(...nr):'—'};});};
+
+/* ---------- Lineup and staff stats ---------- */
+const mergeHit=(l)=>{const h=hitLive()||[];const full=hitFull()||[];return l.map((x)=>{const a=h.find((v)=>v.player===x.player);const b=full.find((v)=>v.player===x.player)||{};if(x.tab!=='proj'&&!x.call)x={...x};const out={...x,cls:b.cls,avg:a?a.avg:'—',obp:a?a.obp:'—',ops:a?a.ops:'—',hr:a?a.hr:'—',rbi:a?a.rbi:'—'};if(x.tab!=='proj'){const st=b.status||'';out.call={'Eligible by class':'Can return','At Akron':'At Akron','Listed senior':'Listed senior','Graduated':'Graduated','Grad student':'Grad student'}[st]||st;}return out;});};
+const mergePit=(l)=>{const p=pitLive()||[];const full=pitFull()||[];return l.map((x)=>{const a=p.find((v)=>v.player===x.player);const b=full.find((v)=>v.player===x.player)||{};const out={...x,cls:b.cls,throws:b.throws,gs:a?a.gs:0,rel:a?a.app-a.gs:0,ip:a?a.ip:'—',era:a?a.era:'—',so:a?a.so:'—',bb:a?a.bb:'—',baa:a?a.baa:'—'};if(x.tab==='y26'){const st=b.status||'';out.outlook={'Eligible by class':'Can return','At Akron':'At Akron','Listed senior':'Listed senior','Graduated':'Graduated','Grad student':'Grad student'}[st]||st;}return out;});};
+const returning=()=>{const h=hitFull(),p=pitFull();if(!h||!p)return null;const back=(x)=>isBack(x);const row=(group,metric,rows,f)=>{const total=rows.reduce((s,x)=>s+f(x),0);const kept=rows.filter(back).reduce((s,x)=>s+f(x),0);return {metric,group,share:total?kept/total:0,share_label:total?Math.round(100*kept/total)+'%':'—'};};return [row('Hitting','Plate appearances',h,(x)=>x.pa),row('Hitting','Hits',h,(x)=>x.h),row('Hitting','Home runs',h,(x)=>x.hr),row('Hitting','RBI',h,(x)=>x.rbi),row('Hitting','Stolen bases',h,(x)=>x.sb),row('Pitching','Innings',p,(x)=>x.ipn),row('Pitching','Starts',p,(x)=>x.gs),row('Pitching','Strikeouts',p,(x)=>x.so),row('Pitching','Wins',p,(x)=>x.w),row('Pitching','Saves',p,(x)=>x.sv)];};
+draw('ret_pa',(el)=>{const r=returning();el.textContent=r?r[0].share_label:'—';});
+
+/* ---------- Splits ---------- */
+const BUCKETS=[['All with a count',(r)=>r.t],['Result on the first pitch',(r)=>r.t&&r.b===0&&r.s===0&&!['BB','K','HBP'].includes(r.res)],['Ahead in the count',(r)=>r.t&&r.b>r.s],['Even count',(r)=>r.t&&r.b===r.s&&r.b>0],['Behind in the count',(r)=>r.t&&r.s>r.b],['Two strikes',(r)=>r.t&&r.s===2],['Full count',(r)=>r.t&&r.b===3&&r.s===2]];
+const INNS=[['Innings 1-3',(r)=>r.inn<=3],['Innings 4-6',(r)=>r.inn>=4&&r.inn<=6],['Innings 7 and later',(r)=>r.inn>=7]];
+const TTO=[['1st time through the order',(r)=>r.tto===1],['2nd time through',(r)=>r.tto===2],['3rd time or later',(r)=>r.tto>=3]];
+const splitRow=(label,rs)=>{const c=(f)=>rs.filter(f).length;const H=c((r)=>['1B','2B','3B','HR'].includes(r.res));const d2=c((r)=>r.res==='2B'),d3=c((r)=>r.res==='3B'),hr=c((r)=>r.res==='HR'),bb=c((r)=>r.res==='BB'),k=c((r)=>r.res==='K'),hbp=c((r)=>r.res==='HBP'),sf=c((r)=>r.res==='SF'),sac=c((r)=>r.res==='SAC'),ci=c((r)=>r.res==='CI');const pa=rs.length,ab=pa-bb-hbp-sf-sac-ci;const tb=H+d2+2*d3+3*hr;const obpD=ab+bb+hbp+sf;return {split:label,pa,ab,h:H,xbh:d2+d3+hr,hr,bb,k,avg:ab?f3(H/ab):'—',obp:obpD?f3((H+bb+hbp)/obpD):'—',slg:ab?f3(tb/ab):'—'};};
+const SPLITCOLS=['split','pa','ab','h','xbh','hr','bb','k','avg','obp','slg'];
+state.sh='All';state.sp='All';
+const splitDraw=(side,key)=>(tb)=>{const pa=rowsOf('pa_log');if(!pa){tb.replaceChildren();return;}const sel=state[key];const rs=pa.filter((r)=>r.side===side&&seen(r.g)&&(sel==='All'||r.player===sel));const rows=[splitRow('All plate appearances',rs),...(side==='P'?TTO:[]).map(([l,f])=>splitRow(l,rs.filter(f))),...INNS.map(([l,f])=>splitRow(l,rs.filter(f)))];fill(tb,rows,SPLITCOLS,'split');};
+const splitDrawP=(side,key)=>(tb)=>{const pa=rowsOf('pa_log');if(!pa){tb.replaceChildren();return;}const sel=state[key];const rs=pa.filter((r)=>r.side===side&&seen(r.g)&&(sel==='All'||r.player===sel));fill(tb,BUCKETS.map(([l,f])=>splitRow(l,rs.filter(f))),SPLITCOLS,'split');};
+draw('splits_h',splitDraw('H','sh'));draw('splits_p',splitDraw('P','sp'));draw('splits_hp',splitDrawP('H','sh'));draw('splits_pp',splitDrawP('P','sp'));
+const playerSel=(id,side,key,draws,base,minN)=>draw(id,(sel)=>{const rows=rowsOf(base);if(!rows){sel.replaceChildren();return;}const list=rows.filter((r)=>(side==='H'?r.pa:r.bf)>=minN).map((r)=>r.player);sel.replaceChildren(new Option('All '+TNAME()+(side==='H'?' hitters':' pitchers'),'All'),...list.map((n)=>new Option(n)));sel.value=state[key];sel.onchange=()=>{state[key]=sel.value;redraw(draws);};});
+playerSel('sel_h','H','sh',['splits_h','splits_hp','sel_h'],'tendency_hit',16);playerSel('sel_p','P','sp',['splits_p','splits_pp','sel_p'],'tendency_pit',16);
+
+/* ---------- Outing log and workload ---------- */
+state.logP='Jurczyk Jr., Jason';
+draw('sel_log',(sel)=>{const rows=rowsOf('tendency_pit');if(!rows){sel.replaceChildren();return;}sel.replaceChildren(...rows.map((r)=>new Option(r.player)));sel.value=state.logP;sel.onchange=()=>{state.logP=sel.value;redraw(['log','log_cap']);};});
+draw('log',(tb)=>{const rows=rowsOf('game_pit');if(!rows){tb.replaceChildren();return;}const l=rows.filter((r)=>r.player===state.logP&&seen(r.g)).map((r)=>({...r,role:r.start?'Start':'Relief',dec2:r.dec==='S'?'Save':r.dec==='W'?'Win':r.dec==='L'?'Loss':'',np2:r.np===null||r.np===undefined?'—':r.np,rest2:r.rest===null||r.rest===undefined?'First':r.rest,key:String(r.g)}));const t=tb.closest('table');if(t){t.classList.toggle('md-pc1',!decPartial());t.classList.toggle('md-pc2',decPartial());}fill(tb,l,['date','opp','res','role','ip','h','r','er','bb','so','rest2','dec2','np2'],'key');});
+draw('log_cap',(el)=>{const rows=rowsOf('game_pit');if(!rows){el.textContent='—';return;}const l=rows.filter((r)=>r.player===state.logP&&seen(r.g));const n=l.filter((r)=>r.np!==null&&r.np!==undefined).length;el.textContent='Shaded columns are partial. '+state.logP+' has a pitch count in '+n+' of the '+l.length+' outings shown.'+(decPartial()?' Many box scores list no win or loss, so Decision can be blank.':'');});
+const ordInn=(n)=>n+(n%100>=11&&n%100<=13?'th':n%10===1?'st':n%10===2?'nd':n%10===3?'rd':'th');
+const entered=(player,useFilter)=>{const gp=rowsOf('game_pit'),pa=rowsOf('pa_log');if(!gp||!pa)return {text:'—',n:0};const first={};pa.forEach((r)=>{if(r.side==='P'&&r.player===player&&(first[r.g]===undefined||r.inn<first[r.g]))first[r.g]=r.inn;});const c={};let none=0,n=0;gp.forEach((g)=>{if(g.player!==player||g.start||(useFilter&&!seen(g.g)))return;n++;if(first[g.g]===undefined)none++;else c[first[g.g]]=(c[first[g.g]]||0)+1;});const parts=Object.keys(c).map(Number).sort((a,b)=>c[b]-c[a]||a-b).map((k)=>ordInn(k)+' ('+c[k]+')');if(none)parts.push('no batter logged ('+none+')');return {text:parts.length?parts.join(', '):'—',n};};
+draw('workload',(tb)=>{const rows=rowsOf('game_pit');if(!rows){tb.replaceChildren();return;}const by={};rows.forEach((r)=>{if(seen(r.g))(by[r.player]=by[r.player]||[]).push(r);});const out=Object.entries(by).map(([player,l])=>{const rest=l.map((r)=>r.rest).filter((v)=>v!==null&&v!==undefined);const ent=entered(player,true);return {player,app:l.length,starts:l.filter((r)=>r.start).length,relief:l.filter((r)=>!r.start).length,ent:ent.text,avg_rest:rest.length?(rest.reduce((s,v)=>s+v,0)/rest.length).toFixed(1):'—',zero:rest.filter((v)=>v===0).length,one:rest.filter((v)=>v===1).length};});fill(tb,sorted(out,'workload'),['player','app','starts','relief','ent','avg_rest','zero','one'],'player');});
+draw('pitchct',(tb)=>{const rows=rowsOf('game_pit');if(!rows){tb.replaceChildren();return;}const by={};rows.forEach((r)=>{if(seen(r.g))(by[r.player]=by[r.player]||[]).push(r);});const has=(r)=>r.np!==null&&r.np!==undefined;const avg=(l)=>l.length?Math.round(l.reduce((s,v)=>s+v.np,0)/l.length):'—';const top=(l)=>l.length?Math.max(...l.map((v)=>v.np)):'—';const pa=rowsOf('pa_log')||[];const bfOf={};pa.forEach((r)=>{if(r.side==='P'){const k=r.g+'|'+r.player;bfOf[k]=(bfOf[k]||0)+1;}});const out=Object.entries(by).map(([player,l])=>{const c=l.filter(has),S=c.filter((r)=>r.start),R=c.filter((r)=>!r.start);const npT=c.reduce((s,v)=>s+v.np,0),bfT=c.reduce((s,v)=>s+(bfOf[v.g+'|'+player]||0),0);return {player,app:l.length,listed:c.length,pitches:npT,p_bf:bfT?(npT/bfT).toFixed(2):'—',np_start:avg(S),max_s:top(S),np_relief:avg(R),max_r:top(R)};});fill(tb,sorted(out,'pitchct'),['player','app','listed','pitches','p_bf','np_start','max_s','np_relief','max_r'],'player');});
+draw('cov_stats',(tb)=>{const pa=rowsOf('pa_log'),gp=rowsOf('game_pit'),pt=rowsOf('pitchers'),sc=rowsOf('schedule');if(!pa||!gp||!pt||!sc){tb.replaceChildren();return;}const fmt=(n)=>n.toLocaleString('en-US');const row=(stat,a,b,unit,miss)=>({stat,covered:fmt(a)+' of '+fmt(b)+' '+unit,share:b?Math.round(100*a/b)+'%':'—',miss,key:stat});const G=sc.length;const noPitch=sc.filter((s,i)=>!pa.some((r)=>r.g===i&&r.t)).length;const noCt=sc.filter((s,i)=>{const l=gp.filter((r)=>r.g===i);return l.length&&l.every((r)=>r.np===null||r.np===undefined);}).length;const partCt=sc.filter((s,i)=>{const l=gp.filter((r)=>r.g===i),c=l.filter((r)=>r.np!==null&&r.np!==undefined).length;return c&&c<l.length;}).length;const bip=pa.filter((r)=>!['BB','HBP','K','CI','INT'].includes(r.res));const K=pa.filter((r)=>r.res==='K');const dec=gp.filter((r)=>r.dec).length;const pub=pt.reduce((s,x)=>s+x.w+x.l+x.sv,0);const rows=[row('Count and pitch sequence',pa.filter((r)=>r.t).length,pa.length,'plate appearances','None in '+noPitch+' of '+G+' games'),row('Pitch counts',gp.filter((r)=>r.np!==null&&r.np!==undefined).length,gp.length,'outings','No counts in '+noCt+' games, some in '+partCt),row('Batted-ball direction',bip.filter((r)=>r.z).length,bip.length,'balls in play','Fielder\'s choices rarely name one, and some hits don\'t'),(K.some((r)=>r.kt!==undefined)?row('K looking or swinging',K.filter((r)=>r.kt).length,K.length,'strikeouts','Scorer wrote only "struck out"'):{stat:'K looking or swinging',covered:'Can\'t be measured',share:'—',miss:'Some strikeouts have no mark, and this log can\'t show how many, so K looking can run low',key:'K looking or swinging'}),{stat:'Bunts',covered:'Can\'t be measured',share:'—',miss:'Scorers don\'t always say a ball was bunted',key:'Bunts'},row('Pitcher decisions, by game',dec,pub,'published',dec<pub?'Box scores list no win or loss for some games':'None')];fill(tb,rows,['stat','covered','share','miss'],'key');});
+draw('cov_games',(tb)=>{const pa=rowsOf('pa_log'),gp=rowsOf('game_pit'),sc=rowsOf('schedule');if(!pa||!gp||!sc){tb.replaceChildren();return;}const out=[];sc.forEach((s,i)=>{const P=pa.filter((r)=>r.g===i),l=gp.filter((r)=>r.g===i);const pitch=P.some((r)=>r.t);const c=l.filter((r)=>r.np!==null&&r.np!==undefined).length;const K=P.filter((r)=>r.res==='K'),hasKt=K.some((r)=>r.kt!==undefined),kt=hasKt?K.filter((r)=>r.kt).length:K.length;const dec=l.some((r)=>r.dec==='W'||r.dec==='L');if(pitch&&c===l.length&&kt===K.length&&dec)return;out.push({key:String(i),label:s.label,opponent:s.opponent,site:s.site,pitch:pitch?'Yes':'None',counts:c===l.length?'All':c?c+' of '+l.length:'None',ks:!hasKt?'—':kt===K.length?'All':kt+' of '+K.length,dec:dec?'Listed':'None'});});fill(tb,out,['label','opponent','site','pitch','counts','ks','dec'],'key');});
+
+draw('v',(el)=>{const rows=rowsOf(el.dataset.src);if(!rows){el.textContent='—';return;}const [k,v]=el.dataset.where.split('=');const r=rows.find((x)=>String(x[k])===v);el.textContent=r?String(r[el.dataset.field]):'—';});
+
+const chipClass=(t)=>({Returning:'good',Confirmed:'good',Passed:'good',Cleaned:'good','Very likely':'warn','Partly back':'warn',Unsettled:'warn',Rebuild:'warn',Open:'warn','Not found':'warn','Source error':'bad'}[t]||'');
+draw('list',(el)=>{const rows=rowsOf('program_notes');if(!rows){el.textContent='—';return;}const sec=el.dataset.section;el.replaceChildren(...rows.filter((r)=>r.section===sec).map((r)=>{const li=document.createElement('div');li.className='md-li';const head=document.createElement('div');head.className='md-lihead';const lab=document.createElement('span');lab.className='md-lilabel';lab.textContent=r.label;head.append(lab);if(r.extra&&sec!=='outlet'){const c=document.createElement('span');c.className='md-chip '+chipClass(r.extra);c.textContent=r.extra;head.append(c);}li.append(head);const t=document.createElement('div');t.className='md-litext';t.textContent=r.detail;li.append(t);if(sec==='outlet'&&r.extra){const u=document.createElement('div');u.className='md-liuse';u.textContent='Used here: '+r.extra;li.append(u);}if(r.url&&r.url.startsWith('https://')){const a=document.createElement('a');a.className='md-link';a.href=r.url;a.target='_blank';a.rel='noopener';a.textContent='Source';li.append(a);}return li;}));});
+draw('srcs',(el)=>{const rows=rowsOf('program_notes');if(!rows){el.textContent='—';return;}el.replaceChildren(...rows.filter((r)=>r.section==='source'&&r.url.startsWith('https://')).map((r)=>{const a=document.createElement('a');a.className='md-link';a.href=r.url;a.target='_blank';a.rel='noopener';a.textContent=r.label;return a;}));});
+
+const bars=(el,rows,label,val,text,max,outFn)=>{el.replaceChildren(...rows.map((r)=>{const b=document.createElement('div');b.className='md-bar';const l=document.createElement('span');l.textContent=r[label];const tr=document.createElement('div');tr.className='md-track';const f=document.createElement('div');f.className='md-fill'+(outFn&&outFn(r)?' out':'');f.style.width=Math.max(1,100*num(r[val])/max)+'%';tr.append(f);const v=document.createElement('span');v.className='md-val';v.textContent=String(r[text]);b.append(l,tr,v);return b;}));};
+draw('ret',(el)=>{const rows=returning();if(!rows){el.textContent='—';return;}bars(el,rows.filter((r)=>r.group===el.dataset.group),'metric','share','share_label',1);});
+draw('ops_bars',(el)=>{const rows=hitLive();if(!rows){el.textContent='—';return;}const r=rows.filter((x)=>x.ab>=(filterOn()?Math.max(10,gameSet().rows.length*1.2):60)).sort((a,b)=>num(b.ops)-num(a.ops));if(!r.length){el.textContent='No qualifying hitters in this filter.';return;}bars(el,r,'player','ops','ops',Math.max(...r.map((x)=>num(x.ops))),(x)=>!isBack(x));});
+draw('free_bars',(el)=>{const rows=pitLive();if(!rows){el.textContent='—';return;}const r=rows.filter((x)=>x.ipn>=(filterOn()?3:10)).sort((a,b)=>num(a.free9)-num(b.free9));if(!r.length){el.textContent='No qualifying pitchers in this filter.';return;}bars(el,r,'player','free9','free9',Math.max(...r.map((x)=>num(x.free9))),(x)=>!isBack(x));});
+draw('routes',(el)=>{const rows=rowsOf('routes');if(!rows){el.textContent='—';return;}bars(el,rows,'route','n','n',Math.max(...rows.map((x)=>x.n)));});
+draw('feeders',(el)=>{const rows=rowsOf('feeders');if(!rows){el.textContent='—';return;}bars(el,rows,'school','n','n',Math.max(...rows.map((x)=>x.n)));});
+
+const table=(name,id,cols,key,pick,outFn)=>draw(name,(tb)=>{const rows=id==='hit_live'?hitLive():id==='pit_live'?pitLive():id==='hit_full'?hitFull():id==='pit_full'?pitFull():rowsOf(id);if(!rows){tb.replaceChildren();return;}fill(tb,pick?pick(sorted(rows,name)):sorted(rows,name),cols,key,outFn);});
+const flt=(f)=>(x)=>f==='all'||(f==='back'?isBack(x):isOut(x));
+table('hit','hit_live',['player','cls','pos','status','gs','ab','avg','obp','slg','ops','iso','woba','hr','rbi','sb','bb','so','hbp','bb_pct','k_pct','conf_avg','conf_ops','ops25'],'player',(r)=>r.filter(flt(state.filter.hit)),(x)=>!isBack(x));
+table('pit','pit_live',['player','cls','throws','role','status','ip','era','fip','whip','w','l','sv','app','gs','so','bb','hbp','hr','baa','k9','free9','conf_era','era25'],'player',(r)=>r.filter(flt(state.filter.pit)),(x)=>!isBack(x));
+table('top_hit','hit_full',['player','cls','ab','avg','ops','hr','rbi','sb'],'player',(r)=>r.filter(isBack).slice(0,10));
+table('top_pit','pit_full',['player','cls','ip','era','so','bb','w','sv'],'player',(r)=>r.filter(isBack).slice(0,10));
+table('out_hit','hit_full',['player','status','ab','ops','hr','rbi','sb'],'player',(r)=>r.filter((x)=>isOut(x)&&x.ab>=10));
+table('out_pit','pit_full',['player','status','ip','era','gs','so'],'player',(r)=>r.filter(isOut));
+table('roster','roster',['name','num','pos','bt','ht','cls','hometown','hs','prior','status'],'name',(r)=>{const q=state.search.roster.toLowerCase();const f=state.filter.roster;return r.filter((x)=>(f==='all'||x.route===f)&&(!q||[x.name,x.hs,x.prior,x.hometown].join(' ').toLowerCase().includes(q)));},(x)=>!isBack(x));
+
+draw('splits_t',(tb)=>{const rows=rowsOf('splits');if(!rows){tb.replaceChildren();return;}fill(tb,rows,['split','record','rpg','rapg','diff'],'split');});
+draw('recruits',(tb)=>{const rows=rowsOf('recruits');if(!rows){tb.replaceChildren();return;}fill(tb,rows.map((r)=>({...r,recruit:r.name})),['recruit','grad','pos','school','source'],'name');});
+draw('game',(tb)=>{scheduleGates();const rows=rowsOf('schedule');if(!rows){tb.replaceChildren();return;}const f=state.filter.game;fill(tb,rows.filter((x)=>f==='all'||x.phase===f||x.conference===f||x.result===f),['game','label','opponent','site','result','score','record','hits','hr','bb','so','err'],'game');});
+
+const tipFor=(el)=>{const t=document.createElement('div');t.className='md-tip';t.hidden=true;el.append(t);return {show(head,line,x,y){const a=document.createElement('div');a.className='md-tip-head';a.textContent=head;const ls=[].concat(line).map((n)=>{const b=document.createElement('div');b.className='md-tip-line';b.textContent=n;return b;});t.replaceChildren(a,...ls);t.hidden=false;const w=t.offsetWidth;t.style.left=Math.max(0,Math.min(el.clientWidth-w,x-w/2))+'px';t.style.top=Math.max(0,y-t.offsetHeight-8)+'px';},hide(){t.hidden=true;}};};
+const axisStyle=(g)=>{g.attr('font-size',null).attr('font-family',null);g.selectAll('text').attr('fill','var(--color-fg-muted)').style('font-size','var(--cds-font-size-caption)');g.selectAll('line,path').attr('stroke','var(--cds-chart-axis)');};
+
+
+const view={lu:'proj',rot:'y26',player:TEAMS[0].player,h2:'T'};
+const CAPS={lu:{proj:'lu_proj',most:'lu_most',gabel:'lu_gabel',simon:'lu_simon',second:'lu_second',third:'lu_third'},rot:{proj:'rot_proj',y26:'rot_y26'}};
+const luTab=()=>TM().lu[view.lu]||view.lu;
+const capDraw=(kind)=>(el)=>{const rows=rowsOf('program_notes');if(!rows){el.textContent='—';return;}const r=rows.find((x)=>x.id===CAPS[kind][kind==='lu'?luTab():view[kind]]);el.textContent=r?r.detail:'—';};
+draw('lu_cap',capDraw('lu'));draw('rot_cap',capDraw('rot'));
+draw('lineup',(tb)=>{const rows=rowsOf('lineups');if(!rows){tb.replaceChildren();return;}document.querySelectorAll('[data-lu]').forEach((b)=>{b.hidden=!rows.some((r)=>r.tab===(TM().lu[b.dataset.lu]||b.dataset.lu));});const l=rows.filter((r)=>r.tab===luTab());fill(tb,mergeHit(l),['slot','player','pos','call','cls','avg','obp','ops','hr','rbi','usage'],'rowid');});
+draw('staff',(tb)=>{const rows=rowsOf('rotations');if(!rows){tb.replaceChildren();return;}const l=rows.filter((r)=>r.tab===(view.rot==='proj'?'proj':'y26'));fill(tb,mergePit(l.filter((r)=>r.role===tb.dataset.role)),['spot','player','throws','outlook','cls','gs','rel','ip','era','so','bb','baa','usage'],'rowid');});
+draw('usage',(tb)=>{const rows=rowsOf('box_usage');if(!rows){tb.replaceChildren();return;}fill(tb,rows,['player','starts','last20','positions','order'],'player');});
+draw('away',(tb)=>{const rows=rowsOf('roster');if(!rows){tb.replaceChildren();return;}fill(tb,rows.filter((r)=>r.state==='Other'),['name','hometown','pos','cls','hs','prior','status'],'name');});
+draw('counties',(el)=>{const rows=rowsOf('counties');if(!rows){el.textContent='—';return;}bars(el,rows,'county','n','n',Math.max(...rows.map((x)=>x.n)));[...el.children].forEach((b,i)=>b.addEventListener('click',()=>focusCounty(rows[i].county)));});
+draw('top_towns',(el)=>{const rows=rowsOf('top_towns');if(!rows){el.textContent='—';return;}bars(el,rows,'town','n','n',Math.max(...rows.map((x)=>x.n)));});
+
+
+dash.calc('tape',{inputs:['league'],title:'Each team and Cleary side by side',description:'The two WHAC ranks decide the edge in each row. Lower is better.',fn:(league)=>league.filter((r)=>r.group!=='Constant').flatMap((r)=>Object.keys(r).filter((k)=>k.endsWith('_whac')&&k!=='c_whac').map((k)=>{const lp=k.slice(0,-5);const team=lp==='m'?'madonna':lp==='a'?'aquinas':lp;return {team,key:r.key,metric:r.metric,value:r[team],cleary:r.cleary,t_whac:r[k],c_whac:r.c_whac,side:r[k]<r.c_whac?'T':r[k]>r.c_whac?'C':'E'};}))});
+draw('league',(tb)=>{const rows=rowsOf('league');if(!rows){tb.replaceChildren();return;}fill(tb,rows.filter((r)=>r.group!=='Constant'),!TM().col?['metric','cleary','whac','naia','c_whac','c_naia']:['metric',TM().col,'cleary','whac','naia',TM().lp+'_whac','c_whac',TM().lp+'_naia','c_naia'],'key');});
+draw('tape_t',(tb)=>{const rows=rowsOf('tape');if(!rows){tb.replaceChildren();return;}fill(tb,rows.filter((r)=>r.team===TM().col).map((r)=>({...r,edge:r.side==='T'?TNAME():r.side==='C'?'Cleary':'Even'})),['metric','value','cleary','edge','t_whac','c_whac'],'key');});
+draw('watch',(tb)=>{const rows=rowsOf('watch');if(!rows){tb.replaceChildren();return;}fill(tb,rows,['item','status','detail','checked'],'item');});
+draw('sched27',(tb)=>{const rows=rowsOf('schedule_2027');if(!rows){tb.replaceChildren();return;}fill(tb,rows,['date','opponent','site'],'id');});
+const withCov=(rows,n)=>rows.map((r)=>({...r,cov_pct:r[n]?Math.round(100*r.tracked/r[n])+'%':'—'}));
+draw('th',(tb)=>{const rows=thLive();if(!rows){tb.replaceChildren();return;}fill(tb,sorted(rows,'th'),['player','status','bats','pa','go','ao','go_ao'],'player',(x)=>!isBack(x));});
+draw('thp',(tb)=>{const rows=thLive();if(!rows){tb.replaceChildren();return;}fill(tb,sorted(withCov(rows,'pa'),'thp'),['player','status','pa','tracked','cov_pct','p_pa','fp_swing','whiff','k_look','dir_n','pull','center','oppo','bunts'],'player',(x)=>!isBack(x));});
+draw('tp',(tb)=>{const rows=tpLive();if(!rows){tb.replaceChildren();return;}fill(tb,sorted(rows,'tp'),['player','status','bf','go','fo','go_fo','starts','ip_start','relief','ip_relief'],'player',(x)=>!isBack(x));});
+draw('tpp',(tb)=>{const rows=tpLive();if(!rows){tb.replaceChildren();return;}fill(tb,sorted(withCov(rows,'bf'),'tpp'),['player','status','bf','tracked','cov_pct','strike','fp_strike','whiff','k_look'],'player',(x)=>!isBack(x));});
+draw('h2b',(tb)=>{const rows=rowsOf('h2h_bat');if(!rows){tb.replaceChildren();return;}fill(tb,rows.filter((r)=>r.team===(view.h2==='T'?TNAME():'Cleary')),['who','g','ab','r','h','avg','rbi','bb','so'],'rowid');});
+draw('h2p',(tb)=>{const rows=rowsOf('h2h_pit');if(!rows){tb.replaceChildren();return;}fill(tb,rows.filter((r)=>r.team===(view.h2==='T'?TNAME():'Cleary')),['who','g','ip','h','r','er','era','bb','so','np'],'rowid');});
+draw('series_t',(tb)=>{const rows=rowsOf('cleary_series');if(!rows){tb.replaceChildren();return;}fill(tb,rows,['date','site','result','score'],'id');});
+const wl=(rows)=>rows.filter((r)=>r.result==='W').length+'-'+rows.filter((r)=>r.result==='L').length;
+draw('series_all',(el)=>{const rows=rowsOf('cleary_series');el.textContent=rows?wl(rows):'—';});
+draw('series_10',(el)=>{const rows=rowsOf('cleary_series');el.textContent=rows?wl(rows.slice(0,10)):'—';});
+draw('steal_bars',(el)=>{const rows=rowsOf('steal_log');if(!rows||!gameSet()){el.textContent='—';return;}const c={};rows.forEach((r)=>{if(seen(r.g))c[r.inn]=(c[r.inn]||0)+1;});const r=Object.keys(c).sort((a,b)=>a-b).map((k)=>({lab:Number(k)>9?'Extra':'Inning '+k,n:c[k]}));if(!r.length){el.textContent='No steals in this filter.';return;}bars(el,r,'lab','n','n',Math.max(...r.map((x)=>x.n)));});
+draw('runs_chart',(el)=>{const all=rowsOf('line_log');el.replaceChildren();if(!all||!gameSet())return;const agg={};for(let i=1;i<=10;i++)agg[i]={inning:i>9?'Extra':String(i),madonna:0,opp:0};all.forEach((r)=>{if(seen(r.g))agg[r.inn][r.team==='M'?'madonna':'opp']+=r.runs;});const rows=Object.values(agg);const W=el.clientWidth||400,H=220,m={t:10,r:4,b:22,l:28};const svg=d3.select(el).append('svg').attr('width','100%').attr('viewBox',`0 0 ${W} ${H}`).attr('role','img').attr('aria-label','Runs by inning');const x=d3.scaleBand(rows.map((r)=>r.inning),[m.l,W-m.r]).padding(.2);const x2=d3.scaleBand(['madonna','opp'],[0,x.bandwidth()]).padding(.08);const y=d3.scaleLinear([0,d3.max(rows,(r)=>Math.max(r.madonna,r.opp))],[H-m.b,m.t]).nice();svg.append('g').attr('transform',`translate(${m.l},0)`).call(d3.axisLeft(y).ticks(4).tickSize(-(W-m.l-m.r))).call(axisStyle).call((g)=>{g.select('.domain').remove();g.selectAll('line').attr('stroke','var(--cds-chart-grid)');});svg.append('g').attr('transform',`translate(0,${H-m.b})`).call(d3.axisBottom(x).tickSize(0)).call(axisStyle);const tip=tipFor(el);['madonna','opp'].forEach((k)=>svg.selectAll(null).data(rows).join('rect').attr('x',(r)=>x(r.inning)+x2(k)).attr('width',x2.bandwidth()).attr('y',(r)=>y(r[k])).attr('height',(r)=>y(0)-y(r[k])).attr('rx',2).style('fill',k==='madonna'?'var(--royal)':'var(--gold)').style('stroke',k==='madonna'?'none':'var(--antique)').on('pointermove',(e,r)=>{const p=d3.pointer(e,el);tip.show(r.inning==='Extra'?'Extra innings':'Inning '+r.inning,[TNAME()+' '+r.madonna,'Opponents '+r.opp],p[0],p[1]);}).on('pointerleave',()=>tip.hide()));});
+
+const human=(n)=>n.split(', ').reverse().join(' ');
+draw('plist',(el)=>{const rows=rowsOf('roster');el.replaceChildren();if(!rows)return;const q=(state.psearch||'').toLowerCase();el.append(...rows.filter((r)=>!q||r.name.toLowerCase().includes(q)).map((r)=>{const b=document.createElement('button');b.className='md-pbtn'+(r.name===view.player?' on':'');b.textContent=r.name;b.addEventListener('click',()=>{view.player=r.name;draw('plist');draw('pcard');});return b;}));});
+const perAB=(n)=>{const gp=rowsOf('game_pit'),pa=rowsOf('pa_log');if(!gp||!pa)return '—';const gs=new Set(),l=gp.filter((r)=>r.player===n&&r.np!==null&&r.np!==undefined);l.forEach((r)=>gs.add(r.g));const bf=pa.filter((r)=>r.side==='P'&&r.player===n&&gs.has(r.g)).length;return bf?(l.reduce((s,v)=>s+v.np,0)/bf).toFixed(2):'—';};
+const mk=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=String(text);return e;};
+const miniTable=(cols,rows)=>{const w=mk('div','md-scroll');const t=mk('table','md-table');const th=mk('thead');const tr=mk('tr');cols.forEach((c)=>{const h=mk('th',null,c);tr.append(h);});th.append(tr);const tb=mk('tbody');rows.forEach((r)=>{const x=mk('tr');r.forEach((v)=>x.append(mk('td',null,v===undefined||v===null||v===''?'—':v)));tb.append(x);});t.append(th,tb);w.append(t);return w;};
+draw('pcard',(el)=>{const get=(id)=>rowsOf(id);const R=get('roster'),HA=hitFull(),PA=pitFull(),TH=get('tendency_hit'),TP=get('tendency_pit'),BU=get('box_usage'),HB=TEAM==='cleary'?[]:get('h2h_bat'),HP=TEAM==='cleary'?[]:get('h2h_pit'),PX=get('player_extra');el.replaceChildren();if(!R||!HA||!PA||!TH||!TP||!BU||!HB||!HP||!PX){el.textContent='—';return;}const n=view.player;const r=R.find((x)=>x.name===n);if(!r){el.textContent='No roster entry for this player.';return;}const h=HA.find((x)=>x.player===n),p=PA.find((x)=>x.player===n),th=TH.find((x)=>x.player===n),tp=TP.find((x)=>x.player===n),bu=BU.find((x)=>x.player===n),hb=HB.find((x)=>x.who===n),hp=HP.find((x)=>x.who===n),px=PX.find((x)=>x.player===n);
+ const head=mk('div','pc-head');if(r.num)head.append(mk('span','pc-num','#'+r.num));head.append(mk('span','pc-name',human(n)),mk('span','pc-sub',[r.pos,r.cls,r.bt,r.ht].filter(Boolean).join(' · ')));const chip=mk('span','md-chip '+(isBack(r)?'good':'bad'),r.status==='Eligible by class'?'Can return by class':r.status);head.append(chip);el.append(head);
+ const bio=mk('div','pc-bio');[['Hometown',r.hometown],['High school',r.hs],['Prior college',r.prior],['Arrived by',r.route==='Direct from high school'?'HS':r.route]].forEach(([k,v])=>{const b=mk('div');b.append(mk('span','pc-k',k),mk('span','pc-v',v||'Not listed'));bio.append(b);});el.append(bio);if(px&&px.note)el.append(mk('p','md-sub',px.note));
+ if(h&&h.ab>0){el.append(mk('div','pc-sec','Hitting'));const rows=[['2026',h.gs,h.ab,h.avg,h.obp,h.slg,h.ops,h.woba,h.hr,h.rbi,h.sb,h.bb,h.so],['2026 WHAC','',' ',h.conf_avg,'','',h.conf_ops,'',h.conf_hr,h.conf_rbi,'','',''],['2025','','',h.avg25,'','',h.ops25,'','','','','','']];if(hb)rows.push(['Vs Cleary 2026','',hb.ab,hb.avg,'','','','','',hb.rbi,'',hb.bb,hb.so]);el.append(miniTable(['Split','GS','AB','AVG','OBP','SLG','OPS','wOBA','HR','RBI','SB','BB','K'],rows));
+  if(bu)el.append(mk('p','md-sub','Started at: '+bu.positions+'. Batting order: '+bu.order+'. Started '+bu.last20+' of the final 20 games.'));
+  if(th){el.append(mk('div','pc-sec','At the plate: complete'));el.append(miniTable(['PA','GO','Air outs','GO/AO'],[[th.pa,th.go,th.ao,th.go_ao]]));el.append(mk('div','pc-sec','At the plate: partial, pitch data on '+th.tracked+' of '+th.pa+' plate appearances'));el.append(miniTable(['P/PA','FP swing','Whiff','K looking','Bunts'],[[th.p_pa,th.fp_swing,th.whiff,th.k_look,th.bunts]]));el.append(mk('div','pc-sec','Direction: partial, '+th.dir_n+' batted balls with a named direction'));const d=mk('div','md-bars');bars(d,[{l:'Pull',v:parseFloat(th.pull),t:th.pull},{l:'Center',v:parseFloat(th.center),t:th.center},{l:'Opposite field',v:parseFloat(th.oppo),t:th.oppo}].filter((b)=>b.t!=='—'),'l','v','t',100);el.append(d);}}
+ if(p&&(p.ipn>0||p.app>0)){el.append(mk('div','pc-sec','Pitching'));const rows=[['2026',p.app,p.gs,p.ip,p.era,p.fip,p.whip,p.so,p.bb,p.baa],['2026 WHAC','','',p.conf_ip,p.conf_era,'','','','',''],['2025','','',p.ip25,p.era25,'','','','','']];if(hp)rows.push(['Vs Cleary 2026',hp.g,'',hp.ip,hp.era,'','',hp.so,hp.bb,'']);el.append(miniTable(['Split','APP','GS','IP','ERA','FIP','WHIP','K','BB','BAA'],rows));
+  if(tp){el.append(mk('div','pc-sec','On the mound: complete'));el.append(miniTable(['BF','GO/AO','GS','IP/start','Relief','IP/relief'],[[tp.bf,tp.go_fo,tp.starts,tp.ip_start,tp.relief,tp.ip_relief]]));el.append(mk('div','pc-sec','On the mound: partial, pitch data on '+tp.tracked+' of '+tp.bf+' batters faced'));el.append(miniTable(['Strike','FP strike','Whiff','K looking','Pitches/start','Most','Pitches/relief','Most','Per at-bat'],[[tp.strike,tp.fp_strike,tp.whiff,tp.k_look,tp.np_start,tp.np_max_start,tp.np_relief,tp.np_max_relief,perAB(n)]]));}
+  const en=entered(n,false);if(en.n)el.append(mk('p','md-sub','Came in from the bullpen in '+en.n+(en.n===1?' game: ':' games: ')+en.text+'.'));}
+ if(!(h&&h.ab>0)&&!(p&&(p.ipn>0||p.app>0)))el.append(mk('p','md-sub','No game stats listed for 2026.'));
+});
+
+/* ---------- Player matchups (Cleary) ---------- */
+state.mu={H:{team:'',me:'All',you:'All'},P:{team:'',me:'All',you:'All'}};
+const muRows=(side)=>{const d=dash.data('c_matchups');return d.status==='ok'?d.data.filter((r)=>r.side===side):null;};
+const muTeams=(rows)=>{const m={};rows.forEach((r)=>{m[r.team]=r.whac;});const names=Object.keys(m).sort();return {whac:names.filter((n)=>m[n]),other:names.filter((n)=>!m[n])};};
+const muTeam=(side,rows)=>{const u=state.mu[side];if(!u.team)u.team=muTeams(rows).whac[0]||'all';return u.team;};
+const redrawMu=()=>redraw(['mu_team','mu_me','mu_you','mu_sum','mu_h','mu_p']);
+const muFit=(side,rows)=>{const u=state.mu[side],t=muTeam(side,rows);return rows.filter((r)=>t==='all'||r.team===t);};
+const muPick=(sel,side,all,list,key)=>{sel.replaceChildren(new Option(all,'All'),...list.map((n)=>new Option(n)));const u=state.mu[side];if(u[key]!=='All'&&!list.includes(u[key]))u[key]='All';sel.value=u[key];sel.onchange=()=>{u[key]=sel.value;redrawMu();};};
+draw('mu_team',(sel)=>{const side=sel.dataset.side,rows=muRows(side);if(!rows){sel.replaceChildren();return;}const t=muTeams(rows);const grp=(label,l)=>{const g=document.createElement('optgroup');g.label=label;g.append(...l.map((n)=>new Option(n)));return g;};sel.replaceChildren(new Option('All teams','all'),grp('WHAC',t.whac),grp('Non-conference',t.other));const u=state.mu[side];sel.value=muTeam(side,rows);sel.onchange=()=>{u.team=sel.value;redrawMu();};});
+draw('mu_me',(sel)=>{const side=sel.dataset.side,rows=muRows(side);if(!rows){sel.replaceChildren();return;}const u=state.mu[side];const l=muFit(side,rows).filter((r)=>u.you==='All'||r.vs===u.you);muPick(sel,side,side==='H'?'All Cleary hitters':'All Cleary pitchers',[...new Set(l.map((r)=>r.player))].sort(),'me');});
+draw('mu_you',(sel)=>{const side=sel.dataset.side,rows=muRows(side);if(!rows){sel.replaceChildren();return;}const u=state.mu[side];const l=muFit(side,rows).filter((r)=>u.me==='All'||r.player===u.me);muPick(sel,side,side==='H'?'All pitchers':'All hitters',[...new Set(l.map((r)=>r.vs))].sort(),'you');});
+const muAgg=(side)=>{const rows=muRows(side);if(!rows)return null;const u=state.mu[side];const m={};muFit(side,rows).filter((r)=>(u.me==='All'||r.player===u.me)&&(u.you==='All'||r.vs===u.you)).forEach((r)=>{const k=r.player+'|'+r.vs+'|'+r.team;const a=m[k]=m[k]||{key:k,player:r.player,vs:r.vs,team:r.team,pa:0,ab:0,h:0,d2:0,d3:0,hr:0,bb:0,k:0,hbp:0,log:[]};['pa','ab','h','d2','d3','hr','bb','k','hbp'].forEach((c)=>{a[c]+=r[c];});a.log.push(r.date+' '+r.h+'-'+r.ab);});return Object.values(m).map((a)=>({...a,line:a.h+'-'+a.ab,avgn:a.ab?a.h/a.ab:-1,avg:a.ab?f3(a.h/a.ab):'—',games:a.log.join(', ')}));};
+const muTable=(side,name)=>draw(name,(tb)=>{const rows=muAgg(side);if(!rows){tb.replaceChildren();return;}fill(tb,sorted(rows,name),['player','vs','team','line','avg','pa','d2','d3','hr','bb','k','hbp','games'],'key');});
+muTable('H','mu_h');muTable('P','mu_p');
+draw('mu_sum',(el)=>{const rows=muAgg(el.dataset.side);if(!rows){el.textContent='—';return;}const t=rows.reduce((s,r)=>{['pa','ab','h','hr','bb','k'].forEach((c)=>{s[c]=(s[c]||0)+r[c];});return s;},{});el.textContent=rows.length?rows.length+(rows.length===1?' matchup: ':' matchups: ')+t.h+'-'+t.ab+(t.ab?' ('+f3(t.h/t.ab)+')':'')+', '+t.hr+' HR, '+t.bb+' BB, '+t.k+' K in '+t.pa+' plate appearances.':'No plate appearances match these filters.';});
+
+/* ---------- Interactive maps ---------- */
+const heatColor=(t)=>{const HEAT=TM().heat;const v=Math.max(0,Math.min(1,t))*(HEAT.length-1);const i=Math.min(HEAT.length-2,Math.floor(v));return d3.interpolateRgb(HEAT[i],HEAT[i+1])(v-i);};
+const mapView={},mapApi={};
+const setRegionBtn=(id)=>{document.querySelectorAll('[data-region]').forEach((b)=>b.classList.toggle('on',b.dataset.region===id));};
+const miGeo=()=>{const d=dash.data('mi_geo');return d.status==='ok'?d.data:null;};
+const focusRegion=(id)=>{setRegionBtn(id);const a=mapApi.mi;if(!a)return;if(id==='all'){a.home();view.mapPick=null;}else{const r=(miGeo()||[]).find((x)=>x.kind==='region'&&x.id===id);if(!r)return;a.box(r);view.mapPick={kind:'region',id,name:r.name,box:r};}draw('map_pick');a.mark();};
+const focusCounty=(name)=>{const a=mapApi.mi;const r=(miGeo()||[]).find((x)=>x.kind==='county'&&x.id===name);if(!a||!r)return;setRegionBtn('');a.box(r);view.mapPick={kind:'county',id:name,name:r.name};draw('map_pick');a.mark();const c=document.getElementById('mi-map');if(c&&c.scrollIntoView)c.scrollIntoView();};
+const openCard=(n)=>{view.player=n;show('players');dash.setLink(pid('players'));draw('plist');draw('pcard');const top=document.getElementById('players');if(top&&top.scrollIntoView)top.scrollIntoView();};
+const pickList=(el,pick,towns)=>{el.replaceChildren();if(!pick){const n=towns.reduce((s,t)=>s+t.n,0);el.append(mk('p','md-cap',n+' players from '+towns.length+' hometowns on this map. Select a town, a county or an area to list them.'));return;}const l=towns.filter(pick.fn);const ps=l.flatMap((t)=>t.players.split('; ').map((n)=>({n,t:t.label.replace(/ \(\d+\)$/,'')}))).sort((a,b)=>a.n.localeCompare(b.n));el.append(mk('div','md-h3',pick.name+': '+ps.length+(ps.length===1?' player':' players')));const g=mk('div','md-picks');g.append(...ps.map((p)=>{const b=mk('button','md-pbtn',p.n+' · '+p.t);b.addEventListener('click',()=>openCard(p.n));return b;}));el.append(g);};
+const pickFn=(p)=>{if(!p)return null;if(p.kind==='town')return {name:p.name,fn:(t)=>t.town===p.id};if(p.kind==='county')return {name:p.name,fn:(t)=>t.county===p.id};return {name:p.name,fn:(t)=>t.x>=p.box.x0&&t.x<=p.box.x1&&t.y>=p.box.y0&&t.y<=p.box.y1};};
+draw('map_pick',(el)=>{const pt=rowsOf('map_points');el.replaceChildren();if(!pt){el.textContent='—';return;}pickList(el,pickFn(view.mapPick),pt.filter((r)=>r.map==='mi'&&r.kind==='town'));});
+draw('map_pick_us',(el)=>{const pt=rowsOf('map_points');el.replaceChildren();if(!pt){el.textContent='—';return;}pickList(el,pickFn(view.usPick),pt.filter((r)=>r.map==='us'&&r.kind==='town'));});
+draw('map',(el)=>{const C=TM().mc;const sh=rowsOf('map_shapes'),pt=rowsOf('map_points');const m=el.dataset.map;const geo=m==='mi'?miGeo():[];el.replaceChildren();if(!sh||!pt||!geo)return;const W=+el.dataset.w,H=+el.dataset.h;const shapes=sh.filter((r)=>r.map===m),points=pt.filter((r)=>r.map===m);const fs=m==='us'?14:13;
+ const svg=d3.select(el).append('svg').attr('viewBox',`0 0 ${W} ${H}`).attr('role','img').attr('aria-label',m==='us'?'Map of players from outside Michigan':'Map of Michigan players by hometown');
+ svg.append('rect').attr('width',W).attr('height',H).style('fill',C.water);
+ const root=svg.append('g');
+ const layer=(kind,fill,stroke,sw,extra)=>{const s=root.selectAll(null).data(shapes.filter((r)=>r.kind===kind)).join('path').attr('d',(r)=>r.d).style('fill',fill).style('stroke',stroke).style('stroke-width',sw).style('vector-effect','non-scaling-stroke').attr('stroke-linejoin','round');if(extra)extra(s);return s;};
+ layer('land',C.land,C.landL,.7);layer('state',C.state,C.stateL,.7);layer('hasplayers',C.has,C.hasL,1);layer('home',m==='us'?C.home:C.state,C.home,1.2);
+ layer('grid','none',C.grid,.5,(s)=>s.attr('stroke-dasharray','2 3').style('opacity',.55));
+ const clip=`md-clip-${m}`;const defs=svg.append('defs');const cp=defs.append('clipPath').attr('id',clip);shapes.filter((r)=>r.kind==='home').forEach((r)=>cp.append('path').attr('d',r.d));
+ const g=root.append('g').attr('clip-path',`url(#${clip})`);g.selectAll(null).data(shapes.filter((r)=>r.kind==='heat')).join('path').attr('d',(r)=>r.d).style('fill',(r)=>heatColor(+r.name)).style('fill-opacity',.8);
+ const towns=points.filter((p)=>p.kind==='town');
+ const pickOf=()=>m==='mi'?view.mapPick:view.usPick;
+ const setPick=(p)=>{if(m==='mi'){view.mapPick=p;setRegionBtn('');draw('map_pick');}else{view.usPick=p;draw('map_pick_us');}mark();};
+ const cos=geo.filter((r)=>r.kind==='county');
+ const coP=root.selectAll(null).data(cos).join('path').attr('class','m-co').attr('d',(r)=>r.d).style('fill','transparent').style('stroke',C.county).style('stroke-width',.6).style('vector-effect','non-scaling-stroke').on('click',(e,r)=>setPick({kind:'county',id:r.id,name:r.name}));
+ const coT=root.selectAll(null).data(cos).join('text').attr('text-anchor','middle').text((r)=>r.id).style('font-family','var(--serif)').style('font-style','italic').style('fill',C.place).style('pointer-events','none');
+ const place=points.filter((p)=>p.kind==='place'&&p.label!=='See close-up');
+ const plT=root.selectAll(null).data(place).join('text').attr('x',(p)=>p.x).attr('y',(p)=>p.y).attr('text-anchor',(p)=>p.anchor||'middle').text((p)=>p.label).style('font-family','var(--serif)').style('pointer-events','none').style('font-style',(p)=>/Lake|Ocean|Gulf/.test(p.label)?'italic':'normal').style('fill',(p)=>/Lake|Ocean|Gulf/.test(p.label)?C.home:(m==='us'&&p.label==='Michigan'?'#fff':C.place));
+ const lines=root.selectAll(null).data(towns).join('line').style('stroke',C.ink).style('stroke-width',.7).style('vector-effect','non-scaling-stroke').style('pointer-events','none');
+ const dots=root.selectAll(null).data(towns).join('circle').attr('cx',(p)=>p.x).attr('cy',(p)=>p.y).style('fill',m==='us'?C.usDot:C.ink).style('stroke','#fff').style('vector-effect','non-scaling-stroke').style('stroke-width',1.3).style('pointer-events','none');
+ const tl=root.selectAll(null).data(towns).join('text').text((p)=>p.label).style('font-family','var(--serif)').style('fill',C.ink).style('paint-order','stroke').style('stroke',C.state).style('stroke-linejoin','round').style('pointer-events','none');
+ const tip=tipFor(el);
+ const hits=root.selectAll(null).data(towns).join('circle').attr('class','m-hit').attr('cx',(p)=>p.x).attr('cy',(p)=>p.y).attr('fill','transparent').on('pointermove',(e,p)=>{const q=d3.pointer(e,el);tip.show(p.town+(p.n>1?' · '+p.n+' players':''),p.players.split('; ').map((n)=>n.split(', ').reverse().join(' ')),q[0],q[1]);}).on('pointerleave',()=>tip.hide()).on('click',(e,p)=>setPick({kind:'town',id:p.town,name:p.town}));
+ const R0=(p)=>(m==='us'?5.5:3)+(p.n-1)*1.1;
+ const mark=()=>{const p=pickOf();coP.style('fill',(r)=>p&&p.kind==='county'&&p.id===r.id?C.has:'transparent').style('fill-opacity',.55);dots.style('stroke',(t)=>p&&p.kind==='town'&&p.id===t.town?C.hasL:'#fff');};
+ const paint=(k)=>{const f=fs/k,b=[];const hit=(a)=>b.some((o)=>a.x0<o.x1&&a.x1>o.x0&&a.y0<o.y1&&a.y1>o.y0);
+  dots.attr('r',(p)=>R0(p)/Math.pow(k,.75));hits.attr('r',11/k);
+  towns.forEach((p)=>{const r=R0(p)/Math.pow(k,.75);b.push({x0:p.x-r,x1:p.x+r,y0:p.y-r,y1:p.y+r});});
+  const pos=new Map();[...towns].sort((x,y)=>y.n-x.n).forEach((p)=>{const tw=p.label.length*f*.56,th=f*1.15,gap=(R0(p)/Math.pow(k,.75))+2/k;for(const q of [1,1.9,3]){for(const [ax,ay,an] of [[1,0,'start'],[-1,0,'end'],[0,-1,'middle'],[0,1,'middle'],[1,-1,'start'],[-1,-1,'end'],[1,1,'start'],[-1,1,'end']]){const lx=p.x+ax*gap*q,ly=p.y+ay*th*q*.85+f*.35;const x0=an==='start'?lx:an==='end'?lx-tw:lx-tw/2;const a={x0,x1:x0+tw,y0:ly-f,y1:ly+f*.25};if(a.x0<1||a.x1>W-1||a.y0<1||a.y1>H-1||hit(a))continue;b.push(a);pos.set(p,{lx,ly,an,lead:q>1});return;}}});
+  tl.style('display',(p)=>pos.has(p)?null:'none').attr('x',(p)=>pos.has(p)?pos.get(p).lx:0).attr('y',(p)=>pos.has(p)?pos.get(p).ly:0).attr('text-anchor',(p)=>pos.has(p)?pos.get(p).an:'start').style('font-size',f+'px').style('font-weight',(p)=>p.n>1||m==='us'?700:400).style('stroke-width',(3/k)+'px');
+  lines.style('display',(p)=>pos.has(p)&&pos.get(p).lead?null:'none').attr('x1',(p)=>p.x).attr('y1',(p)=>p.y).attr('x2',(p)=>pos.has(p)?pos.get(p).lx:p.x).attr('y2',(p)=>pos.has(p)?pos.get(p).ly-f*.3:p.y);
+  plT.style('font-size',((fs-.5)/k)+'px');
+  coT.style('display',k>=2.2?null:'none').attr('x',(r)=>r.cx).attr('y',(r)=>r.cy).style('font-size',(10.5/k)+'px').style('opacity',.75);
+ };
+ const zoom=d3.zoom().scaleExtent([1,16]).extent([[0,0],[W,H]]).translateExtent([[0,0],[W,H]]).filter((e)=>{if(e.type==='wheel')return e.ctrlKey||e.metaKey;if(e.type==='touchstart')return e.touches.length>1;return !e.button;}).on('zoom',(e)=>{root.attr('transform',e.transform);mapView[m]=e.transform;paint(e.transform.k);});
+ svg.call(zoom);
+ const go=(t)=>{const sel=svg;if(typeof sel.transition==='function'&&sel.node().getScreenCTM)sel.transition().duration(450).call(zoom.transform,t);else sel.call(zoom.transform,t);};
+ mapApi[m]={home:()=>go(d3.zoomIdentity),box:(r)=>{const k=Math.max(1,Math.min(16,.94*Math.min(W/(r.x1-r.x0),H/(r.y1-r.y0))));const cx=(r.x0+r.x1)/2,cy=(r.y0+r.y1)/2;go(d3.zoomIdentity.translate(W/2-k*cx,H/2-k*cy).scale(k));},by:(f)=>{if(!f)go(d3.zoomIdentity);else svg.transition().duration(250).call(zoom.scaleBy,f);},mark};
+ const t0=mapView[m]||d3.zoomIdentity;root.attr('transform',t0);paint(t0.k);if(mapView[m])svg.call(zoom.transform,t0);mark();
+});
+
+draw('history',(el)=>{const rows=rowsOf('history');if(!rows){el.textContent='—';return;}el.replaceChildren();const W=el.clientWidth||400,H=220,m={t:18,r:4,b:22,l:28};const svg=d3.select(el).append('svg').attr('width','100%').attr('viewBox',`0 0 ${W} ${H}`).attr('role','img').attr('aria-label','Wins by season');const x=d3.scaleBand(rows.map((r)=>r.season),[m.l,W-m.r]).padding(.18);const y=d3.scaleLinear([0,d3.max(rows,(r)=>r.wins)],[H-m.b,m.t]).nice();svg.append('g').attr('transform',`translate(${m.l},0)`).call(d3.axisLeft(y).ticks(4).tickSize(-(W-m.l-m.r))).call(axisStyle).call((g)=>{g.select('.domain').remove();g.selectAll('line').attr('stroke','var(--cds-chart-grid)');});svg.append('g').attr('transform',`translate(0,${H-m.b})`).call(d3.axisBottom(x).tickValues(rows.map((r)=>r.season).filter((s)=>(rows[rows.length-1].season-s)%(W<520?5:3)===0)).tickSize(0)).call(axisStyle);const tip=tipFor(el);const last=rows[rows.length-1];svg.selectAll('rect.b').data(rows).join('rect').attr('class','b').attr('x',(r)=>x(r.season)).attr('width',x.bandwidth()).attr('y',(r)=>y(r.wins)).attr('height',(r)=>y(0)-y(r.wins)).attr('rx',2).style('fill',(r)=>r===last?'var(--gold)':'var(--royal)').style('stroke',(r)=>r===last?'var(--navy)':'none').on('pointermove',(e,r)=>{const p=d3.pointer(e,el);tip.show(String(r.season),r.record,p[0],p[1]);}).on('pointerleave',()=>tip.hide());svg.append('text').attr('x',x(last.season)+x.bandwidth()/2).attr('y',y(last.wins)-5).attr('text-anchor','end').attr('fill','var(--navy)').style('font-weight','700').style('font-size','var(--cds-font-size-caption)').text(last.record);});
+
+draw('margin',(el)=>{const rows=rowsOf('schedule');if(!rows){el.textContent='—';return;}el.replaceChildren();const W=el.clientWidth||400,H=240,m={t:8,r:4,b:22,l:30};const svg=d3.select(el).append('svg').attr('width','100%').attr('viewBox',`0 0 ${W} ${H}`).attr('role','img').attr('aria-label','Run margin by game');const x=d3.scaleBand(rows.map((r)=>r.game),[m.l,W-m.r]).padding(.16);const y=d3.scaleLinear(d3.extent(rows,(r)=>r.margin),[H-m.b,m.t]).nice();svg.append('g').attr('transform',`translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5).tickSize(-(W-m.l-m.r))).call(axisStyle).call((g)=>{g.select('.domain').remove();g.selectAll('line').attr('stroke','var(--cds-chart-grid)');});const firsts=rows.filter((r,i)=>i===0||rows[i-1].month!==r.month);svg.append('g').attr('transform',`translate(0,${H-m.b})`).call(d3.axisBottom(x).tickValues(firsts.map((r)=>r.game)).tickFormat((g)=>rows.find((r)=>r.game===g).month).tickSize(0)).call(axisStyle);svg.append('line').attr('x1',m.l).attr('x2',W-m.r).attr('y1',y(0)).attr('y2',y(0)).attr('stroke','var(--cds-chart-axis)');rows.forEach((r,i)=>{if(i&&rows[i-1].phase!==r.phase){const px=x(r.game)-1;svg.append('line').attr('x1',px).attr('x2',px).attr('y1',m.t).attr('y2',H-m.b).attr('stroke','var(--cds-chart-reference)').attr('stroke-dasharray','4 3');}});const tip=tipFor(el);svg.selectAll('rect.b').data(rows).join('rect').attr('class','b').attr('x',(r)=>x(r.game)).attr('width',x.bandwidth()).attr('y',(r)=>y(Math.max(0,r.margin))).attr('height',(r)=>Math.max(1,Math.abs(y(r.margin)-y(0)))).attr('rx',1.5).style('fill',(r)=>r.result==='W'?'var(--royal)':'var(--gold)').style('stroke',(r)=>r.result==='W'?'none':'var(--antique)');svg.selectAll('rect.h').data(rows).join('rect').attr('class','h').attr('x',(r)=>x(r.game)).attr('width',x.bandwidth()+1).attr('y',m.t).attr('height',H-m.t-m.b).attr('fill','transparent').on('pointermove',(e,r)=>{const p=d3.pointer(e,el);tip.show(r.label+' · '+r.phase,r.result+' '+r.score+' vs '+r.opponent,p[0],p[1]);}).on('pointerleave',()=>tip.hide());});
+
+document.querySelectorAll('.md-sort').forEach((b)=>b.addEventListener('click',()=>{const t=b.dataset.target,k=b.dataset.sort;const cur=state.sort[t];const text=/^(player|name|cls|pos|status|throws|bt|ht|hometown|hs|prior|vs|team)$/.test(k);state.sort[t]=cur[0]===k?[k,-cur[1]]:[k,text?1:(/^(era|fip|whip|free9|era25|conf_era|baa|bb|l|hr|num)$/.test(k)&&t!=='hit'&&t!=='top_hit'&&t!=='out_hit'&&t!=='mu_h'&&t!=='mu_p'?1:-1)];document.querySelectorAll(`.md-sort[data-target="${t}"]`).forEach((o)=>{const th=o.closest('th');if(th)th.setAttribute('aria-sort',o===b?(state.sort[t][1]>0?'ascending':'descending'):'none');});draw(t);}));
+document.querySelectorAll('[data-filter]').forEach((s)=>s.addEventListener('change',()=>{state.filter[s.dataset.filter]=s.value;draw(s.dataset.target);}));
+document.querySelectorAll('[data-search]').forEach((s)=>s.addEventListener('input',()=>{state.search[s.dataset.search]=s.value;draw(s.dataset.target);}));
+
+const FILTERTABS=new Set(['hitters','pitchers','tendencies']);
+
+const SP_HITS=new Set(['1B','2B','3B','HR']),SP_NOAB=new Set(['BB','HBP','SF','SAC','CI']),SP_OUT=new Set(['GO','AO']);
+const SP_OF=[['LF','Left field'],['LC','Left center'],['CF','Center field'],['RC','Right center'],['RF','Right field']];
+const SP_IF=[['3B','Third base'],['LS','Left side'],['SS','Shortstop'],['MID','Up the middle'],['2B','Second base'],['RS','Right side'],['1B','First base']];
+const SP_NAME=Object.fromEntries([...SP_OF,...SP_IF,['P','Pitcher'],['C','Catcher']]);
+view.spray=null;view.sk='all';
+const spKeep=(r)=>view.sk==='all'||(view.sk==='hits'?SP_HITS.has(r.res):SP_OUT.has(r.res));
+const spData=()=>{const sp=rowsOf('spray'),pa=rowsOf('pa_log');if(!sp||!pa||!gameSet())return null;const by={};const add=(n)=>by[n]||(by[n]={player:n,ab:0,k:0,bip:0,hits:0,outs:0,used:0,uh:0,uo:0,rows:[]});pa.forEach((r)=>{if(r.side!=='H'||!seen(r.g)||SP_NOAB.has(r.res))return;const o=add(r.player);o.ab++;if(r.res==='K')o.k++;else{o.bip++;if(SP_HITS.has(r.res))o.hits++;else if(SP_OUT.has(r.res))o.outs++;}});sp.forEach((r)=>{if(!seen(r.g))return;const o=add(r.player);o.used++;o.rows.push(r);if(SP_HITS.has(r.res))o.uh++;else if(SP_OUT.has(r.res))o.uo++;});return Object.values(by).filter((o)=>o.ab>0).sort((a,b)=>b.ab-a.ab||a.player.localeCompare(b.player));};
+const spPct=(a,b)=>b?Math.round(100*a/b)+'%':'—';
+const spNow=()=>{const l=spData();if(!l||!l.length)return null;return l.find((o)=>o.player===view.spray)||l[0];};
+draw('spray_sel',(el)=>{const l=spData();if(!l){el.replaceChildren();return;}el.replaceChildren(...l.map((o)=>{const e=document.createElement('option');e.value=o.player;e.textContent=o.player+' ('+spPct(o.used,o.ab)+' of at-bats)';return e;}));const n=spNow();if(n)el.value=n.player;});
+draw('spray_cred',(el)=>{const o=spNow();el.replaceChildren();if(!o)return;[[spPct(o.used,o.ab),'of at-bats used',o.used+' of '+o.ab+' at-bats'],[spPct(o.used,o.bip),'of balls in play',o.used+' of '+o.bip+', strikeouts left out'],[spPct(o.uh,o.hits),'of hits',o.uh+' of '+o.hits+' hits']].forEach(([a,b,c])=>{const d=document.createElement('div');const x=document.createElement('b');x.textContent=a;const y=document.createElement('span');y.className='k';y.textContent=b;const z=document.createElement('span');z.textContent=c;d.append(x,y,z);el.append(d);});});
+draw('spray_chart',(el)=>{const o=spNow();el.replaceChildren();if(!o)return;const rows=o.rows.filter(spKeep);const c={},h={};rows.forEach((r)=>{c[r.zone]=(c[r.zone]||0)+1;});o.rows.forEach((r)=>{const z=h[r.zone]||(h[r.zone]={n:0,h:0,o:0});z.n++;if(SP_HITS.has(r.res))z.h++;else if(SP_OUT.has(r.res))z.o++;});const tot=rows.length;const max=Math.max(1,...Object.values(c));const ramp=d3.interpolateRgbBasis(TM().heat);const fillOf=(n)=>n?ramp(.12+.88*n/max):'var(--soft)';const inkOf=(n)=>n&&n/max>.45?'#fff':'var(--color-fg)';const W=640,H=470,cx=320,cy=420,RO=390,RI=205,R0=74,A=Math.PI/4;const svg=d3.select(el).append('svg').attr('viewBox',`0 0 ${W} ${H}`).attr('role','img').attr('aria-label',`Spray chart for ${o.player}: ${tot} batted balls shown`);const pt=(r,a)=>[cx+r*Math.sin(a),cy-r*Math.cos(a)];const wedge=(r0,r1,a0,a1)=>{const [x0,y0]=pt(r1,a0),[x1,y1]=pt(r1,a1),[x2,y2]=pt(r0,a1),[x3,y3]=pt(r0,a0);return `M${x0},${y0}A${r1},${r1} 0 0 1 ${x1},${y1}L${x2},${y2}A${r0},${r0} 0 0 0 ${x3},${y3}Z`;};const tip=(z)=>{const v=h[z]||{n:0,h:0,o:0};return `${SP_NAME[z]}: ${v.n} batted ball${v.n===1?'':'s'}, ${v.h} hit${v.h===1?'':'s'}, ${v.o} out${v.o===1?'':'s'}`;};const label=(z,x,y,big,n)=>{const g=svg.append('g');const col=inkOf(n);g.append('text').attr('x',x).attr('y',y-(big?14:9)).attr('text-anchor','middle').attr('font-size',big?13:10.5).attr('fill',col).text(z==='MID'?'Mid':z==='LS'?'Left':z==='RS'?'Right':z);g.append('text').attr('x',x).attr('y',y+(big?7:5)).attr('text-anchor','middle').attr('font-size',big?22:15).attr('font-weight',700).attr('fill',col).text(n);if(big&&tot)g.append('text').attr('x',x).attr('y',y+24).attr('text-anchor','middle').attr('font-size',12).attr('fill',col).text(Math.round(100*n/tot)+'%');};const seg=(list,r0,r1,big)=>{const st=2*A/list.length;list.forEach(([z],i)=>{const a0=-A+i*st,a1=a0+st,n=c[z]||0;svg.append('path').attr('d',wedge(r0,r1,a0,a1)).attr('fill',fillOf(n)).attr('stroke','var(--navy)').attr('stroke-width',1).append('title').text(tip(z));const [x,y]=pt((r0+r1)/2+(big?0:6),(a0+a1)/2);label(z,x,y,big,n);});};seg(SP_OF,RI,RO,true);seg(SP_IF,R0,RI,false);[['P',cx,cy-46,21],['C',cx,cy+22,21]].forEach(([z,x,y,r])=>{const n=c[z]||0;svg.append('circle').attr('cx',x).attr('cy',y).attr('r',r).attr('fill',fillOf(n)).attr('stroke','var(--navy)').append('title').text(tip(z));svg.append('text').attr('x',x).attr('y',y-4).attr('text-anchor','middle').attr('font-size',10).attr('fill',inkOf(n)).text(z);svg.append('text').attr('x',x).attr('y',y+11).attr('text-anchor','middle').attr('font-size',14).attr('font-weight',700).attr('fill',inkOf(n)).text(n);});});
+draw('spray_foot',(el)=>{const o=spNow();if(!o){el.textContent=rowsOf('spray')?'No at-bats in this filter.':'—';return;}const ro=(rowsOf('roster')||[]).find((r)=>r.name===o.player);const bats=ro&&ro.bt?ro.bt.split('/')[0]:'';const rows=o.rows.filter(spKeep);const L=new Set(['LF','LC','3B','LS','SS']),R=new Set(['RF','RC','1B','RS','2B']);const l=rows.filter((r)=>L.has(r.zone)).length,g=rows.filter((r)=>R.has(r.zone)).length,m=rows.length-l-g;const miss=o.bip-o.used,mh=o.hits-o.uh,mo=miss-mh;const side={R:'Bats right.',L:'Bats left.',S:'Switch hitter.',B:'Switch hitter.'}[bats]||'Batting side not listed.';el.textContent=`${side} Showing ${rows.length}: left side ${l} (${spPct(l,rows.length)}), middle ${m} (${spPct(m,rows.length)}), right side ${g} (${spPct(g,rows.length)}). Not on the chart: ${o.k} strikeout${o.k===1?'':'s'}, which have no direction, and ${miss} ball${miss===1?'':'s'} in play the scorer didn't place (${mh} hit${mh===1?'':'s'}, ${mo} other). Because hits go unplaced more often than outs, this can understate hits.${o.used<30?' Fewer than 30 batted balls, so this is a small sample.':''}`;});
+document.getElementById('spraySel').addEventListener('change',(e)=>{view.spray=e.target.value;redraw(['spray_cred','spray_chart','spray_foot']);});
+document.querySelectorAll('[data-sk]').forEach((b)=>b.addEventListener('click',()=>{view.sk=b.dataset.sk;document.querySelectorAll('[data-sk]').forEach((o)=>{const on=o===b;o.classList.toggle('on',on);o.setAttribute('aria-selected',String(on));});redraw(['spray_chart','spray_foot']);}));
+const FDRAW=['spray_sel','spray_cred','spray_chart','spray_foot','fsum','hit','pit','ops_bars','free_bars','th','tp','thp','tpp','lineup','staff','steal_bars','runs_chart','splits_h','splits_p','splits_hp','splits_pp','log','log_cap','workload','pitchct'];
+const applyF=()=>{gsCache=null;redraw(FDRAW);};
+document.querySelectorAll('#fPreset').forEach((x)=>x.addEventListener('change',()=>{F.preset=x.value;applyF();}));
+document.querySelectorAll('#fFrom').forEach((x)=>x.addEventListener('change',()=>{if(!x.value||x.validity.valid){F.from=x.value;applyF();}}));
+document.querySelectorAll('#fTo').forEach((x)=>x.addEventListener('change',()=>{if(!x.value||x.validity.valid){F.to=x.value;applyF();}}));
+document.querySelectorAll('#fReset').forEach((x)=>x.addEventListener('click',()=>{F.preset='all';F.from='';F.to='';document.querySelectorAll('#fPreset,#fFrom,#fTo').forEach((e)=>{e.value=e.id==='fPreset'?'all':'';});applyF();}));
+const wire=(attr,key,draws)=>{const bs=[...document.querySelectorAll(`[data-${attr}]`)];bs.forEach((b)=>b.addEventListener('click',()=>{view[key]=b.dataset[attr];bs.forEach((o)=>{const on=o.dataset[attr]===view[key];o.classList.toggle('on',on);o.setAttribute('aria-selected',String(on));});draws.forEach((d)=>draw(d));}));};
+view.tv='complete';
+const applyTV=()=>{document.querySelectorAll('[data-tpanel]').forEach((p)=>{p.hidden=p.dataset.tpanel!==view.tv;});document.querySelectorAll('[data-tv]').forEach((o)=>{const on=o.dataset.tv===view.tv;o.classList.toggle('on',on);o.setAttribute('aria-selected',String(on));});};
+document.querySelectorAll('[data-tv]').forEach((b)=>b.addEventListener('click',()=>{view.tv=b.dataset.tv;applyTV();redraw(['thp','tpp','th','tp','splits_h','splits_p','splits_hp','splits_pp','cov_stats','cov_games','sel_h','sel_p','spray_sel','spray_cred','spray_chart','spray_foot']);}));
+document.querySelectorAll('[data-region]').forEach((b)=>b.addEventListener('click',()=>focusRegion(b.dataset.region)));
+document.querySelectorAll('[data-mapzoom]').forEach((b)=>b.addEventListener('click',()=>{const a=mapApi[b.dataset.mapzoom];if(a)a.by(Number(b.dataset.by));}));
+document.querySelectorAll('[data-mu-reset]').forEach((b)=>b.addEventListener('click',()=>{const m=state.mu[b.dataset.muReset];m.me='All';m.you='All';redrawMu();}));
+wire('lu','lu',['lineup','lu_cap']);wire('rot','rot',['staff','rot_cap']);wire('h2','h2',['h2b','h2p']);
+document.querySelectorAll('[data-psearch]').forEach((s)=>s.addEventListener('input',()=>{state.psearch=s.value;draw('plist');}));
+const tabs=[...document.querySelectorAll('[data-tab]')],pages=[...document.querySelectorAll('.md-page')];
+
+const W_AB={'Northwestern Ohio':'UNOH','Indiana Tech':'IT','Madonna':'MU','Cleary':'CU','Aquinas':'AQ','Rochester Christian':'RCU','Siena Heights':'SHU','Lawrence Tech':'LTU','Cornerstone':'CORN','Lourdes':'LOU','Defiance':'DEF','Michigan-Dearborn':'UMD'};
+const wTid=(n)=>{const r=(rowsOf('w_standings')||[]).find((x)=>x.team===n);return r&&r.tid&&TEAMS.some((x)=>x.id===r.tid)?r.tid:'';};
+const wNote=(id)=>{const r=(rowsOf('w_notes')||[]).find((x)=>x.id===id);return r?r.detail:'';};
+const wTd=(tr,v,cls)=>{const td=document.createElement('td');td.textContent=v===undefined||v===null||v===''?'—':String(v);if(cls)td.className=cls;tr.append(td);return td;};
+const wTeam=(tr,n)=>{const td=wTd(tr,n);const id=wTid(n);if(id){td.className='wlink';td.dataset.tid=id;td.tabIndex=0;td.setAttribute('role','link');td.title='Open the '+n+' page';}return td;};
+const wStat=(s)=>/On the 2027 roster|Can return by class|On the 2027 staff page/.test(s)?'st-good':/Not on the 2027 roster|School closed|Very likely/.test(s)?'st-bad':'';
+const wRows=(el,rows,f)=>{el.replaceChildren(...(rows||[]).map((r)=>{const tr=document.createElement('tr');f(tr,r);return tr;}));};
+let wPick='all';
+let wLG='Hitting',wLN=5;
+draw('w_nav',(el)=>{const rows=rowsOf('w_teams')||[];let wait=false;el.replaceChildren(...rows.map((r)=>{const T=TEAMS.find((x)=>x.id===r.tid);const b=document.createElement('button');b.type='button';b.className='md-wteam';b.dataset.tid=r.tid;b.title='Open the '+r.team+' page';if(T){const d=dash.data(T.p+'ui');if(d&&d.status==='ok'){const lg=(d.data.find((x)=>x.id==='logo')||{}).detail;if(lg){const im=document.createElement('img');im.src=lg;im.alt='';b.append(im);}}else wait=true;}const t=document.createElement('div');t.textContent=r.team;const s=document.createElement('span');s.textContent=`${r.record} · ${r.conf} WHAC`;b.append(t,s);return b;}));if(wait&&!el.dataset.retry){el.dataset.retry='1';setTimeout(()=>{draw('w_nav');},1500);}});
+draw('w_leads',(el)=>{const rows=(rowsOf('w_leaders')||[]).filter((r)=>r.group===wLG);const cats=[...new Set(rows.map((r)=>r.cat))];el.replaceChildren(...cats.map((c)=>{const L=rows.filter((r)=>r.cat===c);const box=document.createElement('div');box.className='md-wlead';const h=document.createElement('h3');h.textContent=c;const q=document.createElement('small');q.textContent=L[0].qual?'qualified':'';h.append(q);box.append(h);L.filter((r)=>r.rank<=wLN).forEach((r)=>{const d=document.createElement('div');d.className='md-wlr';const a=document.createElement('span');a.className='rk';a.textContent=(r.tie?'T':'')+r.rank;const n=document.createElement('span');n.className='nm';n.title=`${r.player}, ${r.team} (${r.cls}), ${r.extra}. 2027: ${r.status}`;n.textContent=r.player;const tm=document.createElement('i');tm.textContent=W_AB[r.team]||r.team;n.append(tm);if(/Can return by class|On the 2027 roster/.test(r.status)){const k=document.createElement('b');k.className='bk';k.title='Can return in 2027';n.append(k);}const v=document.createElement('span');v.className='vl';v.textContent=r.value;d.append(a,n,v);box.append(d);});return box;}));});
+document.querySelectorAll('[data-wlg]').forEach((b)=>b.addEventListener('click',()=>{wLG=b.dataset.wlg;document.querySelectorAll('[data-wlg]').forEach((x)=>x.classList.toggle('on',x===b));draw('w_leads');}));
+document.querySelectorAll('[data-wln]').forEach((b)=>b.addEventListener('click',()=>{wLN=+b.dataset.wln;document.querySelectorAll('[data-wln]').forEach((x)=>x.classList.toggle('on',x===b));draw('w_leads');}));
+document.querySelectorAll('[data-wgo]').forEach((b)=>b.addEventListener('click',()=>{const t=document.getElementById(b.dataset.wgo);if(t&&t.scrollIntoView)t.scrollIntoView({behavior:'smooth',block:'start'});}));
+
+draw('wn',(el)=>{el.textContent=wNote(el.dataset.id)||'—';});
+draw('w_tiles',(el)=>{const rows=(rowsOf('w_notes')||[]).filter((r)=>/^t\d$/.test(r.id));el.replaceChildren(...rows.map((r)=>{const d=document.createElement('div');d.className='md-tile';const a=document.createElement('span');a.className='md-cap';a.textContent=r.label;const b=document.createElement('span');b.className='md-num';b.style.fontSize='calc(var(--cds-font-size-heading) * 1.1)';b.textContent=r.detail;d.append(a,b);return d;}));});
+draw('w_stand',(tb)=>wRows(tb,rowsOf('w_standings'),(tr,r)=>{if(!r.tid)tr.className='out';wTd(tr,r.place);wTeam(tr,r.team);wTd(tr,r.conf);wTd(tr,r.gb);wTd(tr,r.overall);wTd(tr,r.rf==='—'||r.rf===''?'—':r.rf+'-'+r.ra);wTd(tr,r.listed_conf===r.conf&&r.listed_overall===r.overall?'Same':r.listed_conf+' WHAC, '+r.listed_overall,r.listed_conf===r.conf?'':'st-warn');wTd(tr,r.post,'wrap');wTd(tr,r.y27,r.tid?'':'st-bad');}));
+draw('w_tour',(tb)=>wRows(tb,rowsOf('w_tourney'),(tr,r)=>{wTd(tr,r.game);wTd(tr,r.date);wTd(tr,r.winner);wTd(tr,r.loser);wTd(tr,r.score);}));
+draw('w_naia',(tb)=>wRows(tb,rowsOf('w_naia'),(tr,r)=>{wTeam(tr,r.team);wTd(tr,r.date);wTd(tr,r.opponent);wTd(tr,r.result+' '+r.score);wTd(tr,r.site);}));
+draw('w_h2h',(t)=>{const rows=rowsOf('w_h2h'),cols=rowsOf('w_h2h_cols');t.replaceChildren();if(!rows||!cols)return;const th=t.createTHead().insertRow();const h0=document.createElement('th');h0.textContent='Row vs column';th.append(h0);cols.forEach((c)=>{const h=document.createElement('th');h.textContent=W_AB[c.team]||c.team;h.title=c.team;th.append(h);});const tb=t.createTBody();rows.forEach((r)=>{const tr=tb.insertRow();wTeam(tr,r.team);cols.forEach((c)=>{const v=r[c.id];const m=/^(\d+)-(\d+)$/.exec(v||'');wTd(tr,v,v==='—'?'wself':m&&+m[1]>+m[2]?'wup':'');});});});
+draw('w_cmp',(t)=>{const rows=rowsOf('w_compare'),cols=rowsOf('w_compare_cols');t.replaceChildren();if(!rows||!cols)return;const th=t.createTHead().insertRow();['Team',...cols.map((c)=>c.label)].forEach((x)=>{const h=document.createElement('th');h.textContent=x;th.append(h);});const tb=t.createTBody();rows.forEach((r)=>{const tr=tb.insertRow();wTeam(tr,r.team);cols.forEach((c)=>{const k=r[c.id+'_r'];const td=wTd(tr,r[c.id],k===1?'rank1':k<=3?'rank2':'');if(k){const s=document.createElement('span');s.className='wr';s.textContent=k;s.title='Rank '+k+' of 12';td.append(s);}});});});
+draw('w_hon',(tb)=>wRows(tb,rowsOf('w_honors'),(tr,r)=>{wTd(tr,r.award);wTd(tr,r.name);wTeam(tr,r.team);wTd(tr,r.pos);wTd(tr,r.status,wStat(r.status));}));
+draw('w_caps',(el)=>{const rows=rowsOf('w_teams')||[];el.replaceChildren(...rows.map((r)=>{const c=document.createElement('div');c.className='md-wcap';const h=document.createElement('button');h.className='md-wlink';h.dataset.tid=r.tid;h.textContent=r.team;h.title='Open the '+r.team+' page';const s=document.createElement('p');s.className='md-cap';s.textContent=`2026: ${r.record}, ${r.conf} WHAC (${['','1st','2nd','3rd'][r.place]||r.place+'th'} of 12)`;const dl=document.createElement('dl');[['Postseason',r.post],['Head coach',r.coach],['Staff',r.staff],['2027 roster',r.basis],['PA that can return',r.pa_back],['IP that can return',r.ip_back],['Top returning bats',r.top_bat],['Top returning arms',r.top_arm],['Leaving',r.gone],['2027 schedule',r.sched27]].forEach(([a,b])=>{const dt=document.createElement('dt');dt.textContent=a;const dd=document.createElement('dd');dd.textContent=b||'—';dl.append(dt,dd);});c.append(h,s,dl);return c;}));});
+draw('w_rsel',(sel)=>{const rows=rowsOf('w_teams')||[];sel.replaceChildren(new Option('All teams','all'),...[...rows].sort((a,b)=>a.team.localeCompare(b.team)).map((r)=>new Option(r.team,r.team)));sel.value=wPick;sel.onchange=()=>{wPick=sel.value;draw('w_rhit');draw('w_rpit');};});
+const wKeep=(r)=>wPick==='all'||r.team===wPick;
+draw('w_rhit',(tb)=>wRows(tb,(rowsOf('w_ret_hit')||[]).filter(wKeep),(tr,r)=>{wTd(tr,r.player);wTeam(tr,r.team);wTd(tr,r.cls);wTd(tr,r.ab);wTd(tr,r.avg);wTd(tr,r.obp);wTd(tr,r.ops);wTd(tr,r.hr);wTd(tr,r.rbi);wTd(tr,r.sb);wTd(tr,r.status,wStat(r.status));}));
+draw('w_rpit',(tb)=>wRows(tb,(rowsOf('w_ret_pit')||[]).filter(wKeep),(tr,r)=>{wTd(tr,r.player);wTeam(tr,r.team);wTd(tr,r.cls);wTd(tr,r.ip);wTd(tr,r.era);wTd(tr,r.whip);wTd(tr,r.so);wTd(tr,r.bb);wTd(tr,r.w+'-'+r.l);wTd(tr,r.sv);wTd(tr,r.status,wStat(r.status));}));
+draw('w_ser',(tb)=>wRows(tb,rowsOf('w_series27'),(tr,r)=>{wTd(tr,r.dates);wTeam(tr,r.away);wTeam(tr,r.home);wTd(tr,r.games);wTd(tr,r.listed_by+(r.note?' ('+r.note+')':''),'wrap');}));
+draw('w_meth',(el)=>{const rows=(rowsOf('w_notes')||[]).filter((r)=>/^(m\d|src\d)$/.test(r.id));el.replaceChildren(...rows.map((r)=>{const li=document.createElement('div');li.className='md-li';const lab=document.createElement('span');lab.className='md-lilabel';if(r.url&&r.url.startsWith('https://')){const a=document.createElement('a');a.href=r.url;a.target='_blank';a.rel='noopener';a.textContent=r.label;lab.append(a);}else lab.textContent=r.label;li.append(lab);if(r.detail){const t=document.createElement('div');t.className='md-litext';t.textContent=r.detail;li.append(t);}return li;}));});
+let cur='overview';
+const pid=(id)=>TM().hash+id;
+const shownFor={};
+const onlyFor=(e,t)=>(!e.dataset.teamOnly||e.dataset.teamOnly.split(' ').includes(t))&&(!e.dataset.teamNot||!e.dataset.teamNot.split(' ').includes(t));
+const teamGates=(t)=>{const T=TEAM_OF(t);document.querySelectorAll('[data-team-only],[data-team-not]').forEach((e)=>{e.hidden=!onlyFor(e,t);});document.querySelectorAll('[data-roster]').forEach((e)=>{e.hidden=e.dataset.roster!==(T.rosterPosted?'posted':'class');});document.querySelectorAll('[data-recruit]').forEach((e)=>{e.hidden=e.dataset.recruit==='any'?!T.recruits:e.dataset.recruit!==T.recruits;});};
+const show=(id)=>{cur=id;document.querySelectorAll('.md').forEach((r)=>r.classList.toggle('whac-on',id==='whac'));pages.forEach((p)=>{p.hidden=p.id!==id;});document.querySelectorAll('#filter-bar').forEach((b)=>{b.hidden=!FILTERTABS.has(id);});tabs.forEach((t)=>{const on=t.dataset.tab===id;t.classList.toggle('on',on);t.setAttribute('aria-selected',String(on));});if(shownFor[id]&&shownFor[id]!==TEAM){const pg=pages.find((p)=>p.id===id);if(pg)redraw([...new Set([...pg.querySelectorAll('[data-draw]')].map((e)=>e.dataset.draw))]);}shownFor[id]=TEAM;if(FILTERTABS.has(id))draw('fsum');};
+tabs.forEach((t)=>t.addEventListener('click',()=>{show(t.dataset.tab);dash.setLink(pid(t.dataset.tab));if(t.dataset.tab==='whac'){const w=document.getElementById('whac');if(w&&w.scrollIntoView)w.scrollIntoView();}}));
+const wGo=(e)=>{const c=e.target.closest&&e.target.closest('[data-tid]');if(!c||!c.dataset.tid||!(c.classList.contains('wlink')||c.classList.contains('md-wlink')||c.classList.contains('md-wteam')))return false;setTeam(c.dataset.tid,'overview');dash.setLink(pid('overview'));const top=document.querySelector('.md-teams');if(top&&top.scrollIntoView)top.scrollIntoView();return true;};
+document.querySelectorAll('.md').forEach((root)=>{root.addEventListener('click',wGo);root.addEventListener('keydown',(e)=>{if(e.key==='Enter'&&e.target.classList&&e.target.classList.contains('wlink'))wGo(e);});});
+document.querySelectorAll('.md').forEach((root)=>root.addEventListener('click',(e)=>{const c=e.target.closest&&e.target.closest('td.plink');if(!c)return;view.player=c.textContent;show('players');dash.setLink(pid('players'));draw('plist');draw('pcard');const top=document.getElementById('players');if(top&&top.scrollIntoView)top.scrollIntoView();}));
+const ALLDRAWS=()=>[...new Set([...document.querySelectorAll('[data-draw]')].map((e)=>e.dataset.draw))];
+const setTeam=(t,tab)=>{TEAM=t;gsCache=null;F.preset='all';F.from='';F.to='';document.querySelectorAll('#fPreset,#fFrom,#fTo').forEach((e)=>{e.value=e.id==='fPreset'?'all':'';});
+ document.querySelectorAll('.md').forEach((r)=>TEAMS.forEach((x)=>{if(x.cls)r.classList.toggle(x.cls,x.id===t);}));
+ teamGates(t);
+ Object.keys(mapView).forEach((k)=>delete mapView[k]);view.mapPick=null;view.usPick=null;setRegionBtn('all');view.player=TM().player;state.logP=TM().logP;state.sh='All';state.sp='All';state.psearch='';view.lu='proj';view.rot='y26';view.tv='complete';view.spray=null;view.sk='all';document.querySelectorAll('[data-sk]').forEach((o)=>{const on=o.dataset.sk==='all';o.classList.toggle('on',on);o.setAttribute('aria-selected',String(on));});applyTV();state.filter={hit:'all',pit:'all',game:'all',roster:'all'};state.search.roster='';
+ document.querySelectorAll('[data-filter]').forEach((e)=>{e.value='all';});document.querySelectorAll('[data-search],[data-psearch]').forEach((e)=>{e.value='';});
+ document.querySelectorAll('[data-lu]').forEach((o)=>{const on=o.dataset.lu==='proj';o.classList.toggle('on',on);o.setAttribute('aria-selected',String(on));});document.querySelectorAll('[data-rot]').forEach((o)=>{const on=o.dataset.rot==='y26';o.classList.toggle('on',on);o.setAttribute('aria-selected',String(on));});
+ show(tab);redraw(ALLDRAWS());};
+draw('team_sel',(sel)=>{const order=[...TEAMS].sort((a,b)=>(a.id==='cleary'?-1:b.id==='cleary'?1:a.name.localeCompare(b.name)));sel.replaceChildren(...order.map((x)=>new Option(x.name,x.id)));sel.value=TEAM;sel.onchange=()=>{const t=sel.value;if(t===TEAM)return;const curTab=tabs.find((x)=>x.dataset.tab===cur);const tab=cur==='whac'||(curTab&&!onlyFor(curTab,t))?'overview':cur;setTeam(t,tab);dash.setLink(pid(tab));};});
+const start=location.hash.slice(1);
+const startTeam=TEAMS.find((x)=>x.hash&&start.startsWith(x.hash)&&pages.some((p)=>p.id===start.slice(x.hash.length))&&tabs.every((b)=>b.dataset.tab!==start.slice(x.hash.length)||onlyFor(b,x.id)));
+if(startTeam)setTeam(startTeam.id,start.slice(startTeam.hash.length));else setTeam('cleary',pages.some((p)=>p.id===start)&&tabs.every((b)=>b.dataset.tab!==start||onlyFor(b,'cleary'))?start:'whac');
+const W20='assets/whac-v20.js';const W21='assets/whac-v21.js';fetch(W20).then((r)=>r.text()).then((code)=>{try{eval(code);}catch(e){console.error('WHAC v20 failed',e);}return fetch(W21).then((r)=>r.text()).then((c2)=>{try{eval(c2);}catch(e){console.error('WHAC v21 failed',e);}});}).catch((e)=>console.error('WHAC v20/v21 load failed',e));
+</script>

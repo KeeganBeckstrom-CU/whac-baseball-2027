@@ -1,0 +1,1266 @@
+{
+"a_box_usage": {
+"title": "Aquinas starts by position",
+"description": "Aquinas starts by position, from box scores."
+},
+"a_cleary_series": {
+"title": "Aquinas vs Cleary history",
+"description": "Every meeting since 2019 from Aquinas's opponent history page."
+},
+"a_game_bat": {
+"title": "Aquinas batting by game",
+"description": "Aquinas batting by game, from box scores and play-by-play."
+},
+"a_game_pit": {
+"title": "Aquinas pitching by game",
+"description": "Aquinas pitching by game, from box scores."
+},
+"a_h2h_bat": {
+"title": "Aquinas-Cleary hitting 2026",
+"description": "Aquinas and Cleary hitters, added up from the five 2026 box scores."
+},
+"a_h2h_pit": {
+"title": "Aquinas-Cleary pitching 2026",
+"description": "Aquinas and Cleary pitchers, added up from the five 2026 box scores."
+},
+"a_history": {
+"title": "Aquinas wins by season",
+"description": "Records from Aquinas's schedule pages, 2015 to 2026."
+},
+"a_hitters": {
+"title": "Aquinas 2026 hitters",
+"description": "Official 2026 and 2025 cumulative stats, with 2027 status from the posted roster."
+},
+"a_line_log": {
+"title": "Aquinas runs by inning",
+"description": "Inning-by-inning runs from box score line scores."
+},
+"a_lineups": {
+"title": "Aquinas lineups",
+"description": "Projected 2027 lineup and a typical 2026 lineup from box scores: each position goes to the player with the most starts there, ordered by average spot in the batting order. The projection is analysis, not published by the school."
+},
+"a_map_points": {
+"title": "Aquinas hometown points",
+"description": "Hometowns from Aquinas's 2026 roster, with coordinates entered by hand."
+},
+"a_map_shapes": {
+"title": "Aquinas map shapes",
+"description": "Outlines from U.S. Census and Natural Earth data, plus hometown density contours."
+},
+"a_pa_log": {
+"title": "Aquinas plate appearance log",
+"description": "Every Aquinas and opponent plate appearance in 2026, from play-by-play."
+},
+"a_pitchers": {
+"title": "Aquinas 2026 pitchers",
+"description": "Official 2026 and 2025 cumulative stats, with 2027 status from the posted roster."
+},
+"a_player_extra": {
+"title": "Aquinas player notes",
+"description": "Short notes shown on player cards."
+},
+"a_program_notes": {
+"title": "Aquinas notes and sources",
+"description": "Written notes: facts from the 2026 numbers, position outlook, staff, honors, gaps and source links."
+},
+"a_recruits": {
+"title": "Aquinas new names, 2027",
+"description": "Players on the 2027 roster page who were not on the 2026 roster page, with previous school and whether it was a high school, junior college or four-year college."
+},
+"a_roster": {
+"title": "Aquinas 2026 roster",
+"description": "Official 2026 roster with arrival route and 2027 status added."
+},
+"a_rotations": {
+"title": "Aquinas pitching staff",
+"description": "2026 main starters and relievers, plus projected 2027 roles. The projection is analysis, not published by Aquinas."
+},
+"a_schedule": {
+"title": "Aquinas 2026 game log",
+"description": "Official schedule and game-by-game stats, 51 games."
+},
+"a_schedule_2027": {
+"title": "Aquinas 2027 games posted",
+"description": "Games on Aquinas's 2027 schedule page."
+},
+"a_spray": {
+"title": "Aquinas spray chart",
+"description": "One row per at-bat that names where the ball went, from play-by-play."
+},
+"a_steal_log": {
+"title": "Aquinas steals by game",
+"description": "Each Aquinas steal in 2026 with inning and base, from play-by-play."
+},
+"a_team_totals": {
+"title": "Aquinas team totals",
+"description": "Published team figures and records, each row naming its source."
+},
+"a_tendency_hit": {
+"title": "Aquinas hitter tendencies",
+"description": "Pitch and batted-ball tendencies from play-by-play."
+},
+"a_tendency_pit": {
+"title": "Aquinas pitcher tendencies",
+"description": "Pitch tendencies from play-by-play, plus starts, relief, innings and pitch counts from box scores."
+},
+"a_ui": {
+"title": "Aquinas page wording",
+"description": "Headings, captions and the logo that differ by team."
+},
+"a_watch": {
+"title": "Aquinas 2027 tracker",
+"description": "Status of Aquinas's 2027 roster, schedule, staff and commits."
+},
+"box_usage": {
+"title": "2026 starts by position",
+"description": "Starts by position and batting-order spot, counted from all 59 Madonna box scores."
+},
+"c_box_usage": {
+"title": "Cleary starts by position",
+"description": "Cleary starts by position, from Cleary and NAIA stats pages."
+},
+"c_game_bat": {
+"title": "Cleary batting by game",
+"description": "Cleary batting by game, from Cleary and NAIA stats pages."
+},
+"c_game_pit": {
+"title": "Cleary pitching by game",
+"description": "Cleary pitching by game, from Cleary and NAIA stats pages."
+},
+"c_history": {
+"title": "Cleary wins by season",
+"description": "Cleary wins by season, from Cleary and NAIA stats pages."
+},
+"c_hitters": {
+"title": "Cleary 2026 hitters",
+"description": "Cleary 2026 hitters, from Cleary and NAIA stats pages."
+},
+"c_line_log": {
+"title": "Cleary runs by inning",
+"description": "Cleary runs by inning, from Cleary and NAIA stats pages."
+},
+"c_lineups": {
+"title": "Cleary lineups",
+"description": "Projected 2027 lineup and a typical 2026 lineup from box scores: each position goes to the player with the most starts there, ordered by average spot in the batting order. The projection is analysis, not published by the school."
+},
+"c_map_points": {
+"title": "Cleary hometown points",
+"description": "Cleary hometown points, from Cleary and NAIA stats pages."
+},
+"c_map_shapes": {
+"title": "Cleary map shapes",
+"description": "Cleary map shapes, from Cleary and NAIA stats pages."
+},
+"c_matchups": {
+"title": "Cleary player matchups",
+"description": "Hitter against pitcher lines for each 2026 Cleary game, from play-by-play in the 52 box scores."
+},
+"c_pa_log": {
+"title": "Cleary plate appearance log",
+"description": "Cleary plate appearance log, from Cleary and NAIA stats pages."
+},
+"c_pitchers": {
+"title": "Cleary 2026 pitchers",
+"description": "Cleary 2026 pitchers, from Cleary and NAIA stats pages."
+},
+"c_player_extra": {
+"title": "Cleary player notes",
+"description": "Cleary player notes, from Cleary and NAIA stats pages."
+},
+"c_program_notes": {
+"title": "Cleary notes and sources",
+"description": "Cleary notes and sources, from Cleary and NAIA stats pages."
+},
+"c_recruits": {
+"title": "Cleary listed commits",
+"description": "Class of 2026 commitments to Cleary listed by Prep Baseball Report."
+},
+"c_roster": {
+"title": "Cleary 2026 roster",
+"description": "Cleary 2026 roster, from Cleary and NAIA stats pages."
+},
+"c_rotations": {
+"title": "Cleary pitching staff",
+"description": "Cleary pitching staff, from Cleary and NAIA stats pages."
+},
+"c_schedule": {
+"title": "Cleary 2026 game log",
+"description": "Cleary 2026 game log, from Cleary and NAIA stats pages."
+},
+"c_schedule_2027": {
+"title": "Cleary 2027 games posted",
+"description": "Cleary 2027 games posted, from Cleary and NAIA stats pages."
+},
+"c_spray": {
+"title": "Cleary spray chart",
+"description": "One row per at-bat that names where the ball went, from play-by-play."
+},
+"c_steal_log": {
+"title": "Cleary steals by game",
+"description": "Cleary steals by game, from Cleary and NAIA stats pages."
+},
+"c_team_totals": {
+"title": "Cleary 2026 team totals",
+"description": "Cleary 2026 team totals, from Cleary and NAIA stats pages."
+},
+"c_tendency_hit": {
+"title": "Cleary hitter tendencies",
+"description": "Cleary hitter tendencies, from Cleary and NAIA stats pages."
+},
+"c_tendency_pit": {
+"title": "Cleary pitcher tendencies",
+"description": "Cleary pitcher tendencies, from Cleary and NAIA stats pages."
+},
+"c_ui": {
+"title": "Cleary page wording",
+"description": "Headings, captions and the logo that differ by team."
+},
+"c_watch": {
+"title": "Cleary 2027 tracker",
+"description": "Cleary 2027 tracker, from Cleary and NAIA stats pages."
+},
+"cleary_series": {
+"title": "Madonna vs Cleary history",
+"description": "Every meeting since 2019 from Madonna's opponent history page."
+},
+"cu_box_usage": {
+"title": "Cornerstone lineup usage",
+"description": "Starts by position and batting order, counted from box scores."
+},
+"cu_cleary_series": {
+"title": "Cornerstone vs Cleary since 2019",
+"description": "From Cornerstone's opponent history page, from Cornerstone's side."
+},
+"cu_game_bat": {
+"title": "Cornerstone hitter game log",
+"description": "Each hitter in each game, from NAIA stats box scores and play-by-play."
+},
+"cu_game_pit": {
+"title": "Cornerstone pitcher game log",
+"description": "Each pitcher in each game, from NAIA stats box scores. Four decisions come from recaps."
+},
+"cu_h2h_bat": {
+"title": "Cornerstone and Cleary hitters head to head",
+"description": "The three 2026 meetings combined."
+},
+"cu_h2h_pit": {
+"title": "Cornerstone and Cleary pitchers head to head",
+"description": "The three 2026 meetings combined."
+},
+"cu_history": {
+"title": "Cornerstone wins by season",
+"description": "From Cornerstone's schedule pages."
+},
+"cu_hitters": {
+"title": "Cornerstone hitters",
+"description": "Official 2026 lines from cugoldeneagles.com."
+},
+"cu_line_log": {
+"title": "Cornerstone runs by inning",
+"description": "From NAIA stats line scores."
+},
+"cu_lineups": {
+"title": "Cornerstone lineups",
+"description": "Projected 2027 lineup and a typical 2026 lineup from box scores: each position goes to the player with the most starts there, ordered by average spot in the batting order. The projection is analysis, not published by the school."
+},
+"cu_map_points": {
+"title": "Cornerstone map points",
+"description": "Hometowns from the roster, coordinates entered by hand."
+},
+"cu_map_shapes": {
+"title": "Cornerstone map shapes",
+"description": "U.S. Census and Natural Earth shapes."
+},
+"cu_pa_log": {
+"title": "Cornerstone plate appearance log",
+"description": "Every plate appearance from NAIA stats play-by-play."
+},
+"cu_pitchers": {
+"title": "Cornerstone pitchers",
+"description": "Official 2026 lines from cugoldeneagles.com."
+},
+"cu_player_extra": {
+"title": "Cornerstone player honors",
+"description": "From Cornerstone honors story."
+},
+"cu_program_notes": {
+"title": "Cornerstone program notes",
+"description": "Written notes, each checked against the data."
+},
+"cu_recruits": {
+"title": "Cornerstone commits",
+"description": "Listed by Prep Baseball Report. Enrollment not confirmed."
+},
+"cu_roster": {
+"title": "Cornerstone 2026 roster",
+"description": "From cugoldeneagles.com."
+},
+"cu_rotations": {
+"title": "Cornerstone staff",
+"description": "2026 usage and projected 2027 roles."
+},
+"cu_schedule": {
+"title": "Cornerstone 2026 schedule",
+"description": "All 49 games."
+},
+"cu_schedule_2027": {
+"title": "Cornerstone 2027 schedule",
+"description": "Not posted yet."
+},
+"cu_spray": {
+"title": "Cornerstone spray chart",
+"description": "One row per at-bat that names where the ball went, from play-by-play."
+},
+"cu_steal_log": {
+"title": "Cornerstone steals",
+"description": "Each steal from NAIA stats play-by-play."
+},
+"cu_team_totals": {
+"title": "Cornerstone team totals",
+"description": "From the official schedule and stats pages."
+},
+"cu_tendency_hit": {
+"title": "Cornerstone hitter tendencies",
+"description": "From NAIA stats play-by-play."
+},
+"cu_tendency_pit": {
+"title": "Cornerstone pitcher tendencies",
+"description": "From NAIA stats play-by-play."
+},
+"cu_ui": {
+"title": "Cornerstone page wording",
+"description": "Headings, captions and the logo that differ by team."
+},
+"cu_watch": {
+"title": "Cornerstone 2027 tracker",
+"description": "Checked by hand."
+},
+"df_box_usage": {
+"title": "Defiance lineup usage",
+"description": "Starts by position and batting order, counted from box scores."
+},
+"df_cleary_series": {
+"title": "Defiance vs Cleary since 2019",
+"description": "From Defiance's schedule pages, from its side."
+},
+"df_game_bat": {
+"title": "Defiance hitter game log",
+"description": "Each hitter in each game, from NAIA stats box scores and play-by-play."
+},
+"df_game_pit": {
+"title": "Defiance pitcher game log",
+"description": "Each pitcher in each game, from NAIA stats box scores. Eight decisions come from the game logs on Defiance's player bios."
+},
+"df_h2h_bat": {
+"title": "Defiance and Cleary hitters head to head",
+"description": "The four 2026 meetings combined."
+},
+"df_h2h_pit": {
+"title": "Defiance and Cleary pitchers head to head",
+"description": "The four 2026 meetings combined."
+},
+"df_history": {
+"title": "Defiance wins by season",
+"description": "From Defiance's schedule pages, 2018 to 2026."
+},
+"df_hitters": {
+"title": "Defiance hitters",
+"description": "Official 2026 lines from Defiance's Presto stats page, with runs and steals from each player's bio page. No 2027 roster is posted, so status goes by class."
+},
+"df_line_log": {
+"title": "Defiance runs by inning",
+"description": "From NAIA stats line scores."
+},
+"df_lineups": {
+"title": "Defiance lineups",
+"description": "Projected 2027 lineup and a typical 2026 lineup from box scores: each position goes to the player with the most starts there, ordered by average spot in the batting order. The projection is analysis, not published by the school."
+},
+"df_map_points": {
+"title": "Defiance map points",
+"description": "Hometowns from the roster, coordinates entered by hand."
+},
+"df_map_shapes": {
+"title": "Defiance map shapes",
+"description": "U.S. Census and Natural Earth shapes."
+},
+"df_pa_log": {
+"title": "Defiance plate appearance log",
+"description": "Every plate appearance from NAIA stats play-by-play."
+},
+"df_pitchers": {
+"title": "Defiance pitchers",
+"description": "Official 2026 lines from Defiance's Presto stats page. No 2027 roster is posted, so status goes by class."
+},
+"df_player_extra": {
+"title": "Defiance player honors",
+"description": "From the 2026 WHAC and Defiance honors releases and the official stats."
+},
+"df_program_notes": {
+"title": "Defiance program notes",
+"description": "Written notes. Every number in them is computed from the built datasets."
+},
+"df_recruits": {
+"title": "Defiance new names, 2027",
+"description": "Empty until Defiance posts its 2027 roster page."
+},
+"df_roster": {
+"title": "Defiance 2026 roster",
+"description": "Defiance's 2026 roster page, with arrival route and 2027 status by class."
+},
+"df_rotations": {
+"title": "Defiance staff",
+"description": "2026 usage and projected 2027 roles. The projection is analysis, not published by Defiance."
+},
+"df_schedule": {
+"title": "Defiance 2026 schedule",
+"description": "All 49 games."
+},
+"df_schedule_2027": {
+"title": "Defiance 2027 schedule",
+"description": "The 50 games on Defiance's 2027 schedule page, released Oct 28, 2026."
+},
+"df_spray": {
+"title": "Defiance spray chart",
+"description": "One row per at-bat that names where the ball went, from play-by-play."
+},
+"df_steal_log": {
+"title": "Defiance steals",
+"description": "Each steal from NAIA stats play-by-play."
+},
+"df_team_totals": {
+"title": "Defiance team totals",
+"description": "From the official schedule and stats pages, and WHAC box scores."
+},
+"df_tendency_hit": {
+"title": "Defiance hitter tendencies",
+"description": "From NAIA stats play-by-play."
+},
+"df_tendency_pit": {
+"title": "Defiance pitcher tendencies",
+"description": "From NAIA stats play-by-play."
+},
+"df_ui": {
+"title": "Defiance page wording",
+"description": "Headings, captions and the logo that differ by team."
+},
+"df_watch": {
+"title": "Defiance 2027 tracker",
+"description": "Checked by hand."
+},
+"game_bat": {
+"title": "Hitter lines by game",
+"description": "Each Madonna hitter in each 2026 game, from box scores and play-by-play. Totals match published season stats."
+},
+"game_pit": {
+"title": "Pitcher lines by game",
+"description": "Each Madonna pitcher's 2026 outings from box scores, with days of rest worked out from game dates."
+},
+"h2h_bat": {
+"title": "2026 head-to-head hitting",
+"description": "Madonna and Cleary hitters, added up from the three 2026 box scores."
+},
+"h2h_pit": {
+"title": "2026 head-to-head pitching",
+"description": "Madonna and Cleary pitchers, added up from the three 2026 box scores."
+},
+"history": {
+"title": "Madonna records by season",
+"description": "Madonna all-time records page, 2004 to 2026."
+},
+"hitters": {
+"title": "2026 Madonna hitting",
+"description": "Madonna official 2026 and 2025 cumulative stats, with class and position from its roster. 2027 status is added from roster class, the Akron roster and Madonna news."
+},
+"it_box_usage": {
+"title": "Indiana Tech lineup usage",
+"description": "Starts by position and batting order, counted from box scores."
+},
+"it_cleary_series": {
+"title": "Indiana Tech vs Cleary since 2019",
+"description": "From Indiana Tech's schedule pages, from its side."
+},
+"it_game_bat": {
+"title": "Indiana Tech hitter game log",
+"description": "Each hitter in each game, from NAIA stats box scores and play-by-play."
+},
+"it_game_pit": {
+"title": "Indiana Tech pitcher game log",
+"description": "Each pitcher in each game, from NAIA stats box scores. One decision is worked out by elimination."
+},
+"it_h2h_bat": {
+"title": "Indiana Tech and Cleary hitters head to head",
+"description": "The three 2026 meetings combined."
+},
+"it_h2h_pit": {
+"title": "Indiana Tech and Cleary pitchers head to head",
+"description": "The three 2026 meetings combined."
+},
+"it_history": {
+"title": "Indiana Tech wins by season",
+"description": "From Indiana Tech's schedule pages."
+},
+"it_hitters": {
+"title": "Indiana Tech hitters",
+"description": "Official 2026 lines from indianatechwarriors.com, with 2027 status from the posted roster."
+},
+"it_line_log": {
+"title": "Indiana Tech runs by inning",
+"description": "From NAIA stats line scores."
+},
+"it_lineups": {
+"title": "Indiana Tech lineups",
+"description": "Projected 2027 lineup and a typical 2026 lineup from box scores: each position goes to the player with the most starts there, ordered by average spot in the batting order. The projection is analysis, not published by the school."
+},
+"it_map_points": {
+"title": "Indiana Tech map points",
+"description": "Hometowns from the roster, coordinates entered by hand."
+},
+"it_map_shapes": {
+"title": "Indiana Tech map shapes",
+"description": "U.S. Census and Natural Earth shapes."
+},
+"it_pa_log": {
+"title": "Indiana Tech plate appearance log",
+"description": "Every plate appearance from NAIA stats play-by-play."
+},
+"it_pitchers": {
+"title": "Indiana Tech pitchers",
+"description": "Official 2026 lines from indianatechwarriors.com, with 2027 status from the posted roster."
+},
+"it_player_extra": {
+"title": "Indiana Tech player honors",
+"description": "From the WHAC honors and NAIA All-American releases."
+},
+"it_program_notes": {
+"title": "Indiana Tech program notes",
+"description": "Written notes, recomputed by an independent review."
+},
+"it_recruits": {
+"title": "Indiana Tech new names, 2027",
+"description": "Players on the 2027 roster page who were not on the 2026 roster page, with previous school and whether it was a high school, junior college or four-year college."
+},
+"it_roster": {
+"title": "Indiana Tech 2026 roster",
+"description": "From indianatechwarriors.com, with arrival route and 2027 status added."
+},
+"it_rotations": {
+"title": "Indiana Tech staff",
+"description": "2026 usage and projected 2027 roles. The projection is analysis, not published by Indiana Tech."
+},
+"it_schedule": {
+"title": "Indiana Tech 2026 schedule",
+"description": "All 60 games."
+},
+"it_schedule_2027": {
+"title": "Indiana Tech 2027 schedule",
+"description": "Entries on Indiana Tech's 2027 schedule page."
+},
+"it_spray": {
+"title": "Indiana Tech spray chart",
+"description": "One row per at-bat that names where the ball went, from play-by-play."
+},
+"it_steal_log": {
+"title": "Indiana Tech steals",
+"description": "Each steal from NAIA stats play-by-play."
+},
+"it_team_totals": {
+"title": "Indiana Tech team totals",
+"description": "From the official schedule and stats pages, and WHAC box scores."
+},
+"it_tendency_hit": {
+"title": "Indiana Tech hitter tendencies",
+"description": "From NAIA stats play-by-play."
+},
+"it_tendency_pit": {
+"title": "Indiana Tech pitcher tendencies",
+"description": "From NAIA stats play-by-play."
+},
+"it_ui": {
+"title": "Indiana Tech page wording",
+"description": "Headings, captions and the logo that differ by team."
+},
+"it_watch": {
+"title": "Indiana Tech 2027 tracker",
+"description": "Checked by hand."
+},
+"league": {
+"title": "WHAC and NAIA comparison",
+"description": "Worked out from NAIA stats team totals for all 179 teams and the 12 WHAC teams. wOBA and FIP are calculated here."
+},
+"line_log": {
+"title": "Runs by inning by game",
+"description": "Inning-by-inning runs for Madonna and opponents from 2026 box score line scores."
+},
+"lineups": {
+"title": "Madonna lineups",
+"description": "Projected 2027 lineup and a typical 2026 lineup from box scores: each position goes to the player with the most starts there, ordered by average spot in the batting order. The projection is analysis, not published by the school."
+},
+"lt_box_usage": {
+"title": "Lawrence Tech lineup usage",
+"description": "Starts by position and batting order, counted from box scores."
+},
+"lt_cleary_series": {
+"title": "Lawrence Tech vs Cleary since 2019",
+"description": "From Lawrence Tech's schedule pages, from its side."
+},
+"lt_game_bat": {
+"title": "Lawrence Tech hitter game log",
+"description": "Each hitter in each game, from NAIA stats box scores and play-by-play."
+},
+"lt_game_pit": {
+"title": "Lawrence Tech pitcher game log",
+"description": "Each pitcher in each game, from NAIA stats box scores. Eleven decisions are worked out by elimination."
+},
+"lt_h2h_bat": {
+"title": "Lawrence Tech and Cleary hitters head to head",
+"description": "The four 2026 meetings combined."
+},
+"lt_h2h_pit": {
+"title": "Lawrence Tech and Cleary pitchers head to head",
+"description": "The four 2026 meetings combined."
+},
+"lt_history": {
+"title": "Lawrence Tech wins by season",
+"description": "From Lawrence Tech's schedule pages, 2017 to 2026. 2026 is as played."
+},
+"lt_hitters": {
+"title": "Lawrence Tech hitters",
+"description": "Official 2026 lines from ltuathletics.com, with 2027 status from the posted roster."
+},
+"lt_line_log": {
+"title": "Lawrence Tech runs by inning",
+"description": "From NAIA stats line scores."
+},
+"lt_lineups": {
+"title": "Lawrence Tech lineups",
+"description": "Projected 2027 lineup and a typical 2026 lineup from box scores: each position goes to the player with the most starts there, ordered by average spot in the batting order. The projection is analysis, not published by the school."
+},
+"lt_map_points": {
+"title": "Lawrence Tech map points",
+"description": "Hometowns from the roster, coordinates entered by hand."
+},
+"lt_map_shapes": {
+"title": "Lawrence Tech map shapes",
+"description": "U.S. Census and Natural Earth shapes."
+},
+"lt_pa_log": {
+"title": "Lawrence Tech plate appearance log",
+"description": "Every plate appearance from NAIA stats play-by-play."
+},
+"lt_pitchers": {
+"title": "Lawrence Tech pitchers",
+"description": "Official 2026 lines from ltuathletics.com, with 2027 status from the posted roster."
+},
+"lt_player_extra": {
+"title": "Lawrence Tech player honors",
+"description": "From the 2026 WHAC honors release and the official stats."
+},
+"lt_program_notes": {
+"title": "Lawrence Tech program notes",
+"description": "Written notes. Every number in them is computed from the built datasets."
+},
+"lt_recruits": {
+"title": "Lawrence Tech new names, 2027",
+"description": "Players on the 2027 roster page who were not on the 2026 roster page, with previous school and whether it was a high school, junior college or four-year college."
+},
+"lt_roster": {
+"title": "Lawrence Tech 2026 roster",
+"description": "From ltuathletics.com, with arrival route and 2027 status added. States are added from each player's high school."
+},
+"lt_rotations": {
+"title": "Lawrence Tech staff",
+"description": "2026 usage and projected 2027 roles. The projection is analysis, not published by Lawrence Tech."
+},
+"lt_schedule": {
+"title": "Lawrence Tech 2026 schedule",
+"description": "All 48 games played. The two Apr 18 Rochester Christian games are recorded as played, not as the listed forfeits."
+},
+"lt_schedule_2027": {
+"title": "Lawrence Tech 2027 schedule",
+"description": "Empty until Lawrence Tech posts its 2027 schedule."
+},
+"lt_spray": {
+"title": "Lawrence Tech spray chart",
+"description": "One row per at-bat that names where the ball went, from play-by-play."
+},
+"lt_steal_log": {
+"title": "Lawrence Tech steals",
+"description": "Each steal from NAIA stats play-by-play."
+},
+"lt_team_totals": {
+"title": "Lawrence Tech team totals",
+"description": "From the official schedule and stats pages, and WHAC box scores."
+},
+"lt_tendency_hit": {
+"title": "Lawrence Tech hitter tendencies",
+"description": "From NAIA stats play-by-play."
+},
+"lt_tendency_pit": {
+"title": "Lawrence Tech pitcher tendencies",
+"description": "From NAIA stats play-by-play."
+},
+"lt_ui": {
+"title": "Lawrence Tech page wording",
+"description": "Headings, captions and the logo that differ by team."
+},
+"lt_watch": {
+"title": "Lawrence Tech 2027 tracker",
+"description": "Checked by hand."
+},
+"map_points": {
+"title": "Player hometowns on maps",
+"description": "Hometowns from Madonna's 2026 roster, with player counts, names, counties and map positions."
+},
+"map_shapes": {
+"title": "Map shapes",
+"description": "Michigan, county, state and Canada outlines drawn from U.S. Census and Natural Earth data, plus hometown density contours."
+},
+"md_box_usage": {
+"title": "Michigan-Dearborn lineup usage",
+"description": "Starts by position and batting order, counted from box scores."
+},
+"md_cleary_series": {
+"title": "Michigan-Dearborn vs Cleary since 2019",
+"description": "From Michigan-Dearborn's schedule pages, from its side."
+},
+"md_game_bat": {
+"title": "Michigan-Dearborn hitter game log",
+"description": "Each hitter in each game, from NAIA stats box scores and play-by-play."
+},
+"md_game_pit": {
+"title": "Michigan-Dearborn pitcher game log",
+"description": "Each pitcher in each game, from NAIA stats box scores. Five decisions are worked out by elimination."
+},
+"md_h2h_bat": {
+"title": "Michigan-Dearborn and Cleary hitters head to head",
+"description": "The two 2026 meetings combined."
+},
+"md_h2h_pit": {
+"title": "Michigan-Dearborn and Cleary pitchers head to head",
+"description": "The two 2026 meetings combined."
+},
+"md_history": {
+"title": "Michigan-Dearborn wins by season",
+"description": "From Michigan-Dearborn's schedule pages."
+},
+"md_hitters": {
+"title": "Michigan-Dearborn hitters",
+"description": "Official 2026 lines from UM-Dearborn's Presto stats page, with runs and steals from each player's bio page. No 2027 roster is posted, so status goes by class."
+},
+"md_line_log": {
+"title": "Michigan-Dearborn runs by inning",
+"description": "From NAIA stats line scores."
+},
+"md_lineups": {
+"title": "Michigan-Dearborn lineups",
+"description": "Projected 2027 lineup and a typical 2026 lineup from box scores: each position goes to the player with the most starts there, ordered by average spot in the batting order. The projection is analysis, not published by the school."
+},
+"md_map_points": {
+"title": "Michigan-Dearborn map points",
+"description": "Hometowns from the roster, coordinates entered by hand."
+},
+"md_map_shapes": {
+"title": "Michigan-Dearborn map shapes",
+"description": "U.S. Census and Natural Earth shapes."
+},
+"md_pa_log": {
+"title": "Michigan-Dearborn plate appearance log",
+"description": "Every plate appearance from NAIA stats play-by-play."
+},
+"md_pitchers": {
+"title": "Michigan-Dearborn pitchers",
+"description": "Official 2026 lines from UM-Dearborn's Presto stats page. No 2027 roster is posted, so status goes by class."
+},
+"md_player_extra": {
+"title": "Michigan-Dearborn player honors",
+"description": "From the 2026 WHAC honors release and the official stats."
+},
+"md_program_notes": {
+"title": "Michigan-Dearborn program notes",
+"description": "Written notes. Every number in them is computed from the built datasets."
+},
+"md_recruits": {
+"title": "Michigan-Dearborn new names, 2027",
+"description": "Empty until UM-Dearborn posts its 2027 roster page."
+},
+"md_roster": {
+"title": "Michigan-Dearborn 2026 roster",
+"description": "UM-Dearborn's 2026 roster page. Its Hometown/Previous School column gives one school per player; 2027 status goes by class."
+},
+"md_rotations": {
+"title": "Michigan-Dearborn staff",
+"description": "2026 usage and projected 2027 roles. The projection is analysis, not published by Michigan-Dearborn."
+},
+"md_schedule": {
+"title": "Michigan-Dearborn 2026 schedule",
+"description": "All 41 games, including two fall games on Sep 27, 2025. Every game is recorded as played; the two forfeit listings that differ from the field are explained in the notes."
+},
+"md_schedule_2027": {
+"title": "Michigan-Dearborn 2027 schedule",
+"description": "Empty until UM-Dearborn posts its 2027 schedule."
+},
+"md_spray": {
+"title": "Michigan-Dearborn spray chart",
+"description": "One row per at-bat that names where the ball went, from play-by-play."
+},
+"md_steal_log": {
+"title": "Michigan-Dearborn steals",
+"description": "Each steal from NAIA stats play-by-play."
+},
+"md_team_totals": {
+"title": "Michigan-Dearborn team totals",
+"description": "From the official schedule and stats pages, and WHAC box scores."
+},
+"md_tendency_hit": {
+"title": "Michigan-Dearborn hitter tendencies",
+"description": "From NAIA stats play-by-play."
+},
+"md_tendency_pit": {
+"title": "Michigan-Dearborn pitcher tendencies",
+"description": "From NAIA stats play-by-play."
+},
+"md_ui": {
+"title": "Michigan-Dearborn page wording",
+"description": "Headings, captions and the logo that differ by team."
+},
+"md_watch": {
+"title": "Michigan-Dearborn 2027 tracker",
+"description": "Checked by hand."
+},
+"mi_geo": {
+"title": "Michigan counties and areas",
+"description": "County outlines from U.S. Census data and the areas the map can focus on."
+},
+"pa_log": {
+"title": "Plate appearance log",
+"description": "Every Madonna and opponent plate appearance in 2026: inning, count, pitch sequence, result and direction, from play-by-play."
+},
+"pitchers": {
+"title": "2026 Madonna pitching",
+"description": "Madonna official 2026 and 2025 cumulative stats, with status added the same way as hitters."
+},
+"player_extra": {
+"title": "Player card notes",
+"description": "Short notes shown on player cards."
+},
+"program_notes": {
+"title": "Scouting notes and sources",
+"description": "Written notes for the page: facts from the 2026 numbers, position outlook, staff, honors, gaps and source links. Position outlook and projections are analysis, not published facts."
+},
+"rc_box_usage": {
+"title": "Rochester Christian lineup usage",
+"description": "Starts by position and batting order, counted from box scores."
+},
+"rc_cleary_series": {
+"title": "Rochester Christian vs Cleary since 2019",
+"description": "From RCU's schedule pages, from its side."
+},
+"rc_game_bat": {
+"title": "Rochester Christian hitter game log",
+"description": "Each hitter in each game, from box scores and play-by-play. Every game as played."
+},
+"rc_game_pit": {
+"title": "Rochester Christian pitcher game log",
+"description": "Each pitcher in each game, from box scores. One save is placed by the box score."
+},
+"rc_h2h_bat": {
+"title": "Rochester Christian and Cleary hitters head to head",
+"description": "The two 2026 meetings combined."
+},
+"rc_h2h_pit": {
+"title": "Rochester Christian and Cleary pitchers head to head",
+"description": "The two 2026 meetings combined."
+},
+"rc_history": {
+"title": "Rochester Christian wins by season",
+"description": "From RCU's schedule pages, 2018 to 2026. 2026 is as played."
+},
+"rc_hitters": {
+"title": "Rochester Christian hitters",
+"description": "Official 2026 lines from RCU's Presto stats page, with runs and steals from each player's bio page. No 2027 roster is posted, so status goes by class."
+},
+"rc_line_log": {
+"title": "Rochester Christian runs by inning",
+"description": "From box score line scores."
+},
+"rc_lineups": {
+"title": "Rochester Christian lineups",
+"description": "Projected 2027 lineup and a typical 2026 lineup from box scores: each position goes to the player with the most starts there, ordered by average spot in the batting order. The projection is analysis, not published by the school."
+},
+"rc_map_points": {
+"title": "Rochester Christian map points",
+"description": "Hometowns from the roster, coordinates entered by hand."
+},
+"rc_map_shapes": {
+"title": "Rochester Christian map shapes",
+"description": "U.S. Census and Natural Earth shapes."
+},
+"rc_pa_log": {
+"title": "Rochester Christian plate appearance log",
+"description": "Every plate appearance from box-score play-by-play."
+},
+"rc_pitchers": {
+"title": "Rochester Christian pitchers",
+"description": "Official 2026 lines from RCU's Presto stats page. No 2027 roster is posted, so status goes by class."
+},
+"rc_player_extra": {
+"title": "Rochester Christian player honors",
+"description": "From the 2026 WHAC and RCU honors releases and the official stats."
+},
+"rc_program_notes": {
+"title": "Rochester Christian program notes",
+"description": "Written notes. Every number in them is computed from the built datasets."
+},
+"rc_recruits": {
+"title": "Rochester Christian new names, 2027",
+"description": "Empty until RCU posts its 2027 roster page."
+},
+"rc_roster": {
+"title": "Rochester Christian 2026 roster",
+"description": "RCU's 2026 roster page, with arrival route and 2027 status by class."
+},
+"rc_rotations": {
+"title": "Rochester Christian staff",
+"description": "2026 usage and projected 2027 roles. The projection is analysis, not published by RCU."
+},
+"rc_schedule": {
+"title": "Rochester Christian 2026 schedule",
+"description": "All 47 games, including two fall games, recorded as played. Games listed as forfeits keep their scores from the field."
+},
+"rc_schedule_2027": {
+"title": "Rochester Christian 2027 schedule",
+"description": "The 41 games on RCU's 2026-27 schedule page."
+},
+"rc_spray": {
+"title": "Rochester Christian spray chart",
+"description": "One row per at-bat that names where the ball went, from play-by-play."
+},
+"rc_steal_log": {
+"title": "Rochester Christian steals",
+"description": "Each steal from box-score play-by-play."
+},
+"rc_team_totals": {
+"title": "Rochester Christian team totals",
+"description": "From the official stats page and box scores, with records both as played and as listed."
+},
+"rc_tendency_hit": {
+"title": "Rochester Christian hitter tendencies",
+"description": "From box-score play-by-play."
+},
+"rc_tendency_pit": {
+"title": "Rochester Christian pitcher tendencies",
+"description": "From box-score play-by-play."
+},
+"rc_ui": {
+"title": "Rochester Christian page wording",
+"description": "Headings, captions and the logo that differ by team."
+},
+"rc_watch": {
+"title": "Rochester Christian 2027 tracker",
+"description": "Checked by hand."
+},
+"recruits": {
+"title": "Madonna listed commits",
+"description": "Commitments for grad years 2026 and 2027 listed by Prep Baseball Report and Perfect Game."
+},
+"roster": {
+"title": "2026 Madonna roster",
+"description": "Madonna official 2026 roster with arrival route and 2027 status added. Spellings of two colleges corrected."
+},
+"rotations": {
+"title": "Madonna pitching staff",
+"description": "2026 main starters and relievers, plus projected 2027 roles. The projection is analysis, not published by Madonna."
+},
+"schedule": {
+"title": "2026 Madonna game log",
+"description": "Madonna official schedule and game-by-game stats, 59 games."
+},
+"schedule_2027": {
+"title": "2027 games posted",
+"description": "Games listed on the NAIA stats 2026-27 Madonna page so far."
+},
+"spray": {
+"title": "Madonna spray chart",
+"description": "One row per at-bat that names where the ball went, from play-by-play."
+},
+"steal_log": {
+"title": "Steals by game",
+"description": "Each Madonna steal in 2026 with inning and base, from play-by-play."
+},
+"team_totals": {
+"title": "Madonna team totals",
+"description": "Published team figures and records, each row naming its source."
+},
+"tendency_hit": {
+"title": "Hitter tendencies",
+"description": "Pitch and batted-ball tendencies parsed from play-by-play in all 59 Madonna box scores."
+},
+"tendency_pit": {
+"title": "Pitcher tendencies",
+"description": "Pitch tendencies from play-by-play, plus starts, relief outings, innings and pitch counts from box scores."
+},
+"ui": {
+"title": "Madonna page wording",
+"description": "Headings, captions and the logo that differ by team."
+},
+"un_box_usage": {
+"title": "Northwestern Ohio lineup usage",
+"description": "Starts by position and batting order, counted from box scores."
+},
+"un_cleary_series": {
+"title": "Northwestern Ohio vs Cleary since 2019",
+"description": "From Northwestern Ohio's schedule pages, from its side."
+},
+"un_game_bat": {
+"title": "Northwestern Ohio hitter game log",
+"description": "Each hitter in each game, from NAIA stats box scores and play-by-play."
+},
+"un_game_pit": {
+"title": "Northwestern Ohio pitcher game log",
+"description": "Each pitcher in each game, from NAIA stats box scores. One decision is worked out by elimination."
+},
+"un_h2h_bat": {
+"title": "Northwestern Ohio and Cleary hitters head to head",
+"description": "The two 2026 meetings combined."
+},
+"un_h2h_pit": {
+"title": "Northwestern Ohio and Cleary pitchers head to head",
+"description": "The two 2026 meetings combined."
+},
+"un_history": {
+"title": "Northwestern Ohio wins by season",
+"description": "From Northwestern Ohio's schedule pages."
+},
+"un_hitters": {
+"title": "Northwestern Ohio hitters",
+"description": "Official 2026 lines from Northwestern Ohio's season stats page. No 2027 roster is posted yet, so status goes by class."
+},
+"un_line_log": {
+"title": "Northwestern Ohio runs by inning",
+"description": "From NAIA stats line scores."
+},
+"un_lineups": {
+"title": "Northwestern Ohio lineups",
+"description": "Projected 2027 lineup and a typical 2026 lineup from box scores: each position goes to the player with the most starts there, ordered by average spot in the batting order. The projection is analysis, not published by the school."
+},
+"un_map_points": {
+"title": "Northwestern Ohio map points",
+"description": "Hometowns from the roster, coordinates entered by hand."
+},
+"un_map_shapes": {
+"title": "Northwestern Ohio map shapes",
+"description": "U.S. Census and Natural Earth shapes."
+},
+"un_pa_log": {
+"title": "Northwestern Ohio plate appearance log",
+"description": "Every plate appearance from NAIA stats play-by-play."
+},
+"un_pitchers": {
+"title": "Northwestern Ohio pitchers",
+"description": "Official 2026 lines from Northwestern Ohio's season stats page. No 2027 roster is posted yet, so status goes by class."
+},
+"un_player_extra": {
+"title": "Northwestern Ohio player honors",
+"description": "From the WHAC honors and NAIA All-American releases."
+},
+"un_program_notes": {
+"title": "Northwestern Ohio program notes",
+"description": "Written notes, recomputed by an independent review."
+},
+"un_recruits": {
+"title": "Northwestern Ohio new names, 2027",
+"description": "Empty until Northwestern Ohio posts its 2027 roster page."
+},
+"un_roster": {
+"title": "Northwestern Ohio 2026 roster",
+"description": "Northwestern Ohio's 2026 roster page, with previous colleges from each player's bio page. 2027 status goes by class."
+},
+"un_rotations": {
+"title": "Northwestern Ohio staff",
+"description": "2026 usage and projected 2027 roles. The projection is analysis, not published by Northwestern Ohio."
+},
+"un_schedule": {
+"title": "Northwestern Ohio 2026 schedule",
+"description": "All 56 games."
+},
+"un_schedule_2027": {
+"title": "Northwestern Ohio 2027 schedule",
+"description": "Empty until Northwestern Ohio posts its 2027 schedule page."
+},
+"un_spray": {
+"title": "Northwestern Ohio spray chart",
+"description": "One row per at-bat that names where the ball went, from play-by-play."
+},
+"un_steal_log": {
+"title": "Northwestern Ohio steals",
+"description": "Each steal from NAIA stats play-by-play."
+},
+"un_team_totals": {
+"title": "Northwestern Ohio team totals",
+"description": "From the official schedule and stats pages, and WHAC box scores."
+},
+"un_tendency_hit": {
+"title": "Northwestern Ohio hitter tendencies",
+"description": "From NAIA stats play-by-play."
+},
+"un_tendency_pit": {
+"title": "Northwestern Ohio pitcher tendencies",
+"description": "From NAIA stats play-by-play."
+},
+"un_ui": {
+"title": "Northwestern Ohio page wording",
+"description": "Headings, captions and the logo that differ by team."
+},
+"un_watch": {
+"title": "Northwestern Ohio 2027 tracker",
+"description": "Checked by hand."
+},
+"w_bracket": {
+"title": "2026 WHAC Tournament bracket",
+"description": "The 15 games of the 2026 WHAC Tournament placed in the double-elimination bracket."
+},
+"w_cal": {
+"title": "2027 WHAC calendar",
+"description": "2027 conference weekends by team from the schedules posted so far."
+},
+"w_cal_cols": {
+"title": "2027 WHAC calendar columns",
+"description": "Team columns for the 2027 calendar."
+},
+"w_close": {
+"title": "WHAC 2026 close games and blowouts",
+"description": "One-run, 5+ run, shutout and comeback results by team, 2026 as played."
+},
+"w_compare": {
+"title": "WHAC 2026 team stat comparison",
+"description": "Season team stats for the 12 2026 WHAC teams with ranks."
+},
+"w_compare_cols": {
+"title": "WHAC stat comparison columns",
+"description": "Stat labels for the comparison table."
+},
+"w_field": {
+"title": "2026 All-WHAC first and second teams",
+"description": "All-WHAC picks by position with team color, logo, 2026 line and 2027 status."
+},
+"w_h2h": {
+"title": "WHAC 2026 head to head",
+"description": "Conference regular-season records between each pair of 2026 WHAC teams, as played."
+},
+"w_h2h_cols": {
+"title": "WHAC head-to-head columns",
+"description": "Column order for the head-to-head grid."
+},
+"w_honors": {
+"title": "WHAC 2026 honors",
+"description": "2026 All-WHAC teams and awards with each player's 2027 status."
+},
+"w_leaders": {
+"title": "WHAC 2026 individual leaders",
+"description": "Top 10 (with ties) in 19 hitting and pitching categories across all 12 2026 WHAC teams, with 2027 status."
+},
+"w_logos": {
+"title": "WHAC team logo marks",
+"description": "Small logo-only marks for the 12 2026 WHAC teams."
+},
+"w_naia": {
+"title": "WHAC teams in the 2026 NAIA Opening Round",
+"description": "Opening Round games for Northwestern Ohio, Indiana Tech and Madonna."
+},
+"w_notes": {
+"title": "WHAC page notes",
+"description": "Lede, captions, tiles, notes and sources for the WHAC page."
+},
+"w_players": {
+"title": "WHAC 2026 player lines",
+"description": "Every 2026 WHAC player's batting and pitching lines for all games and for WHAC regular-season games, with 2027 status."
+},
+"w_pyth": {
+"title": "WHAC 2026 runs and expected wins",
+"description": "Runs scored and allowed, actual and Pythagorean expected wins, all 2026 games as played."
+},
+"w_rec_colls": {
+"title": "Feeder colleges",
+"description": "Previous colleges listed on 2022-2027 WHAC rosters, marked junior college or four-year."
+},
+"w_rec_dims": {
+"title": "Recruiting map sizes",
+"description": "Drawing size of each recruiting map."
+},
+"w_rec_hs": {
+"title": "High schools of WHAC players",
+"description": "Each high school listed on 2022-2027 WHAC rosters, with roster spellings joined."
+},
+"w_rec_players": {
+"title": "WHAC rosters 2022-2027",
+"description": "One row per player per WHAC team on any 2022-2026 roster or posted 2027 roster: seasons, hometown, high school, previous colleges, distance from campus."
+},
+"w_rec_regions": {
+"title": "Recruiting map regions",
+"description": "Named groups of counties in Michigan, Ohio and Indiana used by the map's quick-zoom buttons."
+},
+"w_rec_shapes": {
+"title": "Recruiting map shapes",
+"description": "Lower Peninsula with an Upper Peninsula inset, Ohio and Indiana county outlines, a North America map and a Great Lakes pipelines map, from US Census atlas files."
+},
+"w_rec_teams": {
+"title": "WHAC campuses",
+"description": "The 12 WHAC baseball programs of 2022-2026 with campus locations and the color each uses on the recruiting maps."
+},
+"w_rec_towns": {
+"title": "Hometowns placed on maps",
+"description": "Each hometown on the 2022-2027 WHAC rosters with coordinates, county and map positions."
+},
+"w_ret_hit": {
+"title": "WHAC returning hitters",
+"description": "Players who can return in 2027 with 75+ at-bats in 2026."
+},
+"w_ret_pit": {
+"title": "WHAC returning pitchers",
+"description": "Players who can return in 2027 with 20+ innings in 2026."
+},
+"w_retbar": {
+"title": "WHAC returning playing time",
+"description": "2026 plate appearances and innings that can and can't return, by 2027 team."
+},
+"w_series27": {
+"title": "WHAC 2027 conference series posted",
+"description": "2027 WHAC series from the schedules posted so far."
+},
+"w_standings": {
+"title": "WHAC 2026 standings",
+"description": "2026 WHAC final standings as played, with the WHAC site's listed records, postseason and 2027 status."
+},
+"w_teaminfo": {
+"title": "WHAC team colors and logos",
+"description": "Team id, abbreviation, primary color and logo key for the 12 2026 WHAC teams."
+},
+"w_teams": {
+"title": "WHAC 2027 team capsules",
+"description": "One row per 2027 WHAC team: 2026 results, staff, returning share, top returners, departures and schedule status."
+},
+"w_tourney": {
+"title": "WHAC 2026 tournament games",
+"description": "All 15 games of the 2026 WHAC Tournament."
+},
+"w_watch": {
+"title": "2027 WHAC tracker",
+"description": "What each 2027 WHAC team has posted: roster, schedule, staff and commits, with check dates."
+},
+"watch": {
+"title": "2027 tracker",
+"description": "Status of Madonna's 2027 roster, schedule, polls, transfers, Mitchell and staff."
+},
+"w_hands": {
+"title": "Bats and throws by player",
+"description": "From each 2027 WHAC team's 2026 roster page."
+},
+"site_status": {
+"title": "Site status",
+"description": "Date of the last data check."
+},
+"site_changes": {
+"title": "Change log",
+"description": "What each update changed."
+}
+}
