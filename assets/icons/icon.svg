@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#22397A"/><stop offset="1" stop-color="#0A1230"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <g id="art">
+    <!-- baseball seams framing the number -->
+    <g fill="none" stroke="#E7131A" stroke-width="5" opacity=".85" stroke-linecap="round">
+      <path d="M118 96 C 58 190, 58 322, 118 416"/>
+      <path d="M394 96 C 454 190, 454 322, 394 416"/>
+    </g>
+    <g fill="none" stroke="#E7131A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M93.8 109.4 L101.8 125.3 M119.1 121.2 L101.8 125.3 M75.4 152.6 L85.8 167.0 M102.3 160.4 L85.8 167.0 M63.8 198.2 L76.2 211.0 M91.6 202.0 L76.2 211.0 M58.9 245.1 L73.0 256.0 M86.9 244.9 L73.0 256.0 M60.7 292.2 L76.2 301.0 M88.4 288.1 L76.2 301.0 M69.2 338.5 L85.8 345.0 M96.0 330.4 L85.8 345.0 M84.4 382.9 L101.8 386.7 M109.6 370.7 L101.8 386.7"/><path d="M392.9 121.2 L410.2 125.3 M418.2 109.4 L410.2 125.3 M409.7 160.4 L426.2 167.0 M436.6 152.6 L426.2 167.0 M420.4 202.0 L435.8 211.0 M448.2 198.2 L435.8 211.0 M425.1 244.9 L439.0 256.0 M453.1 245.1 L439.0 256.0 M423.6 288.1 L435.8 301.0 M451.3 292.2 L435.8 301.0 M416.0 330.4 L426.2 345.0 M442.8 338.5 L426.2 345.0 M402.4 370.7 L410.2 386.7 M427.6 382.9 L410.2 386.7"/></g>
+    <text x="256" y="168" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" font-size="50" letter-spacing="10" fill="#C9D4EE">WHAC</text>
+    <text x="256" y="356" text-anchor="middle" font-family="DejaVu Serif, Georgia, serif" font-weight="700" font-size="196" fill="#FFFFFF">27</text>
+    <rect x="186" y="384" width="140" height="12" rx="6" fill="#E7131A"/>
+  </g>
+</svg>

@@ -1,0 +1,19 @@
+{
+  "name": "WHAC Baseball 2027",
+  "short_name": "WHAC 27",
+  "description": "The 2026 WHAC baseball season and the 2027 field: team pages, player cards, recruiting maps.",
+  "id": "./",
+  "start_url": "./#whac",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0A1230",
+  "theme_color": "#0A1230",
+  "icons": [
+    {"src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "assets/icons/maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable"},
+    {"src": "assets/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"},
+    {"src": "assets/icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any"}
+  ]
+}
