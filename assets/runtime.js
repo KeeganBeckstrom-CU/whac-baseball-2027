@@ -17,7 +17,7 @@
     if (DATA[id]) return;
     DATA[id] = { status: 'loading', data: [] };
     if (known && !known[id]) { DATA[id] = { status: 'missing', data: [] }; return; }
-    fetch('data/' + encodeURIComponent(id) + '.json')
+    fetch('data/' + encodeURIComponent(id) + '.json', { cache: 'no-cache' })
       .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then((j) => { DATA[id] = { status: 'ok', data: j }; schedule(); })
       .catch((e) => { DATA[id] = { status: 'missing', data: [], message: String(e) }; schedule(); });

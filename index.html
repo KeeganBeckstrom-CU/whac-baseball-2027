@@ -50,8 +50,8 @@ html{padding-top:env(safe-area-inset-top)}
   const i = h.indexOf('/');
   if (i > 0) { window.__startPlayer = decodeURIComponent(h.slice(i + 1)); history.replaceState(null, '', '#' + h.slice(0, i)); }
   const [known, page] = await Promise.all([
-    fetch('data/_datasets.json').then((r) => r.json()),
-    fetch('page.html').then((r) => r.text()),
+    fetch('data/_datasets.json', { cache: 'no-cache' }).then((r) => r.json()),
+    fetch('page.html', { cache: 'no-cache' }).then((r) => r.text()),
   ]);
   dash._setKnown(known);
   const tpl = document.createElement('template');
