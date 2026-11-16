@@ -612,12 +612,11 @@
     </div>
   </div>
   <div class="md-card" id="splits-cards">
-    <h2 class="md-h">Results by pitcher or batter hand, inning and time through the order <span class="md-tag c">Complete</span></h2>
+    <h2 class="md-h">Results by inning and time through the order <span class="md-tag c">Complete</span></h2>
     <p class="md-cap" data-draw="v" data-src="program_notes" data-where="id=split_c_note" data-field="detail">—</p>
-    <p class="md-cap" data-draw="lr_note" data-src="lr_split">—</p>
     <div class="md-grid">
-      <div class="md-splitbox"><h3 class="md-h3">Hitters</h3><select class="md-input" id="shSel" aria-label="Choose a player" data-draw="sel_h" data-src="tendency_hit"></select><div class="md-scroll"><table class="md-table"><thead><tr><th>Split</th><th>PA</th><th>AB</th><th>H</th><th>XBH</th><th>HR</th><th>BB</th><th>K</th><th>AVG</th><th>OBP</th><th>SLG</th></tr></thead><tbody data-src="pa_log lr_split" data-draw="splits_h"></tbody></table></div></div>
-      <div class="md-splitbox"><h3 class="md-h3">Pitchers, results against</h3><select class="md-input" id="spSel" aria-label="Choose a player" data-draw="sel_p" data-src="tendency_pit"></select><div class="md-scroll"><table class="md-table"><thead><tr><th>Split</th><th>PA</th><th>AB</th><th>H</th><th>XBH</th><th>HR</th><th>BB</th><th>K</th><th>AVG</th><th>OBP</th><th>SLG</th></tr></thead><tbody data-src="pa_log lr_split" data-draw="splits_p"></tbody></table></div></div>
+      <div class="md-splitbox"><h3 class="md-h3">Hitters</h3><select class="md-input" id="shSel" aria-label="Choose a player" data-draw="sel_h" data-src="tendency_hit"></select><div class="md-scroll"><table class="md-table"><thead><tr><th>Split</th><th>PA</th><th>AB</th><th>H</th><th>XBH</th><th>HR</th><th>BB</th><th>K</th><th>AVG</th><th>OBP</th><th>SLG</th></tr></thead><tbody data-src="pa_log" data-draw="splits_h"></tbody></table></div></div>
+      <div class="md-splitbox"><h3 class="md-h3">Pitchers, results against</h3><select class="md-input" id="spSel" aria-label="Choose a player" data-draw="sel_p" data-src="tendency_pit"></select><div class="md-scroll"><table class="md-table"><thead><tr><th>Split</th><th>PA</th><th>AB</th><th>H</th><th>XBH</th><th>HR</th><th>BB</th><th>K</th><th>AVG</th><th>OBP</th><th>SLG</th></tr></thead><tbody data-src="pa_log" data-draw="splits_p"></tbody></table></div></div>
     </div>
   </div>
   <div class="md-card" id="tend-hitters">
@@ -657,6 +656,14 @@
     <div class="md-cred" data-draw="spray_cred" data-src="spray pa_log"></div>
     <div class="md-spray-chart" data-draw="spray_chart" data-src="spray pa_log"></div>
     <p class="md-cap" data-draw="spray_foot" data-src="spray pa_log roster"></p>
+  </div>
+  <div class="md-card md-part" id="splits-hand">
+    <h2 class="md-h">Results vs left- and right-handers <span class="md-tag p">Partial</span></h2>
+    <p class="md-cap" data-draw="lr_note" data-src="lr_split">—</p>
+    <div class="md-grid">
+      <div class="md-splitbox"><h3 class="md-h3">Hitters vs left- and right-handed pitchers</h3><select class="md-input" id="shSel3" aria-label="Choose a player" data-draw="sel_h" data-src="tendency_hit"></select><div class="md-scroll"><table class="md-table"><thead><tr><th>Split</th><th>PA</th><th>AB</th><th>H</th><th>XBH</th><th>HR</th><th>BB</th><th>K</th><th>AVG</th><th>OBP</th><th>SLG</th></tr></thead><tbody data-src="lr_split" data-draw="splits_hl"></tbody></table></div></div>
+      <div class="md-splitbox"><h3 class="md-h3">Pitchers vs left- and right-handed batters</h3><select class="md-input" id="spSel3" aria-label="Choose a player" data-draw="sel_p" data-src="tendency_pit"></select><div class="md-scroll"><table class="md-table"><thead><tr><th>Split</th><th>PA</th><th>AB</th><th>H</th><th>XBH</th><th>HR</th><th>BB</th><th>K</th><th>AVG</th><th>OBP</th><th>SLG</th></tr></thead><tbody data-src="lr_split" data-draw="splits_pl"></tbody></table></div></div>
+    </div>
   </div>
   <div class="md-card md-part" id="splits-count">
     <h2 class="md-h">Results by count <span class="md-tag p">Partial</span></h2>
@@ -969,15 +976,15 @@ const lrSum=(side,player)=>{const L=rowsOf('lr_split');if(!L)return null;const k
 const lrRow=(label,t)=>{const tb=t.h+t.d2+2*t.d3+3*t.hr;const od=t.ab+t.bb+t.hbp+t.sf;return {split:label,pa:t.pa,ab:t.ab,h:t.h,xbh:t.d2+t.d3+t.hr,hr:t.hr,bb:t.bb,k:t.k,avg:t.ab?f3(t.h/t.ab):'—',obp:od?f3((t.h+t.bb+t.hbp)/od):'—',slg:t.ab?f3(tb/t.ab):'—'};};
 const LRLAB={H:['Vs left-handed pitchers','Vs right-handed pitchers','Pitcher hand not found'],P:['Vs left-handed batters','Vs right-handed batters','Batter hand not found']};
 const lrList=(side,player)=>{const o=lrSum(side,player);if(!o)return [];return [lrRow(LRLAB[side][0],o.L),lrRow(LRLAB[side][1],o.R),lrRow(LRLAB[side][2],o.U)].filter((r)=>r.pa>0);};
-draw('lr_note',(el)=>{const L=rowsOf('lr_split');if(!L||!L.length){el.textContent='—';return;}let t=0,u=0;L.forEach((r)=>{const n=Number(r.pa)||0;t+=n;if(r.vs==='U')u+=n;});el.textContent='Partial: left and right rows count every 2026 game with play-by-play and do not change with the filter above. Pitchers\' throwing hands and hitters\' batting sides come from team rosters, player bios and public player profiles (Perfect Game, Baseball America, tournament and prior-school rosters); a switch hitter counts from the side opposite the pitcher. The hand was found for '+(t-u).toLocaleString('en-US')+' of '+t.toLocaleString('en-US')+' plate appearances ('+Math.round(100*(t-u)/t)+'%).';});
+draw('lr_note',(el)=>{const L=rowsOf('lr_split');if(!L||!L.length){el.textContent='—';return;}let t=0,u=0;L.forEach((r)=>{const n=Number(r.pa)||0;t+=n;if(r.vs==='U')u+=n;});el.textContent='These rows count every 2026 game with play-by-play and do not change with the game filter. Pitchers\' throwing hands and hitters\' batting sides come from team rosters, player bios and public player profiles (Perfect Game, Baseball America, tournament and prior-school rosters); a switch hitter counts from the side opposite the pitcher. The hand was found for '+(t-u).toLocaleString('en-US')+' of '+t.toLocaleString('en-US')+' plate appearances ('+Math.round(100*(t-u)/t)+'%).';});
 const lrCard=(side,n)=>{const L=lrList(side,n);if(!L.length)return [];const tot=L.reduce((a,r)=>a+r.pa,0);const kn=L.filter((r)=>!/not found/.test(r.split)).reduce((a,r)=>a+r.pa,0);return [mk('div','pc-sec',(side==='H'?'Vs left and right pitchers':'Vs left and right batters')+': partial, hand found for '+kn+' of '+tot+' plate appearances'),miniTable(['Split','PA','AB','H','XBH','HR','BB','K','AVG','OBP','SLG'],L.map((r)=>[r.split,r.pa,r.ab,r.h,r.xbh,r.hr,r.bb,r.k,r.avg,r.obp,r.slg]))];};
 const SPLITCOLS=['split','pa','ab','h','xbh','hr','bb','k','avg','obp','slg'];
 state.sh='All';state.sp='All';
-const splitDraw=(side,key)=>(tb)=>{const pa=rowsOf('pa_log');if(!pa){tb.replaceChildren();return;}const sel=state[key];const rs=pa.filter((r)=>r.side===side&&seen(r.g)&&(sel==='All'||r.player===sel));const rows=[splitRow('All plate appearances',rs),...lrList(side,sel),...(side==='P'?TTO:[]).map(([l,f])=>splitRow(l,rs.filter(f))),...INNS.map(([l,f])=>splitRow(l,rs.filter(f)))];fill(tb,rows,SPLITCOLS,'split');};
+const splitDraw=(side,key)=>(tb)=>{const pa=rowsOf('pa_log');if(!pa){tb.replaceChildren();return;}const sel=state[key];const rs=pa.filter((r)=>r.side===side&&seen(r.g)&&(sel==='All'||r.player===sel));const rows=[splitRow('All plate appearances',rs),...(side==='P'?TTO:[]).map(([l,f])=>splitRow(l,rs.filter(f))),...INNS.map(([l,f])=>splitRow(l,rs.filter(f)))];fill(tb,rows,SPLITCOLS,'split');};
 const splitDrawP=(side,key)=>(tb)=>{const pa=rowsOf('pa_log');if(!pa){tb.replaceChildren();return;}const sel=state[key];const rs=pa.filter((r)=>r.side===side&&seen(r.g)&&(sel==='All'||r.player===sel));fill(tb,BUCKETS.map(([l,f])=>splitRow(l,rs.filter(f))),SPLITCOLS,'split');};
-draw('splits_h',splitDraw('H','sh'));draw('splits_p',splitDraw('P','sp'));draw('splits_hp',splitDrawP('H','sh'));draw('splits_pp',splitDrawP('P','sp'));
+const splitDrawL=(side,key)=>(tb)=>{fill(tb,lrList(side,state[key]),SPLITCOLS,'split');};draw('splits_hl',splitDrawL('H','sh'));draw('splits_pl',splitDrawL('P','sp'));draw('splits_h',splitDraw('H','sh'));draw('splits_p',splitDraw('P','sp'));draw('splits_hp',splitDrawP('H','sh'));draw('splits_pp',splitDrawP('P','sp'));
 const playerSel=(id,side,key,draws,base,minN)=>draw(id,(sel)=>{const rows=rowsOf(base);if(!rows){sel.replaceChildren();return;}const list=rows.filter((r)=>(side==='H'?r.pa:r.bf)>=minN).map((r)=>r.player);sel.replaceChildren(new Option('All '+TNAME()+(side==='H'?' hitters':' pitchers'),'All'),...list.map((n)=>new Option(n)));sel.value=state[key];sel.onchange=()=>{state[key]=sel.value;redraw(draws);};});
-playerSel('sel_h','H','sh',['splits_h','splits_hp','sel_h'],'tendency_hit',16);playerSel('sel_p','P','sp',['splits_p','splits_pp','sel_p'],'tendency_pit',16);
+playerSel('sel_h','H','sh',['splits_h','splits_hp','splits_hl','sel_h'],'tendency_hit',16);playerSel('sel_p','P','sp',['splits_p','splits_pp','splits_pl','sel_p'],'tendency_pit',16);
 
 /* ---------- Outing log and workload ---------- */
 state.logP='Jurczyk Jr., Jason';
