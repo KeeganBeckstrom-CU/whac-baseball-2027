@@ -1262,5 +1262,45 @@
 "site_changes": {
 "title": "Change log",
 "description": "What each update changed."
+},
+"lr_split": {
+"title": "Madonna left/right splits",
+"description": "Madonna hitters vs left- and right-handed pitchers and pitchers vs left- and right-handed batters, from 2026 play-by-play; hands from rosters, bios and public player profiles (partial)."
+},
+"c_lr_split": {
+"title": "Cleary left/right splits",
+"description": "Cleary hitters vs left- and right-handed pitchers and pitchers vs left- and right-handed batters, from 2026 play-by-play; hands from rosters, bios and public player profiles (partial)."
+},
+"a_lr_split": {
+"title": "Aquinas left/right splits",
+"description": "Aquinas hitters vs left- and right-handed pitchers and pitchers vs left- and right-handed batters, from 2026 play-by-play; hands from rosters, bios and public player profiles (partial)."
+},
+"cu_lr_split": {
+"title": "Cornerstone left/right splits",
+"description": "Cornerstone hitters vs left- and right-handed pitchers and pitchers vs left- and right-handed batters, from 2026 play-by-play; hands from rosters, bios and public player profiles (partial)."
+},
+"it_lr_split": {
+"title": "Indiana Tech left/right splits",
+"description": "Indiana Tech hitters vs left- and right-handed pitchers and pitchers vs left- and right-handed batters, from 2026 play-by-play; hands from rosters, bios and public player profiles (partial)."
+},
+"un_lr_split": {
+"title": "Northwestern Ohio left/right splits",
+"description": "Northwestern Ohio hitters vs left- and right-handed pitchers and pitchers vs left- and right-handed batters, from 2026 play-by-play; hands from rosters, bios and public player profiles (partial)."
+},
+"md_lr_split": {
+"title": "Michigan-Dearborn left/right splits",
+"description": "Michigan-Dearborn hitters vs left- and right-handed pitchers and pitchers vs left- and right-handed batters, from 2026 play-by-play; hands from rosters, bios and public player profiles (partial)."
+},
+"lt_lr_split": {
+"title": "Lawrence Tech left/right splits",
+"description": "Lawrence Tech hitters vs left- and right-handed pitchers and pitchers vs left- and right-handed batters, from 2026 play-by-play; hands from rosters, bios and public player profiles (partial)."
+},
+"df_lr_split": {
+"title": "Defiance left/right splits",
+"description": "Defiance hitters vs left- and right-handed pitchers and pitchers vs left- and right-handed batters, from 2026 play-by-play; hands from rosters, bios and public player profiles (partial)."
+},
+"rc_lr_split": {
+"title": "Rochester Christian left/right splits",
+"description": "Rochester Christian hitters vs left- and right-handed pitchers and pitchers vs left- and right-handed batters, from 2026 play-by-play; hands from rosters, bios and public player profiles (partial)."
 }
 }
